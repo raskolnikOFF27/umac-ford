@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/umac-ford/static/css/main.2cb470c1.css",
-    "main.js": "/umac-ford/static/js/main.f182db68.js",
+    "main.js": "/umac-ford/static/js/main.2b6f6b55.js",
     "static/media/Background.png": "/umac-ford/static/media/Background.ed19299acd7755da4912.png",
     "static/media/review-car-1.png": "/umac-ford/static/media/review-car-1.296deb01d91cd6e3cc93.png",
     "static/media/review-car-4.png": "/umac-ford/static/media/review-car-4.8c8b318f9e2695230394.png",
@@ -18,10 +18,10 @@
     "static/media/arrow-left.svg": "/umac-ford/static/media/arrow-left.c8636e10be9a6fa7b748ecf36c713ccc.svg",
     "static/media/arrow-right.svg": "/umac-ford/static/media/arrow-right.c8636e10be9a6fa7b748ecf36c713ccc.svg",
     "main.2cb470c1.css.map": "/umac-ford/static/css/main.2cb470c1.css.map",
-    "main.f182db68.js.map": "/umac-ford/static/js/main.f182db68.js.map"
+    "main.2b6f6b55.js.map": "/umac-ford/static/js/main.2b6f6b55.js.map"
   },
   "entrypoints": [
     "static/css/main.2cb470c1.css",
-    "static/js/main.f182db68.js"
+    "static/js/main.2b6f6b55.js"
   ]
 }
