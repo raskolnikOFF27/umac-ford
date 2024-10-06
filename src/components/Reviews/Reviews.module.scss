@@ -1,0 +1,92 @@
+@import "../../styles/variables.scss";
+
+.reviews {
+  padding: 50px 32px;
+  border-radius: 32px;
+  background-color: #1e1e1e;
+  color: $text-color;
+
+  .arrow_left_icon {
+    transform: rotate(180deg);
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    .title {
+      color: $primary-color;
+    }
+
+    .buttonContainer {
+      display: flex;
+      gap: 10px;
+
+      .prevButton,
+      .nextButton {
+        background-color: $primary-color;
+        border: none;
+        color: $primary-color;
+        font-size: 24px;
+        width: 48px;
+        height: 48px;
+        box-sizing: border-box;
+        border-radius: 16px;
+        cursor: pointer;
+        outline: none;
+
+        &:hover {
+          color: darken($primary-color, 10%);
+        }
+      }
+    }
+  }
+
+  .cardContainer {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .cardsRow {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    max-width: 1200px;
+
+    .ant-card-body {
+      padding: 0px !important;
+    }
+  }
+
+  .card {
+    background-color: $review-card-background;
+    border: none;
+    color: $light-text-color;
+    text-align: center;
+    padding: 0; /* Убираем отступы внутри карточки */
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .carImage {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px 10px 0 0; /* Округляем только верхние углы */
+    }
+
+    .content {
+      padding: 10px 15px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap; /* Ограничиваем длину текста */
+    }
+
+    .name {
+      padding: 0 15px 15px;
+    }
+  }
+}

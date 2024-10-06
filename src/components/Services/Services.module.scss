@@ -1,0 +1,56 @@
+@import "../../styles/variables.scss";
+
+.services {
+  padding: 50px 0;
+  color: $text-color;
+
+  .title {
+    color: $primary-color;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .card {
+    background-color: $card-background;
+    border: none;
+    color: $text-color;
+    height: 100%; // Единый размер для карточек
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s, box-shadow 0.3s;
+
+    &:hover {
+      transform: translateY(-5px); // Анимация при наведении
+      box-shadow: 0 10px 20px rgba(255, 87, 34, 0.5); // Тень при наведении
+    }
+
+    .ant-card-body {
+      color: $light-text-color;
+    }
+  }
+
+  .cardTitle {
+    color: $primary-color;
+    margin-top: 10px;
+  }
+
+  .iconContainer {
+    padding: 20px;
+    text-align: center;
+  }
+
+  .icon {
+    font-size: 36px;
+    color: $primary-color;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: rotate(20deg); // Анимация для иконки
+    }
+  }
+
+  p {
+    font-size: 16px;
+  }
+}

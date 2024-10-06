@@ -1,0 +1,56 @@
+@import "../../styles/variables.scss";
+
+.header {
+  background-color: rgba(0, 0, 0, 0.8);
+  position: fixed;
+  width: 100%;
+  z-index: 1000;
+  height: 60px;
+
+  .header__wrapper {
+    max-width: 1360px;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 15px $spacing-unit;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logoWrapper {
+    .logo {
+      width: 120px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .nav {
+    .navList {
+      display: flex;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        cursor: pointer;
+        margin: 0 20px;
+
+        a {
+          color: $primary-color;
+          text-decoration: none;
+          font-size: 18px;
+          transition: color 0.3s;
+
+          &:hover {
+            color: $secondary-color;
+          }
+        }
+      }
+    }
+  }
+}
