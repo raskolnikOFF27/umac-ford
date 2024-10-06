@@ -1,0 +1,27 @@
+/* src/components/Layout/Layout.module.scss */
+@import "../../styles/variables.scss";
+
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  overflow-x: hidden; // Препятствуем появлению горизонтального скролла
+}
+
+.mainContent {
+  width: 100%; // Гарантируем, что ширина не превышает доступное пространство
+  max-width: 1360px;
+  margin: 0 auto;
+  flex: 1;
+
+  // @media (max-width: 1920px) {
+  //   max-width: 90%; // Корректируем ширину на больших разрешениях
+  // }
+
+  @media (max-width: 768px) {
+    padding: 10px;
+    max-width: 100%; // На маленьких экранах используем всю доступную ширину
+  }
+}

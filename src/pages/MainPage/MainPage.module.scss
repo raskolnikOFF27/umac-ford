@@ -1,0 +1,46 @@
+/* src/pages/MainPage.module.scss */
+@import "../../styles/variables.scss";
+
+.appContainer {
+  margin-top: 85px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+.banner {
+  position: relative;
+  height: 500px;
+  background-size: cover;
+  border-radius: 20px;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 30px;
+}
+
+.bannerContent {
+  text-align: center;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+}
+
+.bannerTitle {
+  font-size: 48px;
+  font-weight: bold;
+  max-width: 640px;
+  text-align: left;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+.bannerButton {
+  color: #fff;
+  font-size: 18px;
+  padding: 10px 20px;
+  border-radius: 5px;
+  max-width: 250px;
+  text-decoration: none;
+  box-shadow: none;
+}

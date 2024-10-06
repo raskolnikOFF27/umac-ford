@@ -1,0 +1,40 @@
+/* src/components/Statistics/Statistics.module.scss */
+@import "../../styles/variables.scss";
+
+.statistics {
+  background-color: var(--background-color);
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--text-color);
+  border-radius: 10px;
+  margin-bottom: 40px;
+}
+
+.statCard {
+  background-color: $card-background;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+  }
+
+  .icon {
+    font-size: 40px;
+    color: $primary-color !important; /* Принудительно задаем оранжевый цвет */
+    margin-bottom: 10px;
+  }
+
+  .value {
+    font-size: 32px;
+    font-weight: bold;
+    color: $primary-color !important; /* Принудительно задаем оранжевый цвет */
+  }
+
+  .label {
+    font-size: 16px;
+    color: $primary-color !important; /* Принудительно задаем оранжевый цвет */
+  }
+}

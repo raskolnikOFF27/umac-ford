@@ -1,0 +1,58 @@
+/* src/components/About/About.module.scss */
+@import "../../styles/variables.scss";
+
+.about {
+  background: linear-gradient(145deg, #121212, #1e1e1e);
+  padding: 50px $spacing-unit;
+  color: $text-color;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+
+  .aboutText {
+    border: 2px solid var(--primary-color);
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.2);
+    background-color: #1e1e1e;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  .title {
+    color: var(--primary-color);
+    font-size: 32px;
+    margin-bottom: 20px;
+  }
+
+  .paragraph {
+    font-size: 18px;
+    line-height: 1.6;
+    color: $light-text-color;
+  }
+
+  .imageWrapper {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+
+    .carImage {
+      width: 100%;
+      max-width: 280px;
+      height: auto;
+      border-radius: 10px;
+      border: 2px solid var(--primary-color);
+      box-shadow: 0 4px 15px rgba(255, 87, 34, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 25px rgba(255, 87, 34, 0.7);
+      }
+    }
+  }
+}
