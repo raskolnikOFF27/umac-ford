@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/umac-ford/static/css/main.2cb470c1.css",
+    "main.js": "/umac-ford/static/js/main.f182db68.js",
+    "static/media/Background.png": "/umac-ford/static/media/Background.ed19299acd7755da4912.png",
+    "static/media/review-car-1.png": "/umac-ford/static/media/review-car-1.296deb01d91cd6e3cc93.png",
+    "static/media/review-car-4.png": "/umac-ford/static/media/review-car-4.8c8b318f9e2695230394.png",
+    "static/media/review-car-5.png": "/umac-ford/static/media/review-car-5.bc1f842bf4ab2f8439e7.png",
+    "static/media/review-car-2.png": "/umac-ford/static/media/review-car-2.8ec957b8ebac6608029b.png",
+    "static/media/review-car-3.png": "/umac-ford/static/media/review-car-3.d0bfa035dd5431c4f88b.png",
+    "static/media/Fact-Bold.woff": "/umac-ford/static/media/Fact-Bold.5c9738fd71f4853e002c.woff",
+    "static/media/Fact-Light.woff": "/umac-ford/static/media/Fact-Light.cc03bb38d15b41627ff0.woff",
+    "static/media/Fact-Regular.woff": "/umac-ford/static/media/Fact-Regular.511a10e5711825d9e7c1.woff",
+    "static/media/logo.svg": "/umac-ford/static/media/logo.20d29fa5446ce3420c41dc3c98f4e53f.svg",
+    "static/media/vk-icon.svg": "/umac-ford/static/media/vk-icon.526f93aa77d4c664d90d69dd1f9bfb5d.svg",
+    "static/media/telegram-icon.svg": "/umac-ford/static/media/telegram-icon.83859fb9600bd671dbe4556ea68fcb47.svg",
+    "index.html": "/umac-ford/index.html",
+    "static/media/arrow-left.svg": "/umac-ford/static/media/arrow-left.c8636e10be9a6fa7b748ecf36c713ccc.svg",
+    "static/media/arrow-right.svg": "/umac-ford/static/media/arrow-right.c8636e10be9a6fa7b748ecf36c713ccc.svg",
+    "main.2cb470c1.css.map": "/umac-ford/static/css/main.2cb470c1.css.map",
+    "main.f182db68.js.map": "/umac-ford/static/js/main.f182db68.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2cb470c1.css",
+    "static/js/main.f182db68.js"
+  ]
+}
