@@ -46,17 +46,37 @@
 
   .cardContainer {
     display: flex;
-    justify-content: flex-start;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    cursor: grab;
+    gap: 16px;
+    padding: 0 16px;
+
+    &::-webkit-scrollbar {
+      display: none; /* Скрыть скроллбар для Chrome, Safari и Opera */
+    }
+    -ms-overflow-style: none; /* Скрыть скроллбар для Internet Explorer и Edge */
+    scrollbar-width: none; /* Скрыть скроллбар для Firefox */
+
+    &:active {
+      cursor: grabbing;
+    }
   }
 
-  .cardsRow {
-    display: flex;
-    justify-content: space-between;
-    flex-grow: 1;
-    max-width: 1200px;
+  .cardWrapper {
+    min-width: calc(25% - 16px); /* 4 карточки на экране */
+    transition: transform 0.3s ease-in-out;
 
-    .ant-card-body {
-      padding: 0px !important;
+    @media (max-width: 1200px) {
+      min-width: calc(33.33% - 16px); /* 3 карточки на экране */
+    }
+
+    @media (max-width: 768px) {
+      min-width: calc(50% - 16px); /* 2 карточки на экране */
+    }
+
+    @media (max-width: 576px) {
+      min-width: calc(100% - 16px); /* 1 карточка на экране */
     }
   }
 
@@ -65,7 +85,6 @@
     border: none;
     color: $light-text-color;
     text-align: center;
-    padding: 0; /* Убираем отступы внутри карточки */
     height: 350px;
     display: flex;
     flex-direction: column;
@@ -75,14 +94,14 @@
       width: 100%;
       height: 200px;
       object-fit: cover;
-      border-radius: 10px 10px 0 0; /* Округляем только верхние углы */
+      border-radius: 10px 10px 0 0;
     }
 
     .content {
       padding: 10px 15px;
       overflow: hidden;
       text-overflow: ellipsis;
-      white-space: nowrap; /* Ограничиваем длину текста */
+      white-space: nowrap;
     }
 
     .name {

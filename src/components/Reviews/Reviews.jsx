@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Typography, Card, Button, Row, Col } from "antd";
+import React, { useState, useRef } from "react";
+import { Typography, Card, Button } from "antd";
 import styles from "./Reviews.module.scss";
 import image1 from "../../assets/images/review-car-1.png";
 import image2 from "../../assets/images/review-car-2.png";
@@ -40,24 +40,57 @@ const reviews = [
     content: "Очень доволен сервисом! Всем рекомендую.",
     image: image5,
   },
-  // Добавляй больше карточек по необходимости
 ];
 
 const Reviews = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const sliderRef = useRef(null);
+  const cardWidth = 300; // Примерная ширина одной карточки для расчета
 
-  const visibleCards = 4; // Количество отображаемых карточек
-
-  const handlePrev = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? reviews.length - visibleCards : prevIndex - 1
-    );
+  // Функция для прокрутки карточек
+  const handleNext = () => {
+    if (
+      sliderRef.current.scrollLeft >=
+      sliderRef.current.scrollWidth - sliderRef.current.offsetWidth
+    ) {
+      sliderRef.current.scrollLeft = 0; // Вернуться к началу
+    } else {
+      sliderRef.current.scrollLeft += cardWidth; // Прокручиваем вправо на одну карточку
+    }
   };
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === reviews.length - visibleCards ? 0 : prevIndex + 1
-    );
+  const handlePrev = () => {
+    if (sliderRef.current.scrollLeft === 0) {
+      sliderRef.current.scrollLeft =
+        sliderRef.current.scrollWidth - sliderRef.current.offsetWidth; // Прокрутка к концу
+    } else {
+      sliderRef.current.scrollLeft -= cardWidth; // Прокручиваем влево на одну карточку
+    }
+  };
+
+  // Логика для прокрутки с зажатым курсором
+  const handleMouseDown = (e) => {
+    const slider = sliderRef.current;
+    slider.isDown = true;
+    slider.startX = e.pageX - slider.offsetLeft;
+    slider.scrollLeft = slider.scrollLeft;
+  };
+
+  const handleMouseLeave = () => {
+    sliderRef.current.isDown = false;
+  };
+
+  const handleMouseUp = () => {
+    sliderRef.current.isDown = false;
+  };
+
+  const handleMouseMove = (e) => {
+    const slider = sliderRef.current;
+    if (!slider.isDown) return;
+    e.preventDefault();
+    const x = e.pageX - slider.offsetLeft;
+    const walk = (x - slider.startX) * 2; // Скорость прокрутки
+    slider.scrollLeft = slider.scrollLeft - walk;
   };
 
   return (
@@ -85,32 +118,32 @@ const Reviews = () => {
         </div>
       </div>
 
-      <div className={styles.cardContainer}>
-        <Row gutter={16} className={styles.cardsRow}>
-          {reviews
-            .slice(currentIndex, currentIndex + visibleCards)
-            .map((review, index) => (
-              <Col
-                key={index}
-                xs={24} // 1 карточка на экране <576px
-                sm={12} // 2 карточки на экране 576px-768px
-                md={8} // 3 карточки на экране 768px-992px
-                lg={6} // 4 карточки на экране >992px
-              >
-                <Card className={styles.card}>
-                  <img
-                    src={review.image}
-                    alt={`Автомобиль клиента ${review.name}`}
-                    className={styles.carImage}
-                  />
-                  <p className={styles.content}>"{review.content}"</p>
-                  <p className={styles.name}>
-                    <strong>- {review.name}</strong>
-                  </p>
-                </Card>
-              </Col>
-            ))}
-        </Row>
+      <div
+        className={styles.cardContainer}
+        ref={sliderRef}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseLeave}
+        onMouseUp={handleMouseUp}
+        onMouseMove={handleMouseMove}
+      >
+        {reviews.concat(reviews).map((review, index) => (
+          <div key={index} className={styles.cardWrapper}>
+            <Card
+              className={styles.card}
+              bodyStyle={{ padding: 0 }} // Задаем padding для тела карточки
+            >
+              <img
+                src={review.image}
+                alt={`Автомобиль клиента ${review.name}`}
+                className={styles.carImage}
+              />
+              <p className={styles.content}>"{review.content}"</p>
+              <p className={styles.name}>
+                <strong>- {review.name}</strong>
+              </p>
+            </Card>
+          </div>
+        ))}
       </div>
     </section>
   );

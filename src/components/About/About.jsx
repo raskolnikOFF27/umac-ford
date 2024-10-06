@@ -22,7 +22,7 @@ const About = () => {
             </Paragraph>
           </div>
         </Col>
-        <Col xs={24} md={16}>
+        {/* <Col xs={24} md={16}>
           <div className={styles.imageWrapper}>
             <img
               src="https://via.placeholder.com/600x400?text=Car+1"
@@ -35,7 +35,7 @@ const About = () => {
               className={styles.carImage}
             />
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </section>
   );
