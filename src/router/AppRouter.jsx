@@ -1,10 +1,8 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "../components/Layout/Layout";
 import MainPage from "../pages/MainPage/MainPage";
-// import AboutPage from "../pages/AboutPage";
-// import ServicesPage from "../pages/ServicesPage";
-// import ReviewsPage from "../pages/ReviewsPage";
+import CarRentalPage from "../pages/CarRentalPage/CarRentalPage";
 
 const AppRouter = () => {
   return (
@@ -12,9 +10,7 @@ const AppRouter = () => {
       <Layout>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          {/* <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/reviews" element={<ReviewsPage />} /> */}
+          <Route path="/rentals" element={<CarRentalPage />} />
         </Routes>
       </Layout>
     </Router>

@@ -43,4 +43,68 @@
   max-width: 250px;
   text-decoration: none;
   box-shadow: none;
+  border: none;
+
+  &:hover {
+    background-color: rgba(255, 87, 34, 0.9); /* Альтернативное затемнение */
+  }
+
+  &:focus,
+  &:active {
+    background-color: rgba(255, 87, 34, 0.8); /* Альтернативное затемнение */
+    outline: none;
+  }
+}
+
+/* Стили для секции формы */
+.formWrapper {
+  background-color: #1e1e1e;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  margin: 50px auto;
+}
+
+.formTitle {
+  color: var(--text-color);
+  font-size: 32px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.serviceForm {
+  .ant-input {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border-color: var(--primary-color);
+    border-radius: 8px;
+
+    &:hover,
+    &:focus {
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.5); /* Прозрачная тень для фокуса */
+    }
+  }
+
+  .ant-form-item {
+    margin-bottom: 16px;
+  }
+
+  .ant-form-item-label > label {
+    color: var(--light-text-color);
+  }
+
+  .ant-btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 8px;
+
+    &:hover,
+    &:focus {
+      background-color: rgba(255, 87, 34, 0.9);
+      border-color: rgba(255, 87, 34, 0.9);
+    }
+  }
 }
