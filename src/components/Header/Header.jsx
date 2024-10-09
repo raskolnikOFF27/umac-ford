@@ -1,41 +1,98 @@
-import React from "react";
+import React, { useState } from "react";
+import { NavLink, Link } from "react-router-dom";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg"; // Импортируем логотип
 
 const Header = () => {
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth", // Плавная прокрутка
-    });
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
+  const closeMenu = () => {
+    setIsMenuOpen(false);
   };
 
   return (
-    <header className={styles.header}>
-      <div className={styles.header__wrapper}>
-        <div className={styles.logoWrapper}>
-          <img
-            src={logo}
-            alt="Юмак Форд Логотип"
-            className={styles.logo}
-            onClick={scrollToTop} // Добавляем обработчик клика для логотипа
-          />
+    <>
+      <header className={styles.header}>
+        <div className={styles.headerWrapper}>
+          <div className={styles.logoWrapper}>
+            <Link to="/" onClick={closeMenu}>
+              <img src={logo} alt="Юмак Форд Логотип" className={styles.logo} />
+            </Link>
+          </div>
+          <nav className={`${styles.nav} ${isMenuOpen ? styles.open : ""}`}>
+            <ul className={styles.navList}>
+              <li>
+                <NavLink
+                  to="/about"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${styles.navLink} ${styles.active}`
+                      : styles.navLink
+                  }
+                  onClick={closeMenu}
+                >
+                  О компании
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/services"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${styles.navLink} ${styles.active}`
+                      : styles.navLink
+                  }
+                  onClick={closeMenu}
+                >
+                  Наши услуги
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/reviews"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${styles.navLink} ${styles.active}`
+                      : styles.navLink
+                  }
+                  onClick={closeMenu}
+                >
+                  Отзывы
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="/rentals"
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${styles.navLink} ${styles.active}`
+                      : styles.navLink
+                  }
+                  onClick={closeMenu}
+                >
+                  Аренда автомобилей
+                </NavLink>
+              </li>
+            </ul>
+          </nav>
+          <div className={styles.menuIcon} onClick={toggleMenu}>
+            {isMenuOpen ? (
+              <CloseOutlined className={styles.icon} />
+            ) : (
+              <MenuOutlined className={styles.icon} />
+            )}
+          </div>
         </div>
-        <nav className={styles.nav}>
-          <ul className={styles.navList}>
-            <li>
-              <a href="#about">О компании</a>
-            </li>
-            <li>
-              <a href="#services">Наши услуги</a>
-            </li>
-            <li>
-              <a href="#reviews">Отзывы</a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+      </header>
+      {isMenuOpen && (
+        <div className={styles.navOverlay} onClick={closeMenu}></div>
+      )}
+    </>
   );
 };
 

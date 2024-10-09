@@ -14,6 +14,7 @@
   width: 100%; // Гарантируем, что ширина не превышает доступное пространство
   max-width: 1360px;
   margin: 0 auto;
+  padding: 0 30px;
   flex: 1;
 
   // @media (max-width: 1920px) {
