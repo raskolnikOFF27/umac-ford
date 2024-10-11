@@ -17,14 +17,11 @@ import bydQinPlusPhoto2 from "../../assets/images/byd-qin-plus/byd-qin-plus-2.jp
 import bydQinPlusPhoto3 from "../../assets/images/byd-qin-plus/byd-qin-plus-3.jpg";
 import bydQinPlusPhoto4 from "../../assets/images/byd-qin-plus/byd-qin-plus-4.jpg";
 import bydQinPlusPhoto5 from "../../assets/images/byd-qin-plus/byd-qin-plus-5.jpg";
-
-// Импортируем изображения для Changan EADO Plus
 import changanEadoPlusPhoto1 from "../../assets/images/changan-eado-plus/photo-1.jpg";
 import changanEadoPlusPhoto2 from "../../assets/images/changan-eado-plus/photo-2.jpg";
 import changanEadoPlusPhoto3 from "../../assets/images/changan-eado-plus/photo-3.jpg";
 import changanEadoPlusPhoto4 from "../../assets/images/changan-eado-plus/photo-4.jpg";
 import changanEadoPlusPhoto5 from "../../assets/images/changan-eado-plus/photo-5.jpg";
-
 import { CloseOutlined } from "@ant-design/icons";
 
 const cars = [
@@ -54,7 +51,7 @@ const cars = [
     price: "от 3200 руб.",
     phone: "+78005553535",
     description:
-      "BYD Qin Plus — это гибридный автомобиль, который объединяет в себе мощность бензинового двигателя и экономичность электрической тяги. Это идеальный выбор для тех, кто хочет быть на шаг впереди и заботится об экологии, не жертвуя при этом динамикой и комфортом.",
+      "BYD Qin Plus — это гибридный автомобиль, который объединяет в себе мощность бензинового двигателя и экономичность электрической тяги...",
     benefits: [
       "Гибридная система: экономия топлива и меньший выброс CO2.",
       "Мощность и динамика: отличное ускорение благодаря сочетанию двух типов двигателя.",
@@ -68,14 +65,13 @@ const cars = [
       bydQinPlusPhoto5,
     ],
   },
-  // Добавляем новый автомобиль Changan EADO Plus
   {
     id: 3,
     name: "Changan EADO Plus",
     price: "от 2800 руб.",
     phone: "+78005553535",
     description:
-      "Changan EADO Plus — это стильный и современный седан с бензиновым двигателем, который впечатляет своим дизайном и уровнем комфорта. Китайский автопроизводитель Changan с каждым годом набирает популярность благодаря высокому качеству сборки и продуманным техническим решениям. Этот автомобиль станет отличным выбором для тех, кто ценит комфорт и безопасность на дороге.",
+      "Changan EADO Plus — это стильный и современный седан с бензиновым двигателем, который впечатляет своим дизайном и уровнем комфорта...",
     benefits: [
       "Современный дизайн: привлекает внимание и подчеркивает ваш стиль.",
       "Комфортабельный салон: высококачественные материалы и простор.",
@@ -106,7 +102,6 @@ const CarRentalPage = () => {
   };
 
   const handleImageError = (event) => {
-    console.error("Ошибка загрузки изображения:", event.target.src);
     event.target.src = placeholderImage;
   };
 

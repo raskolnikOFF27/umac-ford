@@ -24,46 +24,58 @@
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   cursor: pointer;
-  transition: transform 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
+  height: 100%; // Для равномерного размера карточек
 
   &:hover {
     transform: scale(1.02);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
   }
 }
 
-.imageContainer img {
+.imageContainer {
   width: 100%;
-  height: auto;
+  height: 200px;
+  overflow: hidden;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .cardContent {
   padding: 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .cardContent h3 {
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 10px;
+  color: #ffffff;
 }
 
 .cardContent p {
   margin-bottom: 10px;
+  color: #ff5722;
+  font-size: 16px;
 }
 
 .rentButton {
   background-color: #ff5722;
   color: #fff;
-  padding: 8px 16px;
+  padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   text-decoration: none;
   width: 100%;
   text-align: center;
+  font-size: 16px;
+  transition: background-color 0.2s;
 
   &:hover {
     background-color: #e64a19;
