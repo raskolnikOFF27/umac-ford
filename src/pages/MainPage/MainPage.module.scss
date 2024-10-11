@@ -24,6 +24,8 @@
   color: var(--text-color);
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
 }
 
 .bannerTitle {
@@ -43,6 +45,7 @@
   max-width: 250px;
   text-decoration: none;
   box-shadow: none;
+  margin-bottom: 50px;
   border: none;
 
   &:hover {
@@ -107,4 +110,24 @@
       border-color: rgba(255, 87, 34, 0.9);
     }
   }
+}
+
+.textWrapper {
+  width: 300px; /* Фиксированная ширина для контейнера с текстом */
+  height: 60px; /* Фиксированная высота для предотвращения изменения положения */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.bannerContent {
+  text-align: center;
+  color: var(--text-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%; /* Ширина по всей ширине баннера */
+  max-width: 640px; /* Ограничение максимальной ширины */
 }

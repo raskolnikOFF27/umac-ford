@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import { Button, ConfigProvider, Input, Form } from "antd";
+import { ReactTyped } from "react-typed";
 import Statistics from "../../components/Statistics/Statistics";
 import About from "../../components/About/About";
 import Services from "../../components/Services/Services";
@@ -34,7 +35,21 @@ const MainPage = () => {
         >
           <div className={styles.bannerContent}>
             <h1 className={styles.bannerTitle}>
-              Премиальное обслуживание вашего автомобиля
+              <ReactTyped
+                strings={[
+                  "Автосервис",
+                  "Аренда авто",
+                  "Автомойка",
+                  "Автозапчасти",
+                ]}
+                typeSpeed={80}
+                backSpeed={50}
+                backDelay={1500}
+                loop
+                smartBackspace
+                showCursor
+                cursorChar="|"
+              />
             </h1>
             <Button
               type="primary"
