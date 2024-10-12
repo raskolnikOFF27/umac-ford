@@ -1,15 +1,22 @@
-// src/components/About/About.js
+// src/components/About/About.jsx
+
 import React from "react";
 import { Typography, Row, Col } from "antd";
 import styles from "./About.module.scss";
+import image from "../../assets/images/umak-team.jpg"; // Убедитесь, что путь к изображению корректен
 
 const { Title, Paragraph } = Typography;
 
 const About = () => {
   return (
     <section id="about" className={styles.about}>
-      <Row justify="center" gutter={[16, 16]}>
-        <Col xs={24} md={16}>
+      <Row
+        justify="center"
+        align="stretch" // Изменено на "stretch" для одинаковой высоты колонок
+        gutter={[32, 32]}
+        className={styles.aboutContent}
+      >
+        <Col xs={24} md={12} className={styles.col}>
           <div className={styles.aboutText}>
             <Title level={2} className={styles.title}>
               О компании
@@ -22,20 +29,11 @@ const About = () => {
             </Paragraph>
           </div>
         </Col>
-        {/* <Col xs={24} md={16}>
+        <Col xs={24} md={12} className={styles.col}>
           <div className={styles.imageWrapper}>
-            <img
-              src="https://via.placeholder.com/600x400?text=Car+1"
-              alt="Автомобиль в автосервисе"
-              className={styles.carImage}
-            />
-            <img
-              src="https://via.placeholder.com/600x400?text=Car+2"
-              alt="Автомобиль на ремонте"
-              className={styles.carImage}
-            />
+            <img src={image} alt="Наша команда" className={styles.aboutImage} />
           </div>
-        </Col> */}
+        </Col>
       </Row>
     </section>
   );

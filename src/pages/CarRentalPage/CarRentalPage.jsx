@@ -119,7 +119,7 @@ const CarRentalPage = () => {
         },
       }}
     >
-      <div className={styles.carRentalPage}>
+      <div className={`${styles.carRentalPage} row`}>
         <h1 className={styles.title}>Аренда автомобилей</h1>
         <div className={styles.gallery}>
           {cars.map((car) => (

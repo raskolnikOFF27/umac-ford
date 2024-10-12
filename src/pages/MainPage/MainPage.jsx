@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect } from "react";
 import { Button, ConfigProvider, Input, Form } from "antd";
 import { ReactTyped } from "react-typed";
 import Statistics from "../../components/Statistics/Statistics";
@@ -10,12 +10,47 @@ import bannerImage from "../../assets/images/Background.png"; // Ваше изо
 
 const MainPage = () => {
   const formRef = useRef(null);
+  const mapRef = useRef(null); // Реф для контейнера карты
+  const isMapInitialized = useRef(false); // Флаг для отслеживания инициализации карты
 
   const scrollToForm = () => {
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  useEffect(() => {
+    // Проверяем, доступен ли ymaps (загружен ли скрипт)
+    if (window.ymaps && !isMapInitialized.current) {
+      window.ymaps.ready(initMap);
+      isMapInitialized.current = true; // Устанавливаем флаг после инициализации
+    }
+
+    function initMap() {
+      if (mapRef.current && window.ymaps) {
+        const map = new window.ymaps.Map(mapRef.current, {
+          center: [56.776364, 60.564156], // Координаты для Екатеринбурга
+          zoom: 15,
+          controls: ["zoomControl", "fullscreenControl"], // Добавляем контролы по необходимости
+        });
+
+        const placemark = new window.ymaps.Placemark(
+          [56.776364, 60.564156],
+          {
+            hintContent: "ЮмакФорд",
+            balloonContent:
+              "Автосервис, автотехцентр<br>ул. Академика Вонсовского, 1Ж, Екатеринбург",
+          },
+          {
+            preset: "islands#icon",
+            iconColor: "#FF5722",
+          }
+        );
+
+        map.geoObjects.add(placemark);
+      }
+    }
+  }, []); // Пустой массив зависимостей гарантирует вызов один раз
 
   return (
     <ConfigProvider
@@ -66,6 +101,16 @@ const MainPage = () => {
           <About />
           <Services />
           <Reviews />
+
+          {/* Добавление карты */}
+          <section className={styles.mapWrapper}>
+            <div
+              id="map"
+              ref={mapRef}
+              style={{ width: "100%", height: "300px", borderRadius: "10px" }}
+            ></div>
+          </section>
+
           <section ref={formRef} className={styles.formWrapper}>
             <h2 className={styles.formTitle}>Записаться в сервис</h2>
             <Form
