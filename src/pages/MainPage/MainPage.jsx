@@ -81,6 +81,7 @@ const MainPage = () => {
                 backSpeed={50}
                 backDelay={1500}
                 loop
+                style={{ color: "#ff5722" }}
                 smartBackspace
                 showCursor
                 cursorChar="|"

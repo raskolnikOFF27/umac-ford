@@ -1,175 +1,20 @@
-.carRentalPage {
-  padding: 20px;
-  background-color: transparent;
-  margin-top: 60px;
-  color: #ffffff;
-}
+/* src/components/CarRentalPage/CarRentalPage.module.scss */
 
-.title {
-  font-size: 36px;
-  text-align: center;
-  margin-bottom: 20px;
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-}
-
-.card {
-  background-color: #1e1e1e;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  display: flex;
-  flex-direction: column;
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  height: 100%; // Для равномерного размера карточек
-
-  &:hover {
-    transform: scale(1.02);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
-  }
-}
-
-.imageContainer {
-  width: 100%;
-  height: 200px;
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-}
-
-.cardContent {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  height: 150px;
-  justify-content: space-between;
-}
-
-.cardContent h3 {
-  font-size: 20px;
-  margin-bottom: 10px;
-  color: #ffffff;
-}
-
-.cardContent p {
-  margin-bottom: 10px;
-  color: #ff5722;
-  font-size: 16px;
-}
-
-.rentButton {
-  background-color: #ff5722;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  text-decoration: none;
-  width: 100%;
-  text-align: center;
-  font-size: 16px;
-  transition: background-color 0.2s;
-
-  &:hover {
-    background-color: #e64a19;
-  }
-}
-
-.modalContent {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-height: 90vh;
-  padding-top: 20px;
-}
-
-.modalImageContainer {
-  width: 100%;
-  padding-top: 100%;
-  position: relative;
-  margin-bottom: 10px;
-}
-
-.modalImage {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-.modalDetails {
-  padding: 10px;
-  background-color: #1e1e1e;
-  border-radius: 10px;
-  color: #ffffff;
-  font-size: 14px;
-}
-
-@media (max-width: 768px) {
-  .title {
-    font-size: 28px;
-  }
-
-  .rentButton {
-    font-size: 12px;
-    padding: 6px 12px;
-  }
-
-  .gallery {
-    grid-template-columns: 1fr;
-  }
-
-  .modalContent {
-    padding-top: 10px;
-  }
-
-  :global {
-    .swiper-button-next,
-    .swiper-button-prev {
-      width: 30px;
-      height: 30px;
-      top: initial;
-      bottom: 50%;
-      transform: translateY(50%);
-    }
-
-    .swiper-button-next {
-      right: 5px;
-    }
-
-    .swiper-button-prev {
-      left: 5px;
-    }
-
-    .swiper-pagination {
-      bottom: 5px !important;
-    }
-  }
-}
-
-/* Стили для Swiper */
+/* Кастомные стили для Swiper */
 .swiperContainer {
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
 }
 
 :global {
   .swiper-button-next,
   .swiper-button-prev {
-    color: #ff5722;
+    color: #ff5722; /* Основной цвет */
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     width: 47px;
@@ -207,7 +52,7 @@
   }
 
   .swiper-pagination-bullet-active {
-    background: #e64a19 !important;
+    background: #d32f2f !important; /* Вторичный цвет */
   }
 }
 
@@ -215,7 +60,7 @@
 .customModal {
   :global {
     .ant-modal {
-      max-width: 90vw;
+      max-width: 800px; /* Установка максимальной ширины */
       margin: 0 auto;
     }
   }
@@ -225,7 +70,7 @@
   .customModal {
     :global {
       .ant-modal {
-        max-width: 500px;
+        max-width: 800px; /* Убедитесь, что максимальная ширина достаточна */
       }
     }
   }

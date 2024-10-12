@@ -34,7 +34,6 @@
   max-width: 640px;
   text-align: left;
   color: #fff;
-  margin-bottom: 20px;
 }
 
 .bannerButton {
@@ -45,7 +44,7 @@
   max-width: 250px;
   text-decoration: none;
   box-shadow: none;
-  margin-bottom: 50px;
+  margin-top: 25%;
   border: none;
 
   &:hover {
@@ -126,7 +125,7 @@
   color: var(--text-color);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   width: 100%; /* Ширина по всей ширине баннера */
   max-width: 640px; /* Ограничение максимальной ширины */
