@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/umac-ford/static/css/main.12809790.css",
-    "main.js": "/umac-ford/static/js/main.5da5ccce.js",
+    "main.css": "/umac-ford/static/css/main.7c0e079f.css",
+    "main.js": "/umac-ford/static/js/main.cc1d8472.js",
     "static/media/photo-5.jpg": "/umac-ford/static/media/photo-5.11238c43e31930fa148d.jpg",
     "static/media/photo-1.jpg": "/umac-ford/static/media/photo-1.b8dbbd9ffdcc17d4b7ff.jpg",
     "static/media/photo-3.jpg": "/umac-ford/static/media/photo-3.9d0e8924f4973590f0f0.jpg",
@@ -9,6 +9,7 @@
     "static/media/Background.png": "/umac-ford/static/media/Background.ed19299acd7755da4912.png",
     "static/media/byd-qin-plus-2.jpg": "/umac-ford/static/media/byd-qin-plus-2.21eb1d60d5c23394b69f.jpg",
     "static/media/byd-qin-plus-1.jpg": "/umac-ford/static/media/byd-qin-plus-1.182a9a734c895a47e622.jpg",
+    "static/media/umak-team.jpg": "/umac-ford/static/media/umak-team.3c02318183db9b4c77f8.jpg",
     "static/media/byd-qin-plus-4.jpg": "/umac-ford/static/media/byd-qin-plus-4.2ac91dd14dc3028af674.jpg",
     "static/media/photo-2.jpg": "/umac-ford/static/media/photo-2.f3e7db057327fccef27b.jpg",
     "static/media/byd-qin-plus-3.jpg": "/umac-ford/static/media/byd-qin-plus-3.261f07812319f8de3cd3.jpg",
@@ -23,17 +24,23 @@
     "static/media/Fact-Light.woff": "/umac-ford/static/media/Fact-Light.cc03bb38d15b41627ff0.woff",
     "static/media/Fact-Regular.woff": "/umac-ford/static/media/Fact-Regular.511a10e5711825d9e7c1.woff",
     "static/media/logo.svg": "/umac-ford/static/media/logo.20d29fa5446ce3420c41dc3c98f4e53f.svg",
+    "static/media/car-parts.svg": "/umac-ford/static/media/car-parts.32a4ef09675803bc307891f9c72ff292.svg",
+    "static/media/car-wash.svg": "/umac-ford/static/media/car-wash.994ba0e88bfce2f93a409dc79fc0bdd4.svg",
     "static/media/instagram-logo.svg": "/umac-ford/static/media/instagram-logo.ec36fc7ccd16ed72756754b22d389a3e.svg",
+    "static/media/car-diagnostics.svg": "/umac-ford/static/media/car-diagnostics.d7f7766659e468ae3b7a7806d86a79e7.svg",
+    "static/media/technical-review.svg": "/umac-ford/static/media/technical-review.382df2ffe592eed7d6558b7fc2242c43.svg",
+    "static/media/repair.svg": "/umac-ford/static/media/repair.845f8692aafd24a95891abf6d60036f5.svg",
+    "static/media/car-rental.svg": "/umac-ford/static/media/car-rental.e69e83bdfa1e5de49886911eb79e377d.svg",
     "static/media/vk-icon.svg": "/umac-ford/static/media/vk-icon.526f93aa77d4c664d90d69dd1f9bfb5d.svg",
     "static/media/telegram-icon.svg": "/umac-ford/static/media/telegram-icon.83859fb9600bd671dbe4556ea68fcb47.svg",
     "index.html": "/umac-ford/index.html",
     "static/media/arrow-left.svg": "/umac-ford/static/media/arrow-left.c8636e10be9a6fa7b748ecf36c713ccc.svg",
     "static/media/arrow-right.svg": "/umac-ford/static/media/arrow-right.c8636e10be9a6fa7b748ecf36c713ccc.svg",
-    "main.12809790.css.map": "/umac-ford/static/css/main.12809790.css.map",
-    "main.5da5ccce.js.map": "/umac-ford/static/js/main.5da5ccce.js.map"
+    "main.7c0e079f.css.map": "/umac-ford/static/css/main.7c0e079f.css.map",
+    "main.cc1d8472.js.map": "/umac-ford/static/js/main.cc1d8472.js.map"
   },
   "entrypoints": [
-    "static/css/main.12809790.css",
-    "static/js/main.5da5ccce.js"
+    "static/css/main.7c0e079f.css",
+    "static/js/main.cc1d8472.js"
   ]
 }
