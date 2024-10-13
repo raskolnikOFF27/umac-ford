@@ -1,111 +1,141 @@
-@import "../../styles/variables.scss";
+.reviewsSection {
+  padding: 50px 0;
 
-.reviews {
-  padding: 50px 32px;
-  border-radius: 32px;
-  background-color: #1e1e1e;
-  color: $text-color;
-
-  .arrow_left_icon {
-    transform: rotate(180deg);
-  }
-
-  .header {
+  .reviewsHeader {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
     margin-bottom: 20px;
 
-    .title {
-      color: $primary-color;
+    .reviewsTitle {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #ff5722;
     }
 
-    .buttonContainer {
+    .reviewsControls {
       display: flex;
       gap: 10px;
 
-      .prevButton,
-      .nextButton {
-        background-color: $primary-color;
+      .reviewsButton {
+        background-color: #ff5722;
+        color: white;
         border: none;
-        color: $primary-color;
-        font-size: 24px;
+        border-radius: 50%;
         width: 48px;
         height: 48px;
-        box-sizing: border-box;
-        border-radius: 16px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         cursor: pointer;
-        outline: none;
 
         &:hover {
-          color: darken($primary-color, 10%);
+          background-color: darken(#ff5722, 10%);
+        }
+
+        .arrowIcon {
+          width: 24px;
+          height: 24px;
+
+          &.arrowLeft {
+            transform: rotate(180deg);
+          }
         }
       }
     }
   }
 
-  .cardContainer {
+  .reviewsSlider {
     display: flex;
     overflow-x: scroll;
-    scroll-behavior: smooth;
-    cursor: grab;
     gap: 16px;
-    padding: 0 16px;
+    scroll-behavior: smooth;
 
     &::-webkit-scrollbar {
-      display: none; /* Скрыть скроллбар для Chrome, Safari и Opera */
+      display: none;
     }
-    -ms-overflow-style: none; /* Скрыть скроллбар для Internet Explorer и Edge */
-    scrollbar-width: none; /* Скрыть скроллбар для Firefox */
 
     &:active {
       cursor: grabbing;
     }
-  }
 
-  .cardWrapper {
-    min-width: calc(25% - 16px); /* 4 карточки на экране */
-    transition: transform 0.3s ease-in-out;
-
-    @media (max-width: 1200px) {
-      min-width: calc(33.33% - 16px); /* 3 карточки на экране */
-    }
-
-    @media (max-width: 768px) {
-      min-width: calc(50% - 16px); /* 2 карточки на экране */
-    }
-
-    @media (max-width: 576px) {
-      min-width: calc(100% - 16px); /* 1 карточка на экране */
-    }
-  }
-
-  .card {
-    background-color: $review-card-background;
-    border: none;
-    color: $light-text-color;
-    text-align: center;
-    height: 350px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-
-    .carImage {
+    .reviewCard {
+      background-color: #1e1e1e;
+      border-radius: 16px;
+      padding: 20px;
+      min-width: 320px;
       width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 10px 10px 0 0;
-    }
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
 
-    .content {
-      padding: 10px 15px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
+      .reviewHeader {
+        display: flex;
+        align-items: center;
+        margin-bottom: 16px;
 
-    .name {
-      padding: 0 15px 15px;
+        .reviewAvatar {
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          object-fit: cover;
+          margin-right: 16px;
+        }
+
+        .reviewInfo {
+          display: flex;
+          flex-direction: column;
+
+          .reviewName {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: white;
+          }
+
+          .reviewStars {
+            font-size: 1rem;
+            color: #ffcc00;
+          }
+        }
+      }
+
+      .reviewContent {
+        font-size: 1rem;
+        color: #cccccc;
+        line-height: 1.5;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .reviewsSlider {
+      gap: 8px;
+      .reviewCard {
+        min-width: 280px;
+        max-width: 320px;
+        padding: 16px;
+
+        .reviewAvatar {
+          width: 50px;
+          height: 50px;
+        }
+
+        .reviewInfo {
+          .reviewName {
+            font-size: 1.1rem;
+          }
+
+          .reviewStars {
+            font-size: 0.9rem;
+          }
+        }
+
+        .reviewContent {
+          font-size: 0.95rem;
+        }
+      }
     }
   }
 }

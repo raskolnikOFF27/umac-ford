@@ -1,56 +1,52 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Button, ConfigProvider, Input, Form } from "antd";
 import { ReactTyped } from "react-typed";
 import Statistics from "../../components/Statistics/Statistics";
 import About from "../../components/About/About";
 import Services from "../../components/Services/Services";
 import Reviews from "../../components/Reviews/Reviews";
+import MapWithRoute from "../../components/MapWithRoute/MapWithRoute";
 import styles from "./MainPage.module.scss";
-import bannerImage from "../../assets/images/Background.png"; // Ваше изображение
+import bannerImage from "../../assets/images/Background.png";
 
 const MainPage = () => {
+  // Рефы для секций
   const formRef = useRef(null);
-  const mapRef = useRef(null); // Реф для контейнера карты
-  const isMapInitialized = useRef(false); // Флаг для отслеживания инициализации карты
+  const aboutRef = useRef(null);
+  const servicesRef = useRef(null);
+  const reviewsRef = useRef(null);
+  const rentalsRef = useRef(null);
 
+  // Функции для плавной прокрутки
   const scrollToForm = () => {
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
-  useEffect(() => {
-    // Проверяем, доступен ли ymaps (загружен ли скрипт)
-    if (window.ymaps && !isMapInitialized.current) {
-      window.ymaps.ready(initMap);
-      isMapInitialized.current = true; // Устанавливаем флаг после инициализации
+  const scrollToAbout = () => {
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: "smooth" });
     }
+  };
 
-    function initMap() {
-      if (mapRef.current && window.ymaps) {
-        const map = new window.ymaps.Map(mapRef.current, {
-          center: [56.776364, 60.564156], // Координаты для Екатеринбурга
-          zoom: 15,
-          controls: ["zoomControl", "fullscreenControl"], // Добавляем контролы по необходимости
-        });
-
-        const placemark = new window.ymaps.Placemark(
-          [56.776364, 60.564156],
-          {
-            hintContent: "ЮмакФорд",
-            balloonContent:
-              "Автосервис, автотехцентр<br>ул. Академика Вонсовского, 1Ж, Екатеринбург",
-          },
-          {
-            preset: "islands#icon",
-            iconColor: "#FF5722",
-          }
-        );
-
-        map.geoObjects.add(placemark);
-      }
+  const scrollToServices = () => {
+    if (servicesRef.current) {
+      servicesRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, []); // Пустой массив зависимостей гарантирует вызов один раз
+  };
+
+  const scrollToReviews = () => {
+    if (reviewsRef.current) {
+      reviewsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToRentals = () => {
+    if (rentalsRef.current) {
+      rentalsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <ConfigProvider
@@ -98,20 +94,19 @@ const MainPage = () => {
           </div>
         </section>
         <main>
-          <Statistics />
-          <About />
-          <Services />
-          <Reviews />
-
-          {/* Добавление карты */}
-          <section className={styles.mapWrapper}>
-            <div
-              id="map"
-              ref={mapRef}
-              style={{ width: "100%", height: "300px", borderRadius: "10px" }}
-            ></div>
+          <section ref={aboutRef}>
+            <About />
           </section>
-
+          <section ref={servicesRef}>
+            <Services />
+          </section>
+          <section ref={reviewsRef}>
+            <Reviews />
+          </section>
+          <section ref={rentalsRef}>
+            <MapWithRoute />
+          </section>
+          {/* Форма записи на сервис */}
           <section ref={formRef} className={styles.formWrapper}>
             <h2 className={styles.formTitle}>Записаться в сервис</h2>
             <Form

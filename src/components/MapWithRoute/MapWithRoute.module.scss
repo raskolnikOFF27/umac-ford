@@ -1,0 +1,98 @@
+.mapSection {
+  margin-top: 40px;
+}
+
+.title {
+  text-align: center;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.contentContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.contacts {
+  flex: 1;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.map {
+  flex: 1;
+  min-width: 300px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #cccccc;
+}
+
+.contactCard {
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  color: #ffffff;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 18px;
+    color: #ff5722;
+  }
+
+  span {
+    font-size: 16px;
+    color: #dddddd;
+  }
+}
+
+.socialBlock {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  height: 100%;
+}
+
+.socialCard {
+  flex: 1;
+  background-color: #1e1e1e;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-decoration: none; /* Убираем подчеркивание ссылки */
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  .icon {
+    font-size: 28px; /* Увеличиваем размер иконок */
+    color: #ff5722;
+
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+  }
+}
