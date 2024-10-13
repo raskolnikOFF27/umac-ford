@@ -5,15 +5,46 @@ import Statistics from "../../components/Statistics/Statistics";
 import About from "../../components/About/About";
 import Services from "../../components/Services/Services";
 import Reviews from "../../components/Reviews/Reviews";
+import MapWithRoute from "../../components/MapWithRoute/MapWithRoute";
 import styles from "./MainPage.module.scss";
-import bannerImage from "../../assets/images/Background.png"; // Ваше изображение
+import bannerImage from "../../assets/images/Background.png";
 
 const MainPage = () => {
+  // Рефы для секций
   const formRef = useRef(null);
+  const aboutRef = useRef(null);
+  const servicesRef = useRef(null);
+  const reviewsRef = useRef(null);
+  const rentalsRef = useRef(null);
 
+  // Функции для плавной прокрутки
   const scrollToForm = () => {
     if (formRef.current) {
       formRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToAbout = () => {
+    if (aboutRef.current) {
+      aboutRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToServices = () => {
+    if (servicesRef.current) {
+      servicesRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToReviews = () => {
+    if (reviewsRef.current) {
+      reviewsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const scrollToRentals = () => {
+    if (rentalsRef.current) {
+      rentalsRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
 
@@ -46,6 +77,7 @@ const MainPage = () => {
                 backSpeed={50}
                 backDelay={1500}
                 loop
+                style={{ color: "#ff5722" }}
                 smartBackspace
                 showCursor
                 cursorChar="|"
@@ -62,10 +94,19 @@ const MainPage = () => {
           </div>
         </section>
         <main>
-          <Statistics />
-          <About />
-          <Services />
-          <Reviews />
+          <section ref={aboutRef}>
+            <About />
+          </section>
+          <section ref={servicesRef}>
+            <Services />
+          </section>
+          <section ref={reviewsRef}>
+            <Reviews />
+          </section>
+          <section ref={rentalsRef}>
+            <MapWithRoute />
+          </section>
+          {/* Форма записи на сервис */}
           <section ref={formRef} className={styles.formWrapper}>
             <h2 className={styles.formTitle}>Записаться в сервис</h2>
             <Form

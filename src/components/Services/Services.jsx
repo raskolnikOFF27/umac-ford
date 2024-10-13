@@ -1,27 +1,53 @@
+// src/components/Services/Services.jsx
+
 import React from "react";
 import { Typography, Card, Row, Col } from "antd";
-import { CarOutlined, SettingOutlined, ToolOutlined } from "@ant-design/icons";
 import styles from "./Services.module.scss";
+
+// Импорт собственных SVG-иконок как React-компонентов
+import { ReactComponent as DiagnosticsIcon } from "../../assets/icons/car-diagnostics.svg";
+import { ReactComponent as RepairIcon } from "../../assets/icons/repair.svg";
+import { ReactComponent as MaintenanceIcon } from "../../assets/icons/technical-review.svg";
+import { ReactComponent as CarWashIcon } from "../../assets/icons/car-wash.svg";
+import { ReactComponent as AutoPartsIcon } from "../../assets/icons/car-parts.svg";
+import { ReactComponent as CarRentalIcon } from "../../assets/icons/car-rental.svg";
 
 const { Title } = Typography;
 
 const services = [
   {
-    icon: <CarOutlined className={styles.icon} />,
+    icon: <DiagnosticsIcon className={styles.customIcon} />,
     title: "Диагностика",
     description:
       "Комплексная диагностика автомобиля для выявления всех неисправностей.",
   },
   {
-    icon: <SettingOutlined className={styles.icon} />,
+    icon: <RepairIcon className={styles.customIcon} />,
     title: "Ремонт",
     description: "Профессиональный ремонт любых систем автомобиля.",
   },
   {
-    icon: <ToolOutlined className={styles.icon} />,
+    icon: <MaintenanceIcon className={styles.customIcon} />,
     title: "ТО",
     description:
       "Регулярное техническое обслуживание для поддержания автомобиля в отличном состоянии.",
+  },
+  {
+    icon: <CarWashIcon className={styles.customIcon} />,
+    title: "Автомойка",
+    description:
+      "Полная мойка вашего автомобиля с использованием качественных средств.",
+  },
+  {
+    icon: <AutoPartsIcon className={styles.customIcon} />,
+    title: "Автозапчасти",
+    description:
+      "Широкий ассортимент оригинальных запчастей для вашего автомобиля.",
+  },
+  {
+    icon: <CarRentalIcon className={styles.customIcon} />,
+    title: "Аренда авто",
+    description: "Прокат автомобилей на любой срок с удобными условиями.",
   },
 ];
 
@@ -31,7 +57,7 @@ const Services = () => {
       <Title level={2} className={styles.title}>
         Наши услуги
       </Title>
-      <Row gutter={[16, 16]} justify="center">
+      <Row gutter={[24, 24]} justify="center">
         {services.map((service, index) => (
           <Col xs={24} sm={12} md={8} key={index}>
             <Card
@@ -42,7 +68,7 @@ const Services = () => {
               <Title level={4} className={styles.cardTitle}>
                 {service.title}
               </Title>
-              <p>{service.description}</p>
+              <p className={styles.cardDescription}>{service.description}</p>
             </Card>
           </Col>
         ))}

@@ -1,6 +1,11 @@
 /* src/styles/globals.scss */
+
 @import "./fonts.scss";
 @import "./variables.scss";
+
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
 
 body {
   font-family: $font-family;

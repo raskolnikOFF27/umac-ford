@@ -1,58 +1,147 @@
 /* src/components/About/About.module.scss */
+
 @import "../../styles/variables.scss";
 
+// Определение основных акцентных цветов
+$primary-color: #ff5722; // Основной акцентный цвет
+$secondary-color: #d32f2f; // Вторичный акцентный цвет
+
 .about {
-  background: linear-gradient(145deg, #121212, #1e1e1e);
-  padding: 50px $spacing-unit;
-  color: $text-color;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  text-align: center;
+  padding: 80px 20px;
+  background-color: #121212; // Тёмный фон для контраста
+  color: #ffffff; // Белый текст для лучшей читаемости
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  margin: 40px 0;
+
+  .aboutContent {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: stretch; // Растягиваем колонки по высоте
+  }
+
+  .col {
+    display: flex;
+    align-items: stretch; // Обеспечиваем, чтобы содержимое колонок растягивалось
+  }
 
   .aboutText {
-    border: 2px solid var(--primary-color);
-    padding: 20px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(255, 87, 34, 0.2);
-    background-color: #1e1e1e;
-    transition: transform 0.3s ease;
+    padding: 40px;
+    border-radius: 15px;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; // Центрируем текст по вертикали
+    height: 100%; // Растягиваем текстовый блок по высоте родителя
 
-    &:hover {
-      transform: scale(1.05);
-    }
+    // &:hover {
+    //   background: linear-gradient(
+    //     135deg,
+    //     rgba($primary-color, 0.15),
+    //     rgba($secondary-color, 0.15)
+    //   ); // Легкое изменение градиента при наведении
+    //   box-shadow: 0 6px 18px rgba($primary-color, 0.3); // Усиленная тень при наведении
+    // }
   }
 
   .title {
-    color: var(--primary-color);
-    font-size: 32px;
+    color: $primary-color; // Основной акцентный цвет
+    text-align: left;
     margin-bottom: 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    position: relative;
+
+    &::after {
+      content: "";
+      display: block;
+      width: 60px;
+      height: 4px;
+      background-color: $secondary-color; // Вторичный акцентный цвет
+      margin-top: 10px;
+      border-radius: 2px;
+    }
   }
 
   .paragraph {
-    font-size: 18px;
-    line-height: 1.6;
-    color: $light-text-color;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #e0e0e0; // Светло-серый текст для параграфа
+    text-align: left;
   }
 
   .imageWrapper {
     display: flex;
-    justify-content: space-around;
-    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); // Мягкая тень
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    height: 100%; // Растягиваем контейнер изображения по высоте родителя
 
-    .carImage {
-      width: 100%;
-      max-width: 280px;
-      height: auto;
-      border-radius: 10px;
-      border: 2px solid var(--primary-color);
-      box-shadow: 0 4px 15px rgba(255, 87, 34, 0.5);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    &:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); // Усиленная тень при наведении
+      transform: translateY(-5px); // Легкое поднятие изображения при наведении
+    }
+  }
 
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 25px rgba(255, 87, 34, 0.7);
-      }
+  .aboutImage {
+    width: 100%;
+    height: 100%; // Растягиваем изображение по высоте контейнера
+    border-radius: 15px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+
+    &:hover {
+      transform: scale(1.05); // Легкое увеличение изображения при наведении
+    }
+  }
+
+  /* Адаптивность */
+  @media (max-width: 768px) {
+    .aboutContent {
+      flex-direction: column;
+    }
+
+    .aboutText {
+      padding: 30px;
+    }
+
+    .title {
+      font-size: 2rem;
+    }
+
+    .paragraph {
+      font-size: 1rem;
+    }
+
+    .imageWrapper {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      transform: none;
+      height: auto; // Сбрасываем высоту для мобильных устройств
+    }
+
+    .aboutImage {
+      height: auto; // Сбрасываем высоту для мобильных устройств
+      transform: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 40px 10px;
+
+    .aboutText {
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 1.75rem;
+    }
+
+    .paragraph {
+      font-size: 0.95rem;
     }
   }
 }

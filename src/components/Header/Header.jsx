@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import styles from "./Header.module.scss";
-import logo from "../../assets/icons/logo.svg"; // Импортируем логотип
+import logo from "../../assets/icons/logo.svg";
 
-const Header = () => {
+const Header = ({ scrollToAbout, scrollToServices }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -27,56 +27,44 @@ const Header = () => {
           <nav className={`${styles.nav} ${isMenuOpen ? styles.open : ""}`}>
             <ul className={styles.navList}>
               <li>
-                <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    isActive
-                      ? `${styles.navLink} ${styles.active}`
-                      : styles.navLink
-                  }
-                  onClick={closeMenu}
+                <Link
+                  className={styles.navLink}
+                  onClick={() => {
+                    scrollToAbout();
+                    closeMenu();
+                  }}
                 >
                   О компании
-                </NavLink>
+                </Link>
               </li>
               <li>
-                <NavLink
-                  to="/services"
-                  className={({ isActive }) =>
-                    isActive
-                      ? `${styles.navLink} ${styles.active}`
-                      : styles.navLink
-                  }
-                  onClick={closeMenu}
+                <Link
+                  className={styles.navLink}
+                  onClick={() => {
+                    scrollToServices();
+                    closeMenu();
+                  }}
                 >
                   Наши услуги
-                </NavLink>
+                </Link>
               </li>
               <li>
-                <NavLink
+                <Link
                   to="/reviews"
-                  className={({ isActive }) =>
-                    isActive
-                      ? `${styles.navLink} ${styles.active}`
-                      : styles.navLink
-                  }
+                  className={styles.navLink}
                   onClick={closeMenu}
                 >
                   Отзывы
-                </NavLink>
+                </Link>
               </li>
               <li>
-                <NavLink
+                <Link
                   to="/rentals"
-                  className={({ isActive }) =>
-                    isActive
-                      ? `${styles.navLink} ${styles.active}`
-                      : styles.navLink
-                  }
+                  className={styles.navLink}
                   onClick={closeMenu}
                 >
                   Аренда автомобилей
-                </NavLink>
+                </Link>
               </li>
             </ul>
           </nav>
