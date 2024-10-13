@@ -1,5 +1,3 @@
-/* src/components/CarRentalPage/CarRentalPage.module.scss */
-
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
@@ -8,7 +6,29 @@
 .swiperContainer {
   width: 100%;
   height: 100%;
+}
+
+.swiperWrapper {
   position: relative;
+  padding-bottom: 56.25%; /* Соотношение сторон 16:9 по умолчанию */
+}
+
+.swiperSlide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 0;
+  padding-bottom: 100%; /* Квадратная форма */
+  position: relative;
+}
+
+.swiperImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Показываем всю фотографию */
 }
 
 :global {
@@ -54,14 +74,119 @@
   .swiper-pagination-bullet-active {
     background: #d32f2f !important; /* Вторичный цвет */
   }
+
+  /* Стили для модального окна */
+  .ant-modal-header,
+  .ant-modal-body,
+  .ant-modal-footer {
+    background-color: rgb(30, 30, 30) !important;
+    color: #ffffff !important;
+  }
+
+  .ant-modal-close {
+    color: #ffffff;
+  }
+
+  .ant-modal-close:hover {
+    color: #ff5722;
+  }
+
+  /* Стили для таблицы */
+  .ant-table {
+    background-color: transparent !important;
+    color: #ffffff !important;
+  }
+
+  .ant-table-thead > tr > th,
+  .ant-table-tbody > tr > td {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border-color: #444444 !important;
+  }
+
+  /* Удаление теней и бордеров таблицы */
+  .ant-table-container,
+  .ant-table-container table {
+    background-color: transparent !important;
+  }
 }
 
 /* Кастомные стили для модального окна */
 .customModal {
   :global {
     .ant-modal {
-      max-width: 800px; /* Установка максимальной ширины */
+      max-width: 800px; /* Убедитесь, что максимальная ширина достаточна */
       margin: 0 auto;
+      background-color: #1e1e1e !important; /* Убираем белый фон */
+      border-radius: 15px !important; /* Закругленные углы */
+    }
+
+    .ant-modal-body {
+      padding: 0 !important;
+      max-height: 80vh;
+      /* overflow: hidden; */ /* Удалено для разрешения внутренней прокрутки */
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.card {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* Стили для кнопок */
+.customButtonDefault {
+  background-color: transparent;
+  color: #ff5722;
+  border: 1px solid #ff5722;
+}
+
+.customButtonDefault:hover {
+  background-color: rgba(255, 87, 34, 0.1);
+  border-color: #ff5722;
+  color: #ff5722;
+}
+
+.customButtonPrimary {
+  background-color: #ff5722;
+  border: 1px solid #ff5722;
+  color: white;
+}
+
+.customButtonPrimary:hover {
+  background-color: #d32f2f;
+  border-color: #d32f2f;
+}
+
+/* Адаптивность для модального окна */
+@media (max-width: 768px) {
+  .customModal {
+    :global {
+      .ant-modal {
+        width: 90% !important; /* Уменьшаем ширину на маленьких экранах */
+      }
+    }
+
+    .ant-modal-body .flex {
+      flex-direction: column !important;
+    }
+
+    .swiperWrapper {
+      padding-bottom: 100%; /* Квадратная форма на мобильных */
+    }
+  }
+}
+
+.customModal {
+  :global {
+    .ant-modal {
+      max-width: 800px; /* Убедитесь, что максимальная ширина достаточна */
+    }
+
+    .ant-modal-content {
+      background-color: #1e1e1e !important;
     }
   }
 }
@@ -72,6 +197,14 @@
       .ant-modal {
         max-width: 800px; /* Убедитесь, что максимальная ширина достаточна */
       }
+
+      .ant-modal-content {
+        background-color: #1e1e1e !important;
+      }
+    }
+
+    .swiperWrapper {
+      padding-bottom: 100%; /* Квадратная форма */
     }
   }
 }

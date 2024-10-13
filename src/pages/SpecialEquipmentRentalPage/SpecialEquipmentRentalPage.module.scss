@@ -1,0 +1,56 @@
+.specialEquipmentPage {
+  padding: 20px;
+  background-color: transparent;
+  margin-top: 72px;
+  min-height: 100vh;
+
+  .customTag {
+    padding: 6px 12px;
+    border: 1px solid #ff5722;
+    border-radius: 12px;
+    background-color: transparent;
+    color: #ff5722;
+    font-size: 14px;
+    display: inline-block;
+  }
+
+  .customButton {
+    border-radius: 12px;
+    background-color: #ff5722;
+    border: 1px solid #ff5722;
+    color: white;
+    text-align: center;
+  }
+
+  .customPhoneButton {
+    border: 1px solid #ff5722;
+    border-radius: 12px;
+    background-color: transparent;
+    color: #ff5722;
+    font-size: 18px; /* Увеличение шрифта */
+    padding: 12px; /* Увеличение отступов */
+    transition: background-color 0.3s ease, color 0.3s ease;
+    width: 100%; /* Растягивание текста по ширине */
+    cursor: pointer;
+  }
+
+  .customPhoneButton:hover {
+    color: #fff; /* Изменение цвета текста при наведении */
+  }
+
+  .leftBlock {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .rightBlock {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 40px;
+  }
+}

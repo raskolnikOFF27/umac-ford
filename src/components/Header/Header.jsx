@@ -1,11 +1,15 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
+import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
+import { useScroll } from "../../context/ScrollContext";
 
-const Header = ({ scrollToAbout, scrollToServices }) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollTo } = useScroll();
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -15,47 +19,57 @@ const Header = ({ scrollToAbout, scrollToServices }) => {
     setIsMenuOpen(false);
   };
 
+  const handleScroll = (section) => {
+    if (location.pathname === "/") {
+      scrollTo(section);
+    } else {
+      navigate("/", { state: { scrollTo: section } });
+    }
+    closeMenu();
+  };
+
   return (
     <>
       <header className={styles.header}>
         <div className={styles.headerWrapper}>
           <div className={styles.logoWrapper}>
-            <Link to="/" onClick={closeMenu}>
+            <Link
+              to="/"
+              onClick={() => {
+                if (location.pathname === "/") {
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+                closeMenu();
+              }}
+            >
               <img src={logo} alt="Юмак Форд Логотип" className={styles.logo} />
             </Link>
           </div>
           <nav className={`${styles.nav} ${isMenuOpen ? styles.open : ""}`}>
             <ul className={styles.navList}>
               <li>
-                <Link
+                <button
                   className={styles.navLink}
-                  onClick={() => {
-                    scrollToAbout();
-                    closeMenu();
-                  }}
+                  onClick={() => handleScroll("about")}
                 >
                   О компании
-                </Link>
+                </button>
               </li>
               <li>
-                <Link
+                <button
                   className={styles.navLink}
-                  onClick={() => {
-                    scrollToServices();
-                    closeMenu();
-                  }}
+                  onClick={() => handleScroll("services")}
                 >
                   Наши услуги
-                </Link>
+                </button>
               </li>
               <li>
-                <Link
-                  to="/reviews"
+                <button
                   className={styles.navLink}
-                  onClick={closeMenu}
+                  onClick={() => handleScroll("reviews")}
                 >
                   Отзывы
-                </Link>
+                </button>
               </li>
               <li>
                 <Link
@@ -66,6 +80,16 @@ const Header = ({ scrollToAbout, scrollToServices }) => {
                   Аренда автомобилей
                 </Link>
               </li>
+              <li>
+                <Link
+                  to="/special-equipment-rentals"
+                  className={styles.navLink}
+                  onClick={closeMenu}
+                >
+                  Аренда спецтехники
+                </Link>
+              </li>{" "}
+              {/* Новый пункт меню */}
             </ul>
           </nav>
           <div className={styles.menuIcon} onClick={toggleMenu}>
