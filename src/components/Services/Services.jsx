@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Modal, Table, Button, Row, Col, Typography, Card } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 import styles from "./Services.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
@@ -245,6 +246,7 @@ const Services = () => {
   const [currentServiceIndex, setCurrentServiceIndex] = useState(0);
   const [swiperInstance, setSwiperInstance] = useState(null);
   const swiperRef = useRef(null);
+  const navigate = useNavigate(); // Инициализация useNavigate
 
   // Открытие модалки
   const openModal = (index) => {
@@ -270,7 +272,7 @@ const Services = () => {
     }
   };
 
-  // Переключение на предыдущий слайд
+  // Переключение на следующий слайд
   const handleNext = () => {
     if (swiperRef.current && swiperRef.current.slideNext) {
       const nextIndex = (currentServiceIndex + 1) % services.length;
@@ -278,6 +280,7 @@ const Services = () => {
     }
   };
 
+  // Переключение на предыдущий слайд
   const handlePrev = () => {
     if (swiperRef.current && swiperRef.current.slidePrev) {
       const prevIndex =
@@ -307,7 +310,7 @@ const Services = () => {
               cover={<div className={styles.iconContainer}>{service.icon}</div>}
               onClick={() => {
                 if (service.link) {
-                  window.open(service.link, "_blank");
+                  navigate(service.link); // Используем navigate вместо window.open
                 } else {
                   openModal(index);
                 }
@@ -352,20 +355,22 @@ const Services = () => {
                   <Title level={4} className={styles.modalTitle}>
                     {service.title}
                   </Title>
-                  <Table
-                    columns={service.modalContent.columns}
-                    dataSource={service.modalContent.data}
-                    pagination={
-                      service.title === "Ремонт" ||
-                      service.title === "Шиномонтаж"
-                        ? { pageSize: 8 }
-                        : false
-                    } // Пагинация только для ремонта
-                    className={styles.serviceTable}
-                  />
+                  {service.modalContent && service.modalContent.columns && (
+                    <Table
+                      columns={service.modalContent.columns}
+                      dataSource={service.modalContent.data}
+                      pagination={
+                        service.title === "Ремонт" ||
+                        service.title === "Шиномонтаж"
+                          ? { pageSize: 8 }
+                          : false
+                      }
+                      className={styles.serviceTable}
+                    />
+                  )}
 
                   {/* Проверяем, есть ли дополнительные услуги */}
-                  {service.modalContent.additionalServices && (
+                  {service.modalContent?.additionalServices && (
                     <>
                       <Title
                         level={5}
@@ -386,7 +391,6 @@ const Services = () => {
                     </>
                   )}
 
-                  {/* Кнопка с телефоном */}
                   <a href="tel:+7(343)123-45-67" className={styles.bookButton}>
                     Забронировать
                   </a>

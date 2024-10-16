@@ -2,6 +2,59 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+/* Основные стили */
+.title {
+  color: #ff5722 !important;
+}
+
+.cars {
+  ul {
+    border: none !important;
+    padding: 0px 24px !important;
+    background-color: transparent !important;
+    gap: 10px;
+
+    li {
+      border-inline-end: none !important;
+    }
+
+    ::before {
+      display: none !important;
+      content: none !important;
+    }
+
+    ::after {
+      display: none !important;
+      content: none !important;
+    }
+  }
+}
+
+/* Настройка .ant-card-actions */
+.ant-card-actions {
+  background-color: transparent !important;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Отступ между кнопками */
+  padding: 16px; /* Отступы вокруг кнопок */
+}
+
+.ant-card-actions > .ant-btn {
+  width: 100%;
+}
+
+/* Стили для карточек автомобилей */
+.card {
+  background-color: #1e1e1e;
+  color: #ffffff;
+}
+
+/* Стили для цен */
+.pricePerThreeDays {
+  color: #ff5722;
+  font-size: 15px;
+}
+
 /* Кастомные стили для Swiper */
 .swiperContainer {
   width: 100%;
@@ -44,20 +97,11 @@
     justify-content: center;
     top: 50%;
     transform: translateY(-50%);
+
+    &::after {
+      font-size: 20px;
+    }
   }
-
-  .swiper-button-next::after,
-  .swiper-button-prev::after {
-    font-size: 20px;
-  }
-
-  // .swiper-button-next {
-  //   right: 10px;
-  // }
-
-  // .swiper-button-prev {
-  //   left: 10px;
-  // }
 
   .swiper-pagination {
     bottom: 10px !important;
@@ -115,7 +159,7 @@
 .customModal {
   :global {
     .ant-modal {
-      max-width: 800px; /* Убедитесь, что максимальная ширина достаточна */
+      max-width: 800px; /* Максимальная ширина */
       margin: 0 auto;
       background-color: #1e1e1e !important; /* Убираем белый фон */
       border-radius: 15px !important; /* Закругленные углы */
@@ -124,40 +168,10 @@
     .ant-modal-body {
       padding: 0 !important;
       max-height: 80vh;
-      /* overflow: hidden; */ /* Удалено для разрешения внутренней прокрутки */
       display: flex;
       flex-direction: column;
     }
   }
-}
-
-.card {
-  background-color: #1e1e1e;
-  color: #ffffff;
-}
-
-/* Стили для кнопок */
-.customButtonDefault {
-  background-color: transparent;
-  color: #ff5722;
-  border: 1px solid #ff5722;
-}
-
-.customButtonDefault:hover {
-  background-color: rgba(255, 87, 34, 0.1);
-  border-color: #ff5722;
-  color: #ff5722;
-}
-
-.customButtonPrimary {
-  background-color: #ff5722;
-  border: 1px solid #ff5722;
-  color: white;
-}
-
-.customButtonPrimary:hover {
-  background-color: #d32f2f;
-  border-color: #d32f2f;
 }
 
 /* Адаптивность для модального окна */
@@ -179,23 +193,11 @@
   }
 }
 
-.customModal {
-  :global {
-    .ant-modal {
-      max-width: 800px; /* Убедитесь, что максимальная ширина достаточна */
-    }
-
-    .ant-modal-content {
-      background-color: #1e1e1e !important;
-    }
-  }
-}
-
 @media (min-width: 768px) {
   .customModal {
     :global {
       .ant-modal {
-        max-width: 800px; /* Убедитесь, что максимальная ширина достаточна */
+        max-width: 800px; /* Максимальная ширина */
       }
 
       .ant-modal-content {
@@ -206,5 +208,196 @@
     .swiperWrapper {
       padding-bottom: 100%; /* Квадратная форма */
     }
+  }
+}
+
+/* Стили для блока "Условия Аренды" */
+.rentalInfo {
+  margin-top: 32px;
+  background-color: #1a1a1a; /* Темный фон */
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #1c1c1c;
+  }
+}
+
+.infoTitle {
+  color: #ff5722 !important; /* Более мягкий оранжевый цвет */
+  font-size: 32px !important;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+  .icon {
+    margin-right: 10px;
+    font-size: 32px;
+    color: #ff5722;
+    transition: color 0.3s ease;
+  }
+
+  &:hover .icon {
+    color: #ff5722;
+  }
+}
+
+.infoDivider {
+  border-top: 2px solid #ff5722;
+  margin-bottom: 32px;
+}
+
+.pricingCards {
+  margin-bottom: 32px;
+}
+
+.pricingCard {
+  background-color: #2a2a2a !important;
+  border-radius: 10px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.pricingTitle {
+  color: #ffffff !important;
+  font-size: 22px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.pricingDivider {
+  border-top: 1px solid #ff5722;
+  margin-bottom: 16px;
+}
+
+.pricingText {
+  color: #ff5722 !important;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.deposit,
+.documents,
+.buyout {
+  margin-bottom: 24px;
+  color: #e0e0e0; /* Светло-серый текст */
+  font-size: 16px;
+  line-height: 1.6;
+
+  ul {
+    margin-top: 12px;
+    padding-left: 20px;
+    list-style: disc;
+
+    li {
+      margin-bottom: 10px;
+    }
+  }
+}
+
+.depositTitle {
+  color: #ff5722;
+  font-size: 18px;
+}
+
+.documents {
+  display: flex;
+  flex-direction: column;
+
+  .ant-typography {
+    margin-bottom: 8px;
+  }
+}
+
+.callButtonContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}
+
+.callButton {
+  background-color: #ff5722;
+  color: #ffffff;
+  border: none;
+  border-radius: 25px;
+  padding: 14px 30px;
+  font-size: 20px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: #d32f2f;
+    transform: scale(1.05);
+    color: #ffffff;
+  }
+
+  .anticon {
+    margin-right: 8px;
+    font-size: 20px;
+  }
+}
+
+/* Дополнительные стили для адаптивности и улучшения внешнего вида */
+@media (max-width: 768px) {
+  .rentalInfo {
+    padding: 24px;
+  }
+
+  .infoTitle {
+    font-size: 26px !important;
+
+    .icon {
+      font-size: 26px;
+    }
+  }
+
+  .pricingTitle {
+    font-size: 20px;
+  }
+
+  .pricingText {
+    font-size: 18px;
+  }
+
+  .callButton {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+@media (min-width: 1200px) {
+  .rentalInfo {
+    padding: 40px;
+  }
+
+  .infoTitle {
+    font-size: 36px !important;
+
+    .icon {
+      font-size: 36px;
+    }
+  }
+
+  .pricingTitle {
+    font-size: 24px;
+  }
+
+  .pricingText {
+    font-size: 22px;
+  }
+
+  .callButton {
+    padding: 16px 40px;
+    font-size: 22px;
   }
 }
