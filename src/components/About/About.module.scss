@@ -19,6 +19,7 @@ $secondary-color: #d32f2f; // Вторичный акцентный цвет
     margin: 0 auto;
     display: flex;
     align-items: stretch; // Растягиваем колонки по высоте
+    position: relative;
   }
 
   .col {

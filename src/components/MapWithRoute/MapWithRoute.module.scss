@@ -80,6 +80,7 @@
   transition: transform 0.3s, box-shadow 0.3s;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  position: relative;
   text-decoration: none; /* Убираем подчеркивание ссылки */
 
   &:hover {
