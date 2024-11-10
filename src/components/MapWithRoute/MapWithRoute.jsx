@@ -34,7 +34,7 @@ const MapWithRoute = () => {
           },
           {
             preset: "islands#icon",
-            iconColor: "#FF5722",
+            iconColor: "#9D0208",
           }
         );
 
@@ -51,9 +51,9 @@ const MapWithRoute = () => {
             },
           },
           {
-            wayPointStartIconColor: "#FF5722",
-            wayPointFinishIconColor: "#FF5722",
-            routeActiveStrokeColor: "#FF5722",
+            wayPointStartIconColor: "#9D0208",
+            wayPointFinishIconColor: "#9D0208",
+            routeActiveStrokeColor: "#9D0208",
             routeStrokeWidth: 4,
           }
         );
