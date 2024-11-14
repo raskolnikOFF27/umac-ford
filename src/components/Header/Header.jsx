@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+// src/components/Header/Header.jsx
+import React, { useState, forwardRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import { useScroll } from "../../context/ScrollContext";
 
-const Header = () => {
+const Header = forwardRef(({ className }, ref) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollTo } = useScroll();
   const location = useLocation();
@@ -30,7 +31,7 @@ const Header = () => {
 
   return (
     <>
-      <header className={styles.header}>
+      <header ref={ref} className={`${styles.header} ${className}`}>
         <div className={styles.headerWrapper}>
           <div className={styles.logoWrapper}>
             <Link
@@ -88,8 +89,7 @@ const Header = () => {
                 >
                   Аренда спецтехники
                 </Link>
-              </li>{" "}
-              {/* Новый пункт меню */}
+              </li>
             </ul>
           </nav>
           <div className={styles.menuIcon} onClick={toggleMenu}>
@@ -106,6 +106,6 @@ const Header = () => {
       )}
     </>
   );
-};
+});
 
 export default Header;

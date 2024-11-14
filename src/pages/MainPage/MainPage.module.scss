@@ -1,64 +1,24 @@
 /* src/pages/MainPage.module.scss */
 @import "../../styles/variables.scss";
 
+.introSection {
+  position: relative;
+  overflow: hidden;
+}
+
+.introContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .appContainer {
-  margin-top: 85px;
   background-color: var(--background-color);
   color: var(--text-color);
 }
 
-.banner {
-  position: relative;
-  background-size: cover;
-  border-radius: 20px;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 30px;
-  position: relative;
-}
-
-.bannerContent {
-  text-align: center;
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-
-.bannerTitle {
-  font-size: 48px;
-  font-weight: bold;
-  max-width: 640px;
-  text-align: left;
-  color: #fff;
-}
-
-.bannerButton {
-  color: #fff;
-  font-size: 18px;
-  padding: 10px 20px;
-  border-radius: 5px;
-  max-width: 250px;
-  text-decoration: none;
-  box-shadow: none;
-  margin-top: 25%;
-  border: none;
-
-  &:hover {
-    background-color: rgba(255, 87, 34, 0.9); /* Альтернативное затемнение */
-  }
-
-  &:focus,
-  &:active {
-    background-color: rgba(255, 87, 34, 0.8); /* Альтернативное затемнение */
-    outline: none;
-  }
-}
-
-/* Стили для секции формы */
+/* Остальные стили */
 .formWrapper {
   background-color: #1e1e1e;
   padding: 40px;
@@ -84,7 +44,7 @@
     &:hover,
     &:focus {
       border-color: var(--primary-color);
-      box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.5); /* Прозрачная тень для фокуса */
+      box-shadow: 0 0 0 2px rgba(255, 87, 34, 0.5);
     }
   }
 
@@ -96,7 +56,8 @@
     color: var(--light-text-color);
   }
 
-  .ant-btn-primary {
+  .ant-btn-primary,
+  .introButton {
     background-color: var(--primary-color);
     border-color: var(--primary-color);
     width: 100%;
@@ -109,26 +70,6 @@
       border-color: rgba(255, 87, 34, 0.9);
     }
   }
-}
-
-.textWrapper {
-  width: 300px; /* Фиксированная ширина для контейнера с текстом */
-  height: 60px; /* Фиксированная высота для предотвращения изменения положения */
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.bannerContent {
-  text-align: center;
-  color: var(--text-color);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 100%;
-  width: 100%; /* Ширина по всей ширине баннера */
-  max-width: 640px; /* Ограничение максимальной ширины */
 }
 
 .mapWrapper {

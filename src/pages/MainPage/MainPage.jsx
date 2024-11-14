@@ -1,16 +1,20 @@
 // src/pages/MainPage/MainPage.jsx
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Button, ConfigProvider, Input, Form } from "antd";
-import { ReactTyped } from "react-typed";
+import { Typewriter } from "react-simple-typewriter";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Layout from "../../components/Layout/Layout";
 import About from "../../components/About/About";
 import Services from "../../components/Services/Services";
 import Reviews from "../../components/Reviews/Reviews";
 import MapWithRoute from "../../components/MapWithRoute/MapWithRoute";
-import styles from "./MainPage.module.scss";
-import bannerImage from "../../assets/images/Background.png";
+import mainPageStyles from "./MainPage.module.scss";
+import layoutStyles from "../../components/Layout/Layout.module.scss";
 import { useScroll } from "../../context/ScrollContext";
 import { useLocation } from "react-router-dom";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const MainPage = () => {
   const formRef = useRef(null);
@@ -19,7 +23,9 @@ const MainPage = () => {
   const reviewsRef = useRef(null);
   const mapRef = useRef(null);
   const mainContentRef = useRef(null);
-  const introSectionRef = useRef(null); // Реф для заставки
+  const introSectionRef = useRef(null);
+
+  const [isContentVisible, setIsContentVisible] = useState(false);
 
   const { registerRef, scrollTo } = useScroll();
   const location = useLocation();
@@ -31,16 +37,36 @@ const MainPage = () => {
     registerRef("map", mapRef);
     registerRef("form", formRef);
 
-    // Настройка анимации перехода от заставки к основному контенту
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight / 4) {
-        // Прокрутка на четверть высоты окна
-        gsap.to(mainContentRef.current, { opacity: 1, y: 0, duration: 1 });
-      }
-    };
+    // Изначально скрываем Header, Footer и основной контент
+    const header = document.querySelector("header");
+    const footer = document.querySelector("footer");
 
-    window.addEventListener("scroll", handleScroll);
+    gsap.set([header, footer, mainContentRef.current], {
+      opacity: 0,
+      y: -20,
+    });
 
+    // Анимация появления при прокрутке
+    ScrollTrigger.create({
+      trigger: introSectionRef.current,
+      start: "bottom top",
+      onEnter: () => {
+        gsap.to([header, footer], { opacity: 1, y: 0, duration: 0.5 });
+        gsap.to(mainContentRef.current, {
+          opacity: 1,
+          y: 0,
+          duration: 0.5,
+          onComplete: () => setIsContentVisible(true),
+        });
+      },
+      onLeaveBack: () => {
+        gsap.to([header, footer], { opacity: 0, y: -20, duration: 0.5 });
+        gsap.to(mainContentRef.current, { opacity: 0, y: -20, duration: 0.5 });
+        setIsContentVisible(false);
+      },
+    });
+
+    // Скролл к нужной секции при загрузке страницы
     const hash = window.location.hash.substring(1);
     if (hash) {
       setTimeout(() => {
@@ -52,10 +78,6 @@ const MainPage = () => {
       scrollTo(location.state.scrollTo);
       window.history.replaceState({}, document.title);
     }
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, [registerRef, scrollTo, location]);
 
   const scrollToForm = () => {
@@ -66,124 +88,134 @@ const MainPage = () => {
     <div>
       {/* Начальная заставка */}
       <section
-        className={styles.introSection}
+        className={mainPageStyles.introSection}
         ref={introSectionRef}
         style={{
           backgroundColor: "#9d0000",
           height: "100vh",
           color: "#FFFFFF",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
         }}
       >
-        <div className={styles.introContent}>
-          <h1>
-            <ReactTyped
-              strings={[
-                "Автосервис",
-                "Аренда авто",
-                "Автомойка",
-                "Автозапчасти",
-              ]}
-              typeSpeed={80}
-              backSpeed={50}
-              backDelay={1500}
-              loop
-              style={{ color: "#FFFFFF" }}
-              smartBackspace
-              showCursor
-              cursorChar="|"
-            />
-          </h1>
-          <Button
-            type="primary"
-            className={styles.introButton}
-            size="large"
-            onClick={scrollToForm}
-          >
-            Записаться в сервис
-          </Button>
-        </div>
+        <h1 style={{ color: "#FFFFFF" }}>
+          <Typewriter
+            words={["Автосервис", "Аренда авто", "Автомойка", "Автозапчасти"]}
+            loop={0}
+            cursor
+            cursorStyle="|"
+            typeSpeed={80}
+            deleteSpeed={50}
+            delaySpeed={1500}
+          />
+        </h1>
+        <button
+          type="primary"
+          className={mainPageStyles.introButton}
+          size="large"
+          onClick={scrollToForm}
+        >
+          Записаться в сервис
+        </button>
       </section>
 
-      {/* Основной контент страницы */}
+      {/* Основной контент */}
       <div
         ref={mainContentRef}
-        style={{ opacity: 0, transform: "translateY(50px)" }}
+        className={`${layoutStyles.mainContent} ${
+          isContentVisible ? layoutStyles.contentVisible : ""
+        }`}
+        style={{ opacity: 0, transform: "translateY(-20px)" }}
       >
-        <div className={styles.appContainer}>
-          <ConfigProvider
-            theme={{
-              token: {
-                colorPrimary: "#9D0208",
-                colorSecondary: "#D32F2F",
-                colorBgBase: "#121212",
-                colorTextBase: "#FFFFFF",
-              },
-            }}
-          >
-            <main>
-              <section ref={aboutRef} id="about">
-                <About />
-              </section>
-              <section ref={servicesRef} id="services">
-                <Services />
-              </section>
-              <section ref={reviewsRef} id="reviews">
-                <Reviews />
-              </section>
-              <section ref={mapRef} className={styles.mapWrapper} id="map">
-                <MapWithRoute />
-              </section>
-              <section ref={formRef} className={styles.formWrapper} id="form">
-                <h2 className={styles.formTitle}>Записаться в сервис</h2>
-                <Form
-                  name="service_form"
-                  className={styles.serviceForm}
-                  layout="vertical"
+        <Layout>
+          <div className={mainPageStyles.appContainer}>
+            <ConfigProvider
+              theme={{
+                token: {
+                  colorPrimary: "#9D0208",
+                  colorSecondary: "#D32F2F",
+                  colorBgBase: "#121212",
+                  colorTextBase: "#FFFFFF",
+                },
+              }}
+            >
+              <main>
+                <section ref={aboutRef} id="about">
+                  <About />
+                </section>
+                <section ref={servicesRef} id="services">
+                  <Services />
+                </section>
+                <section ref={reviewsRef} id="reviews">
+                  <Reviews />
+                </section>
+                <section
+                  ref={mapRef}
+                  className={mainPageStyles.mapWrapper}
+                  id="map"
                 >
-                  <Form.Item
-                    name="name"
-                    label="Ваше имя"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Пожалуйста, введите ваше имя",
-                      },
-                    ]}
+                  <MapWithRoute />
+                </section>
+                <section
+                  ref={formRef}
+                  className={mainPageStyles.formWrapper}
+                  id="form"
+                >
+                  <h2 className={mainPageStyles.formTitle}>
+                    Записаться в сервис
+                  </h2>
+                  <Form
+                    name="service_form"
+                    className={mainPageStyles.serviceForm}
+                    layout="vertical"
                   >
-                    <Input placeholder="Введите имя" />
-                  </Form.Item>
-                  <Form.Item
-                    name="phone"
-                    label="Ваш телефон"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Пожалуйста, введите ваш телефон",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Введите телефон" />
-                  </Form.Item>
-                  <Form.Item
-                    name="email"
-                    label="Ваш email"
-                    rules={[
-                      {
-                        required: true,
-                        message: "Пожалуйста, введите ваш email",
-                      },
-                    ]}
-                  >
-                    <Input placeholder="Введите email" />
-                  </Form.Item>
-                  <Form.Item>
-                    <Button htmlType="submit">Отправить</Button>
-                  </Form.Item>
-                </Form>
-              </section>
-            </main>
-          </ConfigProvider>
-        </div>
+                    <Form.Item
+                      name="name"
+                      label="Ваше имя"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Пожалуйста, введите ваше имя",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Введите имя" />
+                    </Form.Item>
+                    <Form.Item
+                      name="phone"
+                      label="Ваш телефон"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Пожалуйста, введите ваш телефон",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Введите телефон" />
+                    </Form.Item>
+                    <Form.Item
+                      name="email"
+                      label="Ваш email"
+                      rules={[
+                        {
+                          required: true,
+                          message: "Пожалуйста, введите ваш email",
+                        },
+                      ]}
+                    >
+                      <Input placeholder="Введите email" />
+                    </Form.Item>
+                    <Form.Item>
+                      <Button htmlType="submit">Отправить</Button>
+                    </Form.Item>
+                  </Form>
+                </section>
+              </main>
+            </ConfigProvider>
+          </div>
+        </Layout>
       </div>
     </div>
   );
