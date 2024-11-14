@@ -2,10 +2,11 @@
 @import "../../styles/variables.scss";
 
 .footer {
-  background-color: $background-color;
-  color: $light-text-color;
+  background-color: var(--background-color);
+  color: var(--light-text-color);
   padding: 40px 20px;
   text-align: center;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 .footerContent {
@@ -34,12 +35,12 @@
   }
 
   a {
-    color: $light-text-color;
+    color: var(--light-text-color);
     text-decoration: none;
     font-size: 1rem;
 
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
   }
 }
@@ -52,10 +53,10 @@
   a {
     display: flex;
     align-items: center;
-    color: $light-text-color;
+    color: var(--light-text-color);
 
     &:hover {
-      color: $primary-color;
+      color: var(--primary-color);
     }
 
     img {
@@ -67,7 +68,7 @@
 
 p {
   margin-top: 20px;
-  color: $light-text-color;
+  color: var(--light-text-color);
   font-size: 0.9rem;
   margin-bottom: 0 !important;
 }

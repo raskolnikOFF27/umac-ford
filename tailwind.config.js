@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#ff5722", // Основной акцентный цвет
+        primary: "#9D0208", // Основной акцентный цвет
         secondary: "#d32f2f", // Вторичный акцентный цвет
         background: "#1e1e1e", // Фон для карточек и модального окна
         textPrimary: "#ffffff", // Основной цвет текста

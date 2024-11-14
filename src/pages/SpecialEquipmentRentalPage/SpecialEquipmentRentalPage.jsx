@@ -68,7 +68,7 @@ const SpecialEquipmentRentalPage = () => {
             <Button
               type="primary"
               size="large"
-              style={{ backgroundColor: "#ff5722", borderColor: "#ff5722" }}
+              style={{ backgroundColor: "#9D0208", borderColor: "#9D0208" }}
             >
               Арендовать
             </Button>

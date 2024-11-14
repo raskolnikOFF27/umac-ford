@@ -41,14 +41,14 @@ const { Meta } = Card;
 
 const customTheme = {
   token: {
-    colorPrimary: "#ff5722", // Основной цвет
+    colorPrimary: "#9D0208", // Основной цвет
 
     // Настройки для кнопок
     Button: {
       borderColorDisabled: "#d9d9d9",
       fontSize: 14,
       colorPrimary: "#fff",
-      primaryColor: "#ff5722",
+      primaryColor: "#9D0208",
       primaryHoverColor: "#d32f2f",
       // Другие настройки кнопок можно добавить здесь
     },

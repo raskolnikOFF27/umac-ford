@@ -4,7 +4,7 @@
 
 /* Основные стили */
 .title {
-  color: #ff5722 !important;
+  color: #9d0208 !important;
 }
 
 .cars {
@@ -51,7 +51,7 @@
 
 /* Стили для цен */
 .pricePerThreeDays {
-  color: #ff5722;
+  color: #9d0208;
   font-size: 15px;
 }
 
@@ -87,7 +87,7 @@
 :global {
   .swiper-button-next,
   .swiper-button-prev {
-    color: #ff5722; /* Основной цвет */
+    color: #9d0208; /* Основной цвет */
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 50%;
     width: 47px;
@@ -132,7 +132,7 @@
   }
 
   .ant-modal-close:hover {
-    color: #ff5722;
+    color: #9d0208;
   }
 
   /* Стили для таблицы */
@@ -226,7 +226,7 @@
 }
 
 .infoTitle {
-  color: #ff5722 !important; /* Более мягкий оранжевый цвет */
+  color: #9d0208 !important; /* Более мягкий оранжевый цвет */
   font-size: 32px !important;
   margin-bottom: 20px;
   display: flex;
@@ -235,17 +235,17 @@
   .icon {
     margin-right: 10px;
     font-size: 32px;
-    color: #ff5722;
+    color: #9d0208;
     transition: color 0.3s ease;
   }
 
   &:hover .icon {
-    color: #ff5722;
+    color: #9d0208;
   }
 }
 
 .infoDivider {
-  border-top: 2px solid #ff5722;
+  border-top: 2px solid #9d0208;
   margin-bottom: 32px;
 }
 
@@ -273,12 +273,12 @@
 }
 
 .pricingDivider {
-  border-top: 1px solid #ff5722;
+  border-top: 1px solid #9d0208;
   margin-bottom: 16px;
 }
 
 .pricingText {
-  color: #ff5722 !important;
+  color: #9d0208 !important;
   font-size: 20px;
   font-weight: 700;
   text-align: center;
@@ -304,7 +304,7 @@
 }
 
 .depositTitle {
-  color: #ff5722;
+  color: #9d0208;
   font-size: 18px;
 }
 
@@ -324,7 +324,7 @@
 }
 
 .callButton {
-  background-color: #ff5722;
+  background-color: #9d0208;
   color: #ffffff;
   border: none;
   outline: none;

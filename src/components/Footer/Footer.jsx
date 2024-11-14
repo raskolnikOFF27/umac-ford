@@ -1,16 +1,16 @@
-// src/components/Footer/Footer.js
-import React from "react";
+// src/components/Footer/Footer.jsx
+import React, { forwardRef } from "react";
 import { Layout } from "antd";
 import styles from "./Footer.module.scss";
 import vkIcon from "../../assets/icons/vk-icon.svg";
 import telegramIcon from "../../assets/icons/telegram-icon.svg";
-import instagramIcon from "../../assets/icons/instagram-logo.svg"; // Импортируем иконку Инстаграма
+import instagramIcon from "../../assets/icons/instagram-logo.svg";
 
 const { Footer: AntFooter } = Layout;
 
-const Footer = () => {
+const Footer = forwardRef(({ className }, ref) => {
   return (
-    <AntFooter className={styles.footer}>
+    <AntFooter ref={ref} className={`${styles.footer} ${className}`}>
       <div className={styles.footerContent}>
         <div className={styles.footerLinks}>
           <a href="/services">Услуги</a>
@@ -37,6 +37,6 @@ const Footer = () => {
       </div>
     </AntFooter>
   );
-};
+});
 
 export default Footer;
