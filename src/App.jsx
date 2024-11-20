@@ -1,11 +1,14 @@
+// src/App.jsx
 import React from "react";
+import { BrowserRouter as Router } from "react-router-dom";
 import AppRouter from "./router/AppRouter";
-import "antd/dist/reset.css";
-import "./index.css";
-import "./styles/globals.scss";
 
 const App = () => {
-  return <AppRouter />;
+  return (
+    <Router>
+      <AppRouter />
+    </Router>
+  );
 };
 
 export default App;
