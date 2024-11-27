@@ -29,11 +29,11 @@ const About = () => {
             </Paragraph>
           </div>
         </Col>
-        <Col xs={24} md={12} className={styles.col}>
+        {/* <Col xs={24} md={12} className={styles.col}>
           <div className={styles.imageWrapper}>
             <img src={image} alt="Наша команда" className={styles.aboutImage} />
           </div>
-        </Col>
+        </Col> */}
       </Row>
     </section>
   );

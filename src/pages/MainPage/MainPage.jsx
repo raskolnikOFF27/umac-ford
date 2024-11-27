@@ -117,25 +117,28 @@ const MainPage = () => {
             </button>
           </div>
 
-          <h1 className={mainPageStyles.mainHeading}>
-            Привет! Это всё в Юмакфорд&nbsp;
-            <span className={mainPageStyles.typewriter}>
-              <Typewriter
-                words={[
-                  "Автосервис",
-                  "Аренда авто",
-                  "Автомойка",
-                  "Автозапчасти",
-                ]}
-                loop={0}
-                cursor
-                cursorStyle="|"
-                typeSpeed={80}
-                deleteSpeed={50}
-                delaySpeed={1500}
-              />
-            </span>
-          </h1>
+          <div className={mainPageStyles.mainHeadingContainer}>
+            <h1 className={mainPageStyles.mainHeading}>
+              Привет! Это всё в Юмакфорд&nbsp;
+              <span className={mainPageStyles.typewriter}>
+                <Typewriter
+                  words={[
+                    "Автосервис",
+                    "Аренда авто",
+                    "Автомойка",
+                    "Автозапчасти",
+                  ]}
+                  loop={0}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={80}
+                  deleteSpeed={50}
+                  delaySpeed={1500}
+                />
+              </span>
+            </h1>
+          </div>
+
           <button className={mainPageStyles.introButton} onClick={scrollToForm}>
             Записаться в сервис
           </button>

@@ -6,7 +6,7 @@
   color: $text-color;
 
   .title {
-    color: $primary-color;
+    color: #000;
     text-align: center;
     margin-bottom: 60px;
     font-size: 2.5rem;
@@ -18,14 +18,15 @@
       display: block;
       width: 60px;
       height: 4px;
-      background-color: $primary-color;
+      background-color: #000;
       margin: 10px auto 0;
       border-radius: 2px;
     }
   }
 
   .card {
-    background: linear-gradient(135deg, #2c2c2c, #1e1e1e);
+    // background: linear-gradient(135deg, #2c2c2c, #1e1e1e);
+    background-color: #fff;
     border: none;
     color: $text-color;
     height: 100%;
@@ -59,17 +60,16 @@
     .customIcon {
       width: 100px;
       height: 100px;
-      fill: #9d0208;
-      transition: fill 0.3s ease, transform 0.6s ease;
+      fill: #000;
 
-      .card:hover & {
-        fill: #ffffff;
-        transform: rotate(20deg) scale(1.1);
+      path {
+        fill: #000;
       }
+      transition: fill 0.3s ease, transform 0.6s ease;
     }
 
     .cardTitle {
-      color: #ffffff;
+      color: #141414;
       margin-bottom: 15px;
       font-size: 1.8rem;
       font-weight: 600;
@@ -78,7 +78,8 @@
     }
 
     .cardDescription {
-      color: #e0e0e0;
+      color: #141414;
+      font-weight: 600;
       font-size: 1.1rem;
       text-align: left;
       flex-grow: 1;
@@ -90,7 +91,7 @@
 .modalContainer {
   .ant-modal-body {
     padding: 0;
-    background: #121212;
+    background: #ededed !important;
     border-radius: 10px;
     overflow-y: auto;
     max-height: 80vh;
@@ -171,7 +172,7 @@
 
 .ant-modal-body {
   padding: 0;
-  background: #121212;
+  background: #ededed;
   border-radius: 10px;
   overflow-y: auto;
 }
