@@ -43,9 +43,9 @@
   transition: background-color 0.3s, border-color 0.3s;
   cursor: pointer;
 
-  &:hover {
-    background-color: #5f5e5d;
-  }
+  // &:hover {
+  //   background-color: #5f5e5d;
+  // }
 }
 
 .mainHeadingContainer {
@@ -97,7 +97,7 @@
 
 /* Остальные стили */
 .formWrapper {
-  background-color: #1e1e1e;
+  background-color: #e1e1e1;
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -122,6 +122,10 @@
     &:focus {
       border-color: var(--primary-color);
       box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.5); // Синяя тень при фокусе
+    }
+
+    label {
+      color: #1e1e1e !important;
     }
   }
 

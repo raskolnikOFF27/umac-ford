@@ -6,22 +6,22 @@
   color: $text-color;
 
   .title {
-    color: #000;
-    text-align: center;
-    margin-bottom: 60px;
-    font-size: 2.5rem;
+    font-size: 2rem;
     font-weight: 700;
+    color: #9d0208;
+    text-align: left;
+    margin-bottom: 60px;
     position: relative;
 
-    &::after {
-      content: "";
-      display: block;
-      width: 60px;
-      height: 4px;
-      background-color: #000;
-      margin: 10px auto 0;
-      border-radius: 2px;
-    }
+    // &::after {
+    //   content: "";
+    //   display: block;
+    //   width: 60px;
+    //   height: 4px;
+    //   background-color: #9d0208;
+    //   margin: 10px auto 0;
+    //   border-radius: 2px;
+    // }
   }
 
   .card {
