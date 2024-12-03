@@ -16,3 +16,17 @@ $font-family: "Fact", sans-serif; // Основной шрифт Fact
 $font-weight-regular: 400; // Обычный
 $font-weight-bold: 700; // Жирный
 $font-weight-light: 300; // Легкий
+
+// src/styles/variables.scss
+
+:root {
+  --primary-color: #9d0208;
+  --secondary-color: #d32f2f;
+  --background-color: #f5f5f5;
+  --text-color: #333333;
+  --light-text-color: #999999;
+  --card-background: #ffffff;
+  --modal-background: #fff;
+  --modal-text: #ffffff;
+  --hover-color: #d32f2f;
+}

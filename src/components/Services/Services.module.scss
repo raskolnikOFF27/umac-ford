@@ -2,8 +2,8 @@
 
 .services {
   padding: 80px 20px;
-  background-color: $background-color;
-  color: $text-color;
+  background-color: var(--background-color);
+  color: var(--text-color);
 
   .title {
     font-size: 2rem;
@@ -12,23 +12,12 @@
     text-align: left;
     margin-bottom: 60px;
     position: relative;
-
-    // &::after {
-    //   content: "";
-    //   display: block;
-    //   width: 60px;
-    //   height: 4px;
-    //   background-color: #9d0208;
-    //   margin: 10px auto 0;
-    //   border-radius: 2px;
-    // }
   }
 
   .card {
-    // background: linear-gradient(135deg, #2c2c2c, #1e1e1e);
     background-color: #fff;
     border: none;
-    color: $text-color;
+    color: var(--text-color);
     height: 100%;
     display: flex;
     flex-direction: column;
@@ -89,16 +78,24 @@
 }
 
 .modalContainer {
+  .ant-modal {
+    background-color: #f5f5f5; // Светло-серый фон модалки
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
   .ant-modal-body {
     padding: 0;
-    background: #ededed !important;
-    border-radius: 10px;
-    overflow-y: auto;
-    max-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #f5f5f5; // Светло-серый фон
+    color: #333333; // Темно-серый текст
+    height: 80vh; // Ограничиваем высоту модалки
   }
 
   .swiperContainer {
     position: relative;
+    flex: 1; // Позволяет Swiper занимать оставшееся пространство
 
     .swiper-button-prev,
     .swiper-button-next {
@@ -108,13 +105,23 @@
       top: 50%;
       transform: translateY(-50%);
     }
+
+    .swiper-button-prev {
+      left: -60px;
+    }
+
+    .swiper-button-next {
+      right: -60px;
+    }
   }
 
   .modalContent {
+    display: flex;
+    flex-direction: column;
+    flex: 1; // Занимает всю доступную высоту
     padding: 40px;
     text-align: center;
     overflow-y: auto;
-    max-height: 80vh;
 
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* Internet Explorer и Edge */
@@ -124,27 +131,31 @@
       height: 0;
     }
 
-    &::-webkit-scrollbar-thumb {
-      background-color: transparent;
-    }
-
     .modalTitle {
       font-size: 2rem;
-      color: #ffffff;
+      color: #333333; // Темно-серый текст
       margin-bottom: 20px;
     }
 
     .serviceTable {
       margin-bottom: 20px;
+
       .ant-table-thead > tr > th {
-        background-color: #2c2c2c;
-        color: #ffffff;
+        background-color: #cccccc; // Светло-серый фон заголовков таблицы
+        color: #333333; // Темно-серый текст заголовков
       }
 
       .ant-table-tbody > tr > td {
-        background-color: #1e1e1e;
-        color: #ffffff;
+        background-color: #ffffff; // Белый фон ячеек таблицы
+        color: #333333; // Темно-серый текст ячеек
       }
+    }
+
+    .additionalServicesTitle {
+      font-size: 1.5rem;
+      color: #333333; // Темно-серый текст
+      margin-top: 20px;
+      margin-bottom: 10px;
     }
 
     .bookButton {
@@ -160,19 +171,70 @@
       height: 50px;
       border-radius: 8px;
       font-size: 1.2rem;
+      margin-top: auto; // Прижимает кнопку к нижней части контейнера
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      &:hover {
+        background-color: #7f0216;
+      }
     }
   }
 }
 
-.modalContainer .swiperContainer .swiper-button-next {
-  position: absolute;
-  left: -60px;
-  z-index: 1;
+/* При необходимости переопределяем стили инпутов внутри модалки */
+.modalContainer {
+  .modalContent {
+    .ant-input {
+      background-color: #ffffff; // Белый фон для инпутов
+      color: #333333; // Темно-серый текст
+      border-color: #cccccc; // Светло-серый бордер
+      border-radius: 8px;
+
+      &:hover,
+      &:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.5); // Синяя тень при фокусе
+      }
+
+      &::placeholder {
+        color: #999999; // Цвет плейсхолдера
+      }
+    }
+
+    .ant-form-item-label > label {
+      color: var(--light-text-color);
+    }
+
+    .ant-btn-primary {
+      background-color: var(--primary-color);
+      border-color: var(--primary-color);
+      width: 100%;
+      margin-top: 20px;
+      border-radius: 8px;
+
+      &:hover,
+      &:focus {
+        background-color: #0b5ed7;
+        border-color: #0b5ed7;
+      }
+    }
+  }
 }
 
-.ant-modal-body {
-  padding: 0;
-  background: #ededed;
-  border-radius: 10px;
-  overflow-y: auto;
+/* Обновленные стили для кнопок Swiper */
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.swiper-button-prev-custom {
+  left: 10px;
+}
+
+.swiper-button-next-custom {
+  right: 10px;
 }

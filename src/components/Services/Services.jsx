@@ -1,3 +1,5 @@
+// src/components/Services/Services.jsx
+
 import { useState, useRef, useEffect } from "react";
 import { Modal, Table, Button, Row, Col, Typography, Card } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -7,7 +9,7 @@ import styles from "./Services.module.scss";
 import "swiper/css";
 import "swiper/css/navigation";
 
-// Import SVG icons as React components
+// Импорт SVG иконок как React компоненты
 import { ReactComponent as DiagnosticsIcon } from "../../assets/icons/car-diagnostics.svg";
 import { ReactComponent as RepairIcon } from "../../assets/icons/repair.svg";
 import { ReactComponent as MaintenanceIcon } from "../../assets/icons/technical-review.svg";
@@ -17,6 +19,7 @@ import { ReactComponent as TireIcon } from "../../assets/icons/tire.svg";
 
 const { Title } = Typography;
 
+// Массив услуг
 const services = [
   {
     icon: <DiagnosticsIcon className={styles.customIcon} />,
@@ -29,8 +32,8 @@ const services = [
         { title: "Цена", dataIndex: "price", key: "price" },
       ],
       data: [
-        { key: "1", service: "Поднятие на подъёмнике", price: "500" },
-        { key: "2", service: "Снятие и установка колеса", price: "100-200" },
+        { key: "1", service: "Поднятие на подъёмнике", price: "500 ₽" },
+        { key: "2", service: "Снятие и установка колеса", price: "100-200 ₽" },
       ],
     },
   },
@@ -47,64 +50,72 @@ const services = [
         {
           key: "1",
           service: "Замена сайлентблока рычага подвески",
-          price: "1200",
+          price: "1200 ₽",
         },
         {
           key: "2",
           service: "Замена сайлентблока заднего рычага",
-          price: "от 1000/шт",
+          price: "от 1000 ₽/шт",
         },
-        { key: "3", service: "Замена выбора КПП", price: "1000" },
-        { key: "4", service: "Замена топливного фильтра", price: "от 800" },
-        { key: "5", service: "Замена подушки ДВС", price: "от 1000" },
-        { key: "6", service: "Ремонт ГБЦ", price: "от 10000" },
-        { key: "7", service: "Ремонт ГРМ", price: "от 3000" },
-        { key: "8", service: "Замена АКБ", price: "500" },
-        { key: "9", service: "Ремонт генератора", price: "от 1500" },
+        { key: "3", service: "Замена выбора КПП", price: "1000 ₽" },
+        { key: "4", service: "Замена топливного фильтра", price: "от 800 ₽" },
+        { key: "5", service: "Замена подушки ДВС", price: "от 1000 ₽" },
+        { key: "6", service: "Ремонт ГБЦ", price: "от 10000 ₽" },
+        { key: "7", service: "Ремонт ГРМ", price: "от 3000 ₽" },
+        { key: "8", service: "Замена АКБ", price: "500 ₽" },
+        { key: "9", service: "Ремонт генератора", price: "от 1500 ₽" },
         {
           key: "10",
           service: "Заправка кондиционера",
-          price: "раб. 1500 + 6грам",
+          price: "раб. 1500 ₽ + 6грам",
         },
-        { key: "11", service: "Замена лягушки заднего хода", price: "от 500" },
-        { key: "12", service: "Замена свечей зажигания", price: "200 (шт.)" },
+        {
+          key: "11",
+          service: "Замена лягушки заднего хода",
+          price: "от 500 ₽",
+        },
+        { key: "12", service: "Замена свечей зажигания", price: "200 ₽ (шт.)" },
         {
           key: "13",
           service: "Замена вентилятора отопителя",
-          price: "от 1500",
+          price: "от 1500 ₽",
         },
-        { key: "14", service: "Замена балки задней", price: "от 3500" },
-        { key: "15", service: "Замена фильтра АКПП", price: "от 1000" },
-        { key: "16", service: "Ремонт стартера", price: "от 1500" },
-        { key: "17", service: "Замена помпы", price: "от 1500" },
-        { key: "18", service: "Замена термостата", price: "от 800" },
-        { key: "19", service: "Замена радиатора отопителя", price: "от 3000" },
+        { key: "14", service: "Замена балки задней", price: "от 3500 ₽" },
+        { key: "15", service: "Замена фильтра АКПП", price: "от 1000 ₽" },
+        { key: "16", service: "Ремонт стартера", price: "от 1500 ₽" },
+        { key: "17", service: "Замена помпы", price: "от 1500 ₽" },
+        { key: "18", service: "Замена термостата", price: "от 800 ₽" },
+        {
+          key: "19",
+          service: "Замена радиатора отопителя",
+          price: "от 3000 ₽",
+        },
         {
           key: "20",
           service: "Замена троса ручника",
-          price: "от 1000 (Истронка)",
+          price: "от 1000 ₽ (Истронка)",
         },
-        { key: "21", service: "Замена ремня генератора", price: "от 500" },
-        { key: "22", service: "Капитальный ремонт ДВС", price: "от 35000" },
-        { key: "23", service: "Ремонт авто электрики", price: "от 1000" },
-        { key: "24", service: "Замена датчика ABS", price: "от 500" },
-        { key: "25", service: "Замена троса капота", price: "от 800" },
+        { key: "21", service: "Замена ремня генератора", price: "от 500 ₽" },
+        { key: "22", service: "Капитальный ремонт ДВС", price: "от 35000 ₽" },
+        { key: "23", service: "Ремонт авто электрики", price: "от 1000 ₽" },
+        { key: "24", service: "Замена датчика ABS", price: "от 500 ₽" },
+        { key: "25", service: "Замена троса капота", price: "от 800 ₽" },
         {
           key: "26",
           service: "Замена замка крышки багажника",
-          price: "от 800",
+          price: "от 800 ₽",
         },
-        { key: "27", service: "Развал схождение 1 ось", price: "от 1200" },
+        { key: "27", service: "Развал схождение 1 ось", price: "от 1200 ₽" },
         {
           key: "28",
           service: "Замена переднего рычага подвески",
-          price: "1500",
+          price: "1500 ₽",
         },
-        { key: "29", service: "Замена стартера", price: "от 1500" },
+        { key: "29", service: "Замена стартера", price: "от 1500 ₽" },
         {
           key: "30",
           service: "Замена вентилятора охлаждения",
-          price: "от 1500",
+          price: "от 1500 ₽",
         },
         // Добавлено всё с фотографий
       ],
@@ -122,8 +133,8 @@ const services = [
         { title: "Цена", dataIndex: "price", key: "price" },
       ],
       data: [
-        { key: "1", service: "Чистка дисков от герметика", price: "60-100" },
-        { key: "2", service: "Технологическая мойка", price: "60-100" },
+        { key: "1", service: "Чистка дисков от герметика", price: "60-100 ₽" },
+        { key: "2", service: "Технологическая мойка", price: "60-100 ₽" },
       ],
     },
   },
@@ -139,12 +150,12 @@ const services = [
         { title: "Время", dataIndex: "time", key: "time" },
       ],
       data: [
-        { key: "1", category: "1", price: "450", time: "10 мин." },
-        { key: "2", category: "2", price: "450", time: "20 мин." },
-        { key: "3", category: "3", price: "450", time: "25 мин." },
-        { key: "4", category: "4", price: "500", time: "30 мин." },
-        { key: "5", category: "5", price: "550", time: "35 мин." },
-        { key: "6", category: "6", price: "550", time: "40 мин." },
+        { key: "1", category: "1", price: "450 ₽", time: "10 мин." },
+        { key: "2", category: "2", price: "450 ₽", time: "20 мин." },
+        { key: "3", category: "3", price: "450 ₽", time: "25 мин." },
+        { key: "4", category: "4", price: "500 ₽", time: "30 мин." },
+        { key: "5", category: "5", price: "550 ₽", time: "35 мин." },
+        { key: "6", category: "6", price: "550 ₽", time: "40 мин." },
       ],
       additionalServices: {
         columns: [
@@ -152,10 +163,10 @@ const services = [
           { title: "Цена", dataIndex: "price", key: "price" },
         ],
         data: [
-          { key: "1", service: "Мойка ковриков", price: "50" },
-          { key: "2", service: "Пылесос багажника", price: "200" },
-          { key: "3", service: "Чернение шин (4 шт.)", price: "50" },
-          { key: "4", service: "Сушка и протирка кузова", price: "400" },
+          { key: "1", service: "Мойка ковриков", price: "50 ₽" },
+          { key: "2", service: "Пылесос багажника", price: "200 ₽" },
+          { key: "3", service: "Чернение шин (4 шт.)", price: "50 ₽" },
+          { key: "4", service: "Сушка и протирка кузова", price: "400 ₽" },
         ],
       },
     },
@@ -170,64 +181,68 @@ const services = [
         { title: "Цена", dataIndex: "price", key: "price" },
       ],
       data: [
-        { key: "1", service: "Поднятие на подъёмнике", price: "500" },
-        { key: "2", service: "Снятие - Установка Колеса", price: "100-200" },
+        { key: "1", service: "Поднятие на подъёмнике", price: "500 ₽" },
+        { key: "2", service: "Снятие - Установка Колеса", price: "100-200 ₽" },
         {
           key: "3",
           service: "Разбортовка - Забортовка Шины на Штампованный Диск",
-          price: "110-210",
+          price: "110-210 ₽",
         },
         {
           key: "4",
           service: "Разбортовка - Забортовка Шины на Литье",
-          price: "130-220",
+          price: "130-220 ₽",
         },
         {
           key: "5",
           service: "Разбортовка - Забортовка низкопрофильной шины на Литье",
-          price: "180-250",
+          price: "180-250 ₽",
         },
         {
           key: "6",
           service: "Замена готовых колес с балансировкой",
-          price: "800-1520",
+          price: "800-1520 ₽",
         },
-        { key: "7", service: "Балансировка Колеса", price: "80-180" },
-        { key: "8", service: "Герметик", price: "80-180" },
-        { key: "9", service: "Вентиль Снятие - Установка", price: "100" },
-        { key: "10", service: "Установка камеры", price: "50" },
-        { key: "11", service: "Чистка Дисков от герметика", price: "60-100" },
-        { key: "12", service: "Технологическая мойка", price: "60-100" },
+        { key: "7", service: "Балансировка Колеса", price: "80-180 ₽" },
+        { key: "8", service: "Герметик", price: "80-180 ₽" },
+        { key: "9", service: "Вентиль Снятие - Установка", price: "100 ₽" },
+        { key: "10", service: "Установка камеры", price: "50 ₽" },
+        { key: "11", service: "Чистка Дисков от герметика", price: "60-100 ₽" },
+        { key: "12", service: "Технологическая мойка", price: "60-100 ₽" },
         {
           key: "13",
           service: "Установка - Снятие датчиков давления",
-          price: "100",
+          price: "100 ₽",
         },
-        { key: "14", service: "Установка жгута", price: "150" },
+        { key: "14", service: "Установка жгута", price: "150 ₽" },
         {
           key: "15",
           service: "Проверка колеса на герметичность",
-          price: "40-70",
+          price: "40-70 ₽",
         },
-        { key: "16", service: "Подкачка колеса", price: "15" },
-        { key: "17", service: "Набивной груз 1гр.", price: "1" },
-        { key: "18", service: "Самоклеящийся груз 1гр.", price: "1.5" },
-        { key: "19", service: "Правка штампованного Диска", price: "300-1000" },
+        { key: "16", service: "Подкачка колеса", price: "15 ₽" },
+        { key: "17", service: "Набивной груз 1гр.", price: "1 ₽" },
+        { key: "18", service: "Самоклеящийся груз 1гр.", price: "1.5 ₽" },
+        {
+          key: "19",
+          service: "Правка штампованного Диска",
+          price: "300-1000 ₽",
+        },
         {
           key: "20",
           service: "Общая стоимость Шиномонтажа + груза (Штампованный диск)",
-          price: "1720-3160",
+          price: "1720-3160 ₽",
         },
         {
           key: "21",
           service: "Общая стоимость Шиномонтажа + груза (Литый диск)",
-          price: "1820-3220",
+          price: "1820-3220 ₽",
         },
         {
           key: "22",
           service:
             "Общая стоимость Шиномонтажа + груза (низкопрофильная резина)",
-          price: "2200-3300",
+          price: "2200-3300 ₽",
         },
       ],
       pagination: true, // Пагинация для шиномонтажа
@@ -332,6 +347,8 @@ const Services = () => {
         footer={null}
         width={800}
         className={styles.modalContainer}
+        centered
+        destroyOnClose
       >
         <div className={styles.swiperContainer}>
           <Swiper
@@ -401,11 +418,11 @@ const Services = () => {
 
           {/* Внешние кнопки переключения */}
           <Button
-            className={`${styles.swiperButton} swiper-button-prev`}
+            className={`${styles.swiperButton} swiper-button-prev-custom`}
             onClick={handlePrev}
           />
           <Button
-            className={`${styles.swiperButton} swiper-button-next`}
+            className={`${styles.swiperButton} swiper-button-next-custom`}
             onClick={handleNext}
           />
         </div>

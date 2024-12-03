@@ -1,5 +1,5 @@
 // src/components/Layout/Layout.jsx
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -10,47 +10,52 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const Layout = ({ children }) => {
-  const headerRef = useRef(null);
-  const footerRef = useRef(null);
   const location = useLocation();
+  const [isHeaderVisible, setIsHeaderVisible] = useState(true);
+  const triggerRef = useRef(null);
 
   useEffect(() => {
     const isMainPage = location.pathname === "/";
+    let trigger;
 
     if (isMainPage) {
-      // Изначально скрываем Header и Footer
-      gsap.set([headerRef.current, footerRef.current], { opacity: 0, y: -20 });
+      // Изначально скрываем хедер и футер, если находимся вверху страницы
+      const scrollY = window.scrollY || window.pageYOffset;
+      if (scrollY === 0) {
+        setIsHeaderVisible(false);
+      } else {
+        setIsHeaderVisible(true);
+      }
 
-      // Анимация появления Header и Footer при скролле
-      ScrollTrigger.create({
-        trigger: ".introSection", // Убедитесь, что этот класс есть на элементе introSection
+      // Используем GSAP ScrollTrigger для отслеживания скролла
+      trigger = ScrollTrigger.create({
+        trigger: ".introSection", // Убедитесь, что этот класс применен к вашему элементу
         start: "bottom top",
         onEnter: () => {
-          gsap.to([headerRef.current, footerRef.current], {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-          });
+          setIsHeaderVisible(true);
         },
         onLeaveBack: () => {
-          gsap.to([headerRef.current, footerRef.current], {
-            opacity: 0,
-            y: -20,
-            duration: 0.5,
-          });
+          setIsHeaderVisible(false);
         },
       });
     } else {
-      // На остальных страницах Header и Footer видимы изначально
-      gsap.set([headerRef.current, footerRef.current], { opacity: 1, y: 0 });
+      // На других страницах хедер и футер всегда видимы
+      setIsHeaderVisible(true);
     }
-  }, [location]);
+
+    // Очистка при размонтировании
+    return () => {
+      if (trigger) {
+        trigger.kill();
+      }
+    };
+  }, [location.pathname]);
 
   return (
     <div className={styles.layout}>
-      <Header ref={headerRef} />
+      <Header isVisible={isHeaderVisible} />
       <main>{children}</main>
-      <Footer ref={footerRef} />
+      <Footer isVisible={isHeaderVisible} />
     </div>
   );
 };

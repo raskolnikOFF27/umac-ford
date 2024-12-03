@@ -38,7 +38,7 @@ const SpecialEquipmentRentalPage = () => {
             <div className={styles.customTag}>Оплата наличными/картой</div>
           </div>
 
-          <p className="text-base text-gray-300 mb-6 leading-7">
+          <p className="text-base text-gray-900 mb-6 leading-7">
             Земляные работы. Рытьё траншей экскаватором для прокладки кабеля,
             водопровода, газопровода, канализации, дренажных систем и других
             подземных коммуникаций. Уборка территории от снега. Погрузка
