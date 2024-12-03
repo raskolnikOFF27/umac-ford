@@ -1,11 +1,14 @@
 // src/components/Services/Services.jsx
 
 import { useState, useRef, useEffect } from "react";
-import { Modal, Table, Button, Row, Col, Typography, Card } from "antd";
+import { Modal, Table, Row, Col, Typography, Card } from "antd";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
 import styles from "./Services.module.scss";
+
+import leftArrowIcon from "../../assets/icons/arrow-left.svg";
+import rightArrowIcon from "../../assets/icons/arrow-right.svg";
 import "swiper/css";
 import "swiper/css/navigation";
 
@@ -417,14 +420,22 @@ const Services = () => {
           </Swiper>
 
           {/* Внешние кнопки переключения */}
-          <Button
-            className={`${styles.swiperButton} swiper-button-prev-custom`}
+          <button
+            className={`${styles.swiperButton} ${styles.swiper_button_prev_custom}`}
             onClick={handlePrev}
-          />
-          <Button
-            className={`${styles.swiperButton} swiper-button-next-custom`}
+          >
+            <img
+              src={rightArrowIcon}
+              className={styles.swiperButton_icon}
+              alt=""
+            />
+          </button>
+          <button
+            className={`${styles.swiperButton} ${styles.swiper_button_next_custom}`}
             onClick={handleNext}
-          />
+          >
+            <img src={leftArrowIcon} alt="" />
+          </button>
         </div>
       </Modal>
     </section>

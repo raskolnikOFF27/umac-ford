@@ -223,18 +223,72 @@
 }
 
 /* Обновленные стили для кнопок Swiper */
-.swiper-button-prev-custom,
-.swiper-button-next-custom {
+.swiper_button_prev_custom,
+.swiper_button_next_custom {
+  color: #9d0208; /* Основной цвет */
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  width: 47px;
+  height: 47px;
+
   position: absolute;
+
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 10;
+
+  &::after {
+    font-size: 20px;
+  }
 }
 
-.swiper-button-prev-custom {
+.swiperButton_icon {
+  transform: rotate(180deg);
+}
+.swiper_button_prev_custom {
   left: 10px;
 }
 
-.swiper-button-next-custom {
+.swiper_button_next_custom {
   right: 10px;
+}
+
+:global {
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #9d0208; /* Основной цвет */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 47px;
+    height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &::after {
+      font-size: 20px;
+    }
+  }
+
+  .swiper-pagination {
+    bottom: 10px !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    border-radius: 50%;
+    margin: 0 4px !important;
+    background-color: #9d0208;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #d32f2f !important; /* Вторичный цвет */
+  }
 }
