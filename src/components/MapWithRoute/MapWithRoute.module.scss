@@ -3,9 +3,11 @@
 }
 
 .title {
-  text-align: center;
-  color: #ffffff;
-  margin-bottom: 20px;
+  font-size: 2rem !important;
+  font-weight: 700 !important;
+  color: #9d0208 !important;
+
+  text-align: left;
 }
 
 .contentContainer {
@@ -33,9 +35,10 @@
 }
 
 .contactCard {
-  background-color: #1e1e1e;
+  background-color: #e1e1e1;
   border-radius: 10px;
-  color: #ffffff;
+  color: #1e1e1e;
+  border: none !important;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -50,7 +53,8 @@
 
   span {
     font-size: 16px;
-    color: #dddddd;
+    color: #1e1e1e;
+    font-weight: 600;
   }
 }
 
@@ -63,7 +67,7 @@
 
 .socialCard {
   flex: 1;
-  background-color: #1e1e1e;
+  background-color: #e1e1e1;
   display: flex;
   align-items: center;
   justify-content: center;

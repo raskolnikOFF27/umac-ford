@@ -3,15 +3,15 @@
 @import "../../styles/variables.scss";
 
 // Определение основных акцентных цветов
-$primary-color: #9d0208; // Основной акцентный цвет
-$secondary-color: #d32f2f; // Вторичный акцентный цвет
+$primary-color: #9d0208; // Основной акцентный цвет (можно оставить или инвертировать при необходимости)
+$secondary-color: #d32f2f; // Вторичный акцентный цвет (можно оставить или инвертировать при необходимости)
 
 .about {
   padding: 80px 20px;
-  background-color: #121212; // Тёмный фон для контраста
-  color: #ffffff; // Белый текст для лучшей читаемости
+  background-color: #fff; // Изменено на чёрный фон
+  color: #000; // Изменено на белый текст
   border-radius: 15px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 24px rgb(0 0 0 / 18%);
   margin: 40px 0;
 
   .aboutContent {
@@ -36,18 +36,19 @@ $secondary-color: #d32f2f; // Вторичный акцентный цвет
     justify-content: center; // Центрируем текст по вертикали
     height: 100%; // Растягиваем текстовый блок по высоте родителя
 
+    // При необходимости можно инвертировать градиенты при наведении
     // &:hover {
     //   background: linear-gradient(
     //     135deg,
     //     rgba($primary-color, 0.15),
     //     rgba($secondary-color, 0.15)
-    //   ); // Легкое изменение градиента при наведении
-    //   box-shadow: 0 6px 18px rgba($primary-color, 0.3); // Усиленная тень при наведении
+    //   ); // Лёгкое изменение градиента при наведении
+    //   box-shadow: 0 6px 18px rgba(255, 255, 255, 0.3); // Усиленная светлая тень при наведении
     // }
   }
 
   .title {
-    color: $primary-color; // Основной акцентный цвет
+    color: $primary-color; // Основной акцентный цвет (можно инвертировать, если требуется)
     text-align: left;
     margin-bottom: 20px;
     font-size: 2.5rem;
@@ -59,7 +60,7 @@ $secondary-color: #d32f2f; // Вторичный акцентный цвет
       display: block;
       width: 60px;
       height: 4px;
-      background-color: $secondary-color; // Вторичный акцентный цвет
+      background-color: $secondary-color; // Вторичный акцентный цвет (можно инвертировать, если требуется)
       margin-top: 10px;
       border-radius: 2px;
     }
@@ -68,7 +69,8 @@ $secondary-color: #d32f2f; // Вторичный акцентный цвет
   .paragraph {
     font-size: 1.2rem;
     line-height: 1.8;
-    color: #e0e0e0; // Светло-серый текст для параграфа
+    color: #000; // Изменено на белый текст
+    font-weight: 700; // Можно оставить или изменить по необходимости
     text-align: left;
   }
 
@@ -78,13 +80,13 @@ $secondary-color: #d32f2f; // Вторичный акцентный цвет
     align-items: center;
     overflow: hidden;
     border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); // Мягкая тень
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3); // Изменена тень на светлую
     transition: box-shadow 0.3s ease, transform 0.3s ease;
     height: 100%; // Растягиваем контейнер изображения по высоте родителя
 
     &:hover {
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5); // Усиленная тень при наведении
-      transform: translateY(-5px); // Легкое поднятие изображения при наведении
+      box-shadow: 0 8px 24px rgba(255, 255, 255, 0.5); // Усиленная светлая тень при наведении
+      transform: translateY(-5px); // Лёгкое поднятие изображения при наведении
     }
   }
 
@@ -96,7 +98,7 @@ $secondary-color: #d32f2f; // Вторичный акцентный цвет
     transition: transform 0.3s ease;
 
     &:hover {
-      transform: scale(1.05); // Легкое увеличение изображения при наведении
+      transform: scale(1.05); // Лёгкое увеличение изображения при наведении
     }
   }
 
@@ -119,7 +121,7 @@ $secondary-color: #d32f2f; // Вторичный акцентный цвет
     }
 
     .imageWrapper {
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3); // Изменена тень на светлую
       transform: none;
       height: auto; // Сбрасываем высоту для мобильных устройств
     }

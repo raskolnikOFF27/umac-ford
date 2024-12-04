@@ -1,10 +1,12 @@
+// src/pages/CarRentalPage/CarRentalPage.module.scss
+@import "../../styles/variables.scss";
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
 /* Основные стили */
 .title {
-  color: #9d0208 !important;
+  color: var(--primary-color) !important;
 }
 
 .cars {
@@ -45,13 +47,13 @@
 
 /* Стили для карточек автомобилей */
 .card {
-  background-color: #1e1e1e;
-  color: #ffffff;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 /* Стили для цен */
 .pricePerThreeDays {
-  color: #9d0208;
+  color: var(--primary-color);
   font-size: 15px;
 }
 
@@ -85,10 +87,11 @@
 }
 
 :global {
+  /* Стили для кнопок переключения Swiper */
   .swiper-button-next,
   .swiper-button-prev {
-    color: #9d0208; /* Основной цвет */
-    background-color: rgba(0, 0, 0, 0.5);
+    color: #ffffff; /* Старый цвет кнопок */
+    background-color: rgba(0, 0, 0, 0.5); /* Старый фон кнопок */
     border-radius: 50%;
     width: 47px;
     height: 47px;
@@ -113,38 +116,39 @@
     opacity: 1;
     border-radius: 50%;
     margin: 0 4px !important;
+    background-color: #d32f2f; /* Старый цвет буллетов */
   }
 
   .swiper-pagination-bullet-active {
-    background: #d32f2f !important; /* Вторичный цвет */
+    background: #9d0208 !important; /* Старый активный цвет буллетов */
   }
 
   /* Стили для модального окна */
   .ant-modal-header,
   .ant-modal-body,
   .ant-modal-footer {
-    background-color: rgb(30, 30, 30) !important;
-    color: #ffffff !important;
+    background-color: var(--modal-background) !important;
+    color: var(--modal-text) !important;
   }
 
   .ant-modal-close {
-    color: #ffffff;
+    color: var(--modal-text);
   }
 
   .ant-modal-close:hover {
-    color: #9d0208;
+    color: var(--primary-color);
   }
 
   /* Стили для таблицы */
   .ant-table {
     background-color: transparent !important;
-    color: #ffffff !important;
+    color: var(--text-color) !important;
   }
 
   .ant-table-thead > tr > th,
   .ant-table-tbody > tr > td {
     background-color: transparent !important;
-    color: #ffffff !important;
+    color: var(--text-color) !important;
     border-color: #444444 !important;
   }
 
@@ -161,13 +165,14 @@
     .ant-modal {
       max-width: 800px; /* Максимальная ширина */
       margin: 0 auto;
-      background-color: #1e1e1e !important; /* Убираем белый фон */
+      background-color: var(
+        --modal-background
+      ) !important; /* Используем переменную */
       border-radius: 15px !important; /* Закругленные углы */
     }
 
     .ant-modal-body {
       padding: 0 !important;
-      max-height: 80vh;
       display: flex;
       flex-direction: column;
     }
@@ -181,10 +186,6 @@
       .ant-modal {
         width: 90% !important; /* Уменьшаем ширину на маленьких экранах */
       }
-    }
-
-    .ant-modal-body .flex {
-      flex-direction: column !important;
     }
 
     .swiperWrapper {
@@ -201,7 +202,7 @@
       }
 
       .ant-modal-content {
-        background-color: #1e1e1e !important;
+        background-color: var(--modal-background) !important;
       }
     }
 
@@ -214,19 +215,19 @@
 /* Стили для блока "Условия Аренды" */
 .rentalInfo {
   margin-top: 32px;
-  background-color: #1a1a1a; /* Темный фон */
+  background-color: var(--background-color); /* Используем переменную */
   border-radius: 12px;
   padding: 32px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #1c1c1c;
+    background-color: lighten(#f5f5f5, 5%);
   }
 }
 
 .infoTitle {
-  color: #9d0208 !important; /* Более мягкий оранжевый цвет */
+  color: var(--primary-color) !important;
   font-size: 32px !important;
   margin-bottom: 20px;
   display: flex;
@@ -235,17 +236,17 @@
   .icon {
     margin-right: 10px;
     font-size: 32px;
-    color: #9d0208;
+    color: var(--primary-color);
     transition: color 0.3s ease;
   }
 
   &:hover .icon {
-    color: #9d0208;
+    color: var(--primary-color);
   }
 }
 
 .infoDivider {
-  border-top: 2px solid #9d0208;
+  border-top: 2px solid var(--primary-color);
   margin-bottom: 32px;
 }
 
@@ -254,31 +255,26 @@
 }
 
 .pricingCard {
-  background-color: #2a2a2a !important;
+  background-color: var(--background-color) !important;
   border-radius: 10px;
   padding: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  }
 }
 
 .pricingTitle {
-  color: #ffffff !important;
+  color: var(--text-color) !important;
   font-size: 22px;
   margin-bottom: 12px;
   text-align: center;
 }
 
 .pricingDivider {
-  border-top: 1px solid #9d0208;
+  border-top: 1px solid var(--primary-color);
   margin-bottom: 16px;
 }
 
 .pricingText {
-  color: #9d0208 !important;
+  color: var(--primary-color) !important;
   font-size: 20px;
   font-weight: 700;
   text-align: center;
@@ -288,7 +284,7 @@
 .documents,
 .buyout {
   margin-bottom: 24px;
-  color: #e0e0e0; /* Светло-серый текст */
+  color: var(--light-text-color); /* Используем переменную */
   font-size: 16px;
   line-height: 1.6;
 
@@ -304,7 +300,7 @@
 }
 
 .depositTitle {
-  color: #9d0208;
+  color: var(--primary-color);
   font-size: 18px;
 }
 
@@ -324,8 +320,8 @@
 }
 
 .callButton {
-  background-color: #9d0208;
-  color: #ffffff;
+  background-color: var(--primary-color);
+  color: var(--text-color);
   border: none;
   outline: none;
   border-radius: 25px;
@@ -335,13 +331,6 @@
   display: flex;
   align-items: center;
   transition: background-color 0.3s ease, transform 0.3s ease;
-
-  &:hover {
-    background-color: #d32f2f;
-    transform: scale(1.05);
-    color: #ffffff;
-    position: relative;
-  }
 
   .anticon {
     margin-right: 8px;
@@ -401,5 +390,42 @@
   .callButton {
     padding: 16px 40px;
     font-size: 22px;
+  }
+}
+
+:global {
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #9d0208; /* Основной цвет */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 47px;
+    height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &::after {
+      font-size: 20px;
+    }
+  }
+
+  .swiper-pagination {
+    bottom: 10px !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    border-radius: 50%;
+    margin: 0 4px !important;
+    background-color: #9d0208;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #d32f2f !important; /* Вторичный цвет */
   }
 }

@@ -8,9 +8,14 @@ import instagramIcon from "../../assets/icons/instagram-logo.svg";
 
 const { Footer: AntFooter } = Layout;
 
-const Footer = forwardRef(({ className }, ref) => {
+const Footer = forwardRef(({ className = "", isVisible }, ref) => {
   return (
-    <AntFooter ref={ref} className={`${styles.footer} ${className}`}>
+    <AntFooter
+      ref={ref}
+      className={`${styles.footer} ${className} ${
+        isVisible ? styles.visible : styles.hidden
+      }`}
+    >
       <div className={styles.footerContent}>
         <div className={styles.footerLinks}>
           <a href="/services">Услуги</a>

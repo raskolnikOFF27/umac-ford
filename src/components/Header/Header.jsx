@@ -6,7 +6,7 @@ import logo from "../../assets/icons/logo.svg";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import { useScroll } from "../../context/ScrollContext";
 
-const Header = forwardRef(({ className }, ref) => {
+const Header = forwardRef(({ className = "", isVisible }, ref) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollTo } = useScroll();
   const location = useLocation();
@@ -31,7 +31,12 @@ const Header = forwardRef(({ className }, ref) => {
 
   return (
     <>
-      <header ref={ref} className={`${styles.header} ${className}`}>
+      <header
+        ref={ref}
+        className={`${styles.header} ${className} ${
+          isVisible ? styles.visible : styles.hidden
+        }`}
+      >
         <div className={styles.headerWrapper}>
           <div className={styles.logoWrapper}>
             <Link

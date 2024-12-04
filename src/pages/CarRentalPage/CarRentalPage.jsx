@@ -1,3 +1,5 @@
+// src/components/CarRentalPage/CarRentalPage.jsx
+
 import React, { useState } from "react";
 import {
   ConfigProvider,
@@ -234,252 +236,257 @@ const CarRentalPage = () => {
 
   return (
     <ConfigProvider theme={customTheme}>
-      <div className="mt-8 py-10 px-4">
-        <Title
-          level={2}
-          className={`text-center mb-8 color-primary ${styles.title}`}
-        >
-          Аренда автомобилей
-        </Title>
-        <div
-          className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ${styles.cars}`}
-        >
-          {cars.map((car) => (
-            <Card
-              key={car.id}
-              hoverable
-              bordered={false}
-              className={`bg-background shadow-md rounded-lg overflow-hidden transition-transform transform hover:scale-105 ${styles.card}`}
-              cover={
-                <div className="w-full h-48 md:h-56 overflow-hidden">
-                  <img
-                    src={car.images[0]}
-                    alt={car.name}
-                    onError={handleImageError}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              }
-              actions={[
-                <Button
-                  type="default"
-                  className="w-full"
-                  onClick={() => openModal(car)}
-                >
-                  Подробнее
-                </Button>,
-                <Button
-                  type="primary"
-                  className="w-full"
-                  onClick={() => (window.location.href = `tel:${car.phone}`)}
-                >
-                  Арендовать
-                </Button>,
-              ]}
-            >
-              <Meta
-                title={
-                  <h3 className="text-xl font-semibold text-textPrimary">
-                    {car.name}
-                  </h3>
-                }
-                description={
-                  <div className="text-gray-400 flex gap-2">
-                    <p>
-                      Год выпуска: <b>{car.year}</b>
-                    </p>
-                    <p>
-                      КПП: <b>{car.transmission}</b>
-                    </p>
-                    <p>
-                      Мест: <b>{car.seats}</b>
-                    </p>
+      <div className={`${styles.pageContainer}`}>
+        <div className="mt-8 py-10 px-4">
+          <Title
+            level={2}
+            className={`text-center mb-8 color-primary ${styles.title}`}
+          >
+            Аренда автомобилей
+          </Title>
+          <div
+            className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 ${styles.cars}`}
+          >
+            {cars.map((car) => (
+              <Card
+                key={car.id}
+                hoverable
+                bordered={false}
+                className={`bg-background shadow-md rounded-lg overflow-hidden transition-transform transform  ${styles.card}`}
+                cover={
+                  <div className="w-full h-48 md:h-56 overflow-hidden">
+                    <img
+                      src={car.images[0]}
+                      alt={car.name}
+                      onError={handleImageError}
+                      className="w-full h-full object-cover"
+                    />
                   </div>
                 }
-              />
-              <Divider className="bg-gray-600" />
-              <div className="flex justify-between">
-                <div className="flex flex-col">
-                  <Text className="text-white" strong>
-                    1 сутки
-                  </Text>
-                  <Text className="text-white">
-                    <span>от</span>{" "}
-                    <b className={styles.pricePerThreeDays}>
-                      {car.pricePerDay}
-                    </b>
-                  </Text>
-                </div>
-                <div className="flex flex-col">
-                  <Text className="text-white" strong>
-                    3 суток
-                  </Text>
-                  <Text className="text-white">
-                    <span>от</span>{" "}
-                    <b className={styles.pricePerThreeDays}>
-                      {car.pricePerThreeDays}
-                    </b>
-                  </Text>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </div>
-
-        <div className={styles.rentalInfo}>
-          <Title level={3} className={styles.infoTitle}>
-            <InfoCircleOutlined className={styles.icon} /> Условия Аренды
-          </Title>
-          <Divider className={styles.infoDivider} />
-
-          <Row gutter={[16, 16]} className={styles.pricingCards}>
-            <Col xs={24} sm={12} md={8}>
-              <Card className={styles.pricingCard} bordered={false} hoverable>
-                <Title level={4} className={styles.pricingTitle}>
-                  График 14/1
-                </Title>
-                <Divider className={styles.pricingDivider} />
-                <Text className={styles.pricingText}>2 300 руб./сутки</Text>
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} md={8}>
-              <Card className={styles.pricingCard} bordered={false} hoverable>
-                <Title level={4} className={styles.pricingTitle}>
-                  График 6/1
-                </Title>
-                <Divider className={styles.pricingDivider} />
-                <Text className={styles.pricingText}>2 500 руб./сутки</Text>
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} md={8}>
-              <Card className={styles.pricingCard} bordered={false} hoverable>
-                <Title level={4} className={styles.pricingTitle}>
-                  График 5/2
-                </Title>
-                <Divider className={styles.pricingDivider} />
-                <Text className={styles.pricingText}>2 900 руб./сутки</Text>
-              </Card>
-            </Col>
-          </Row>
-
-          <Paragraph className={styles.deposit}>
-            <Text className={styles.depositTitle} strong>
-              Залог:
-            </Text>{" "}
-            <br /> Для аренды автомобиля требуется залог в размере 5 000 руб.,
-            который возвращается после завершения срока аренды при отсутствии
-            повреждений.
-          </Paragraph>
-
-          <div className={styles.documents}>
-            <Text className={styles.depositTitle} strong>
-              Необходимые документы:
-            </Text>
-            <ul>
-              <li>
-                Для оформления аренды необходимо предъявить паспорт и
-                водительское удостоверение. После оформления вы сможете уехать
-                на автомобиле через час.
-              </li>
-              <li>
-                Для иностранных граждан требуется дополнительно предоставить
-                регистрацию (прописку) по месту жительства.
-              </li>
-            </ul>
-          </div>
-
-          <Paragraph className={styles.buyout}>
-            <Text className={styles.depositTitle} strong>
-              Выкуп: <br />
-            </Text>{" "}
-            Возможность выкупа автомобиля обсуждается индивидуально и зависит от
-            условий аренды.
-          </Paragraph>
-
-          {/* Кнопка "Позвонить" */}
-          <div className={styles.callButtonContainer}>
-            <Button
-              className={styles.callButton}
-              onClick={() => (window.location.href = "tel:+73431234567")}
-              icon={<PhoneOutlined />}
-              size="large"
-            >
-              Позвонить
-            </Button>
-          </div>
-        </div>
-        {/* Модальное окно */}
-        <Modal
-          title={null}
-          open={isModalOpen}
-          onCancel={closeModal}
-          footer={null}
-          centered
-          closeIcon={<span className="text-primary text-xl">X</span>}
-          width={1000}
-          className={`bg-background text-textPrimary rounded-lg ${styles.customModal}`}
-          bodyStyle={{
-            padding: 0,
-            maxHeight: "80vh",
-            overflow: "hidden",
-          }}
-        >
-          {selectedCar && (
-            <div className="flex flex-col md:flex-row h-full overflow-auto">
-              <div className="w-full md:w-1/2 aspect-square md:aspect-auto">
-                <Swiper
-                  modules={[Navigation, Pagination, Autoplay]}
-                  navigation
-                  pagination={{ clickable: true }}
-                  autoplay={{ delay: 3000, disableOnInteraction: false }}
-                  loop={true}
-                  className={`h-full swiperContainer`}
-                >
-                  {selectedCar.images.map((image, index) => (
-                    <SwiperSlide key={index}>
-                      <div className="h-full overflow-hidden rounded-lg">
-                        <img
-                          className="w-full h-full object-cover"
-                          src={image}
-                          alt={`Фото ${index + 1}`}
-                          onError={handleImageError}
-                        />
-                      </div>
-                    </SwiperSlide>
-                  ))}
-                </Swiper>
-              </div>
-              <div className="w-full md:w-1/2 p-4 flex flex-col overflow-y-auto">
-                <h2 className="text-2xl font-bold mb-4">{selectedCar.name}</h2>
-                <p className="mb-4">{selectedCar.description}</p>
-
-                {/* Таблица спецификаций */}
-                <h3 className="text-xl font-semibold mb-2">Характеристики</h3>
-                {getSpecificationsTable(selectedCar.specifications)}
-
-                <Divider className="bg-gray-600 my-4" />
-
-                {/* Преимущества */}
-                <h3 className="text-xl font-semibold mb-2">Преимущества</h3>
-                <ul className="list-disc list-inside mb-4">
-                  {selectedCar.advantages.map((adv, index) => (
-                    <li key={index}>{adv}</li>
-                  ))}
-                </ul>
-
-                <Button
-                  type="primary"
-                  className="mt-auto w-full"
-                  onClick={() =>
-                    (window.location.href = `tel:${selectedCar.phone}`)
+                actions={[
+                  <Button
+                    type="default"
+                    className="w-full"
+                    onClick={() => openModal(car)}
+                  >
+                    Подробнее
+                  </Button>,
+                  <Button
+                    type="primary"
+                    className="w-full"
+                    onClick={() => (window.location.href = `tel:${car.phone}`)}
+                  >
+                    Арендовать
+                  </Button>,
+                ]}
+              >
+                <Meta
+                  title={
+                    <h3 className="text-xl font-semibold text-textPrimary">
+                      {car.name}
+                    </h3>
                   }
-                >
-                  Арендовать
-                </Button>
-              </div>
+                  description={
+                    <div className="text-gray-400 flex gap-2">
+                      <p>
+                        Год выпуска: <b>{car.year}</b>
+                      </p>
+                      <p>
+                        КПП: <b>{car.transmission}</b>
+                      </p>
+                      <p>
+                        Мест: <b>{car.seats}</b>
+                      </p>
+                    </div>
+                  }
+                />
+                <Divider className="bg-gray-600" />
+                <div className="flex justify-between">
+                  <div className="flex flex-col">
+                    <Text className="text-white" strong>
+                      1 сутки
+                    </Text>
+                    <Text className="text-white">
+                      <span>от</span>{" "}
+                      <b className={styles.pricePerThreeDays}>
+                        {car.pricePerDay}
+                      </b>
+                    </Text>
+                  </div>
+                  <div className="flex flex-col">
+                    <Text className="text-white" strong>
+                      3 суток
+                    </Text>
+                    <Text className="text-white">
+                      <span>от</span>{" "}
+                      <b className={styles.pricePerThreeDays}>
+                        {car.pricePerThreeDays}
+                      </b>
+                    </Text>
+                  </div>
+                </div>
+              </Card>
+            ))}
+          </div>
+
+          <div className={styles.rentalInfo}>
+            <Title level={3} className={styles.infoTitle}>
+              <InfoCircleOutlined className={styles.icon} /> Условия Аренды
+            </Title>
+            <Divider className={styles.infoDivider} />
+
+            <Row gutter={[16, 16]} className={styles.pricingCards}>
+              <Col xs={24} sm={12} md={8}>
+                <Card className={styles.pricingCard} bordered={false} hoverable>
+                  <Title level={4} className={styles.pricingTitle}>
+                    График 14/1
+                  </Title>
+                  <Divider className={styles.pricingDivider} />
+                  <Text className={styles.pricingText}>2 300 руб./сутки</Text>
+                </Card>
+              </Col>
+              <Col xs={24} sm={12} md={8}>
+                <Card className={styles.pricingCard} bordered={false} hoverable>
+                  <Title level={4} className={styles.pricingTitle}>
+                    График 6/1
+                  </Title>
+                  <Divider className={styles.pricingDivider} />
+                  <Text className={styles.pricingText}>2 500 руб./сутки</Text>
+                </Card>
+              </Col>
+              <Col xs={24} sm={12} md={8}>
+                <Card className={styles.pricingCard} bordered={false} hoverable>
+                  <Title level={4} className={styles.pricingTitle}>
+                    График 5/2
+                  </Title>
+                  <Divider className={styles.pricingDivider} />
+                  <Text className={styles.pricingText}>2 900 руб./сутки</Text>
+                </Card>
+              </Col>
+            </Row>
+
+            <Paragraph className={styles.deposit}>
+              <Text className={styles.depositTitle} strong>
+                Залог:
+              </Text>{" "}
+              <br /> Для аренды автомобиля требуется залог в размере 5 000 руб.,
+              который возвращается после завершения срока аренды при отсутствии
+              повреждений.
+            </Paragraph>
+
+            <div className={styles.documents}>
+              <Text className={styles.depositTitle} strong>
+                Необходимые документы:
+              </Text>
+              <ul>
+                <li>
+                  Для оформления аренды необходимо предъявить паспорт и
+                  водительское удостоверение. После оформления вы сможете уехать
+                  на автомобиле через час.
+                </li>
+                <li>
+                  Для иностранных граждан требуется дополнительно предоставить
+                  регистрацию (прописку) по месту жительства.
+                </li>
+              </ul>
             </div>
-          )}
-        </Modal>
+
+            <Paragraph className={styles.buyout}>
+              <Text className={styles.depositTitle} strong>
+                Выкуп: <br />
+              </Text>{" "}
+              Возможность выкупа автомобиля обсуждается индивидуально и зависит
+              от условий аренды.
+            </Paragraph>
+
+            {/* Кнопка "Позвонить" */}
+            <div className={styles.callButtonContainer}>
+              <Button
+                className={styles.callButton}
+                onClick={() => (window.location.href = "tel:+73431234567")}
+                icon={<PhoneOutlined />}
+                size="large"
+              >
+                Позвонить
+              </Button>
+            </div>
+          </div>
+          {/* Модальное окно */}
+          <Modal
+            title={null}
+            open={isModalOpen}
+            onCancel={closeModal}
+            footer={null}
+            centered
+            closeIcon={<span className="text-primary text-xl">X</span>}
+            width={1000}
+            className={`bg-background text-textPrimary rounded-lg ${styles.customModal}`}
+            bodyStyle={{
+              padding: 0,
+              maxHeight: "80vh",
+              overflow: "hidden",
+            }}
+          >
+            {selectedCar && (
+              <div className="flex flex-col md:flex-row h-full overflow-auto">
+                <div className="w-full md:w-1/2 aspect-square md:aspect-auto">
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    navigation
+                    pagination={{ clickable: true }}
+                    autoplay={{ delay: 3000, disableOnInteraction: false }}
+                    loop={true}
+                    className={`h-full swiperContainer`}
+                  >
+                    {selectedCar.images.map((image, index) => (
+                      <SwiperSlide key={index}>
+                        <div className="h-full overflow-hidden rounded-lg">
+                          <img
+                            className="w-full h-full object-cover"
+                            src={image}
+                            alt={`Фото ${index + 1}`}
+                            onError={handleImageError}
+                          />
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+                </div>
+                <div className="w-full md:w-1/2 p-4 flex flex-col overflow-y-auto">
+                  <h2 className="text-2xl font-bold mb-4 text-background">
+                    {selectedCar.name}
+                  </h2>
+                  <p className="mb-4">{selectedCar.description}</p>
+
+                  {/* Таблица спецификаций */}
+                  <h3 className="text-xl font-semibold mb-2">Характеристики</h3>
+                  {getSpecificationsTable(selectedCar.specifications)}
+
+                  <Divider className="bg-gray-600 my-4" />
+
+                  {/* Преимущества */}
+                  <h3 className="text-xl font-semibold mb-2">Преимущества</h3>
+                  <ul className="list-disc list-inside mb-4">
+                    {selectedCar.advantages.map((adv, index) => (
+                      <li key={index}>{adv}</li>
+                    ))}
+                  </ul>
+
+                  {/* Кнопка "Арендовать" прижата к нижней части */}
+                  <Button
+                    type="primary"
+                    className={`${styles.modalButton} mt-auto`}
+                    onClick={() =>
+                      (window.location.href = `tel:${selectedCar.phone}`)
+                    }
+                  >
+                    Арендовать
+                  </Button>
+                </div>
+              </div>
+            )}
+          </Modal>
+        </div>
       </div>
     </ConfigProvider>
   );

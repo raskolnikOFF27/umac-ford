@@ -11,6 +11,7 @@ import MapWithRoute from "../../components/MapWithRoute/MapWithRoute";
 import mainPageStyles from "./MainPage.module.scss";
 import { useScroll } from "../../context/ScrollContext";
 import { useLocation } from "react-router-dom";
+import siteLogo from "../../assets/icons/logo.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,8 +23,10 @@ const MainPage = () => {
   const mapRef = useRef(null);
   const mainContentRef = useRef(null);
   const introSectionRef = useRef(null);
+  const splashScreenRef = useRef(null);
 
   const [isContentVisible, setIsContentVisible] = useState(false);
+  const [showSplash, setShowSplash] = useState(true);
 
   const { registerRef, scrollTo } = useScroll();
   const location = useLocation();
@@ -35,7 +38,6 @@ const MainPage = () => {
     registerRef("map", mapRef);
     registerRef("form", formRef);
 
-    // Изначально скрываем Header, Footer и основной контент
     const header = document.querySelector("header");
     const footer = document.querySelector("footer");
 
@@ -43,6 +45,28 @@ const MainPage = () => {
       opacity: 0,
       y: -20,
     });
+
+    // Анимация шторки
+    if (showSplash && splashScreenRef.current) {
+      gsap.fromTo(
+        splashScreenRef.current,
+        { y: "-100%" },
+        {
+          y: "0%",
+          duration: 0.5,
+          ease: "power2.out",
+          onComplete: () => {
+            gsap.to(splashScreenRef.current, {
+              delay: 1.5, // Задержка перед закрытием шторки
+              y: "-100%",
+              duration: 0.5,
+              ease: "power2.in",
+              onComplete: () => setShowSplash(false),
+            });
+          },
+        }
+      );
+    }
 
     // Анимация появления при прокрутке
     ScrollTrigger.create({
@@ -76,7 +100,7 @@ const MainPage = () => {
       scrollTo(location.state.scrollTo);
       window.history.replaceState({}, document.title);
     }
-  }, [registerRef, scrollTo, location]);
+  }, [registerRef, scrollTo, location, showSplash]);
 
   const scrollToForm = () => {
     scrollTo("form");
@@ -96,6 +120,19 @@ const MainPage = () => {
 
   return (
     <div>
+      {/* Шторка с логотипом */}
+      {showSplash && (
+        <div className={mainPageStyles.splashScreen} ref={splashScreenRef}>
+          <div className={mainPageStyles.logoContainer}>
+            <img
+              src={siteLogo} // Используйте импортированный логотип
+              alt="Логотип"
+              className={mainPageStyles.logo}
+            />
+          </div>
+        </div>
+      )}
+
       {/* Начальная заставка — полноширинный блок */}
       <section className={mainPageStyles.introSection} ref={introSectionRef}>
         <div className={mainPageStyles.introContent}>
@@ -117,25 +154,28 @@ const MainPage = () => {
             </button>
           </div>
 
-          <h1 className={mainPageStyles.mainHeading}>
-            Привет! Это всё в Юмакфорд&nbsp;
-            <span className={mainPageStyles.typewriter}>
-              <Typewriter
-                words={[
-                  "Автосервис",
-                  "Аренда авто",
-                  "Автомойка",
-                  "Автозапчасти",
-                ]}
-                loop={0}
-                cursor
-                cursorStyle="|"
-                typeSpeed={80}
-                deleteSpeed={50}
-                delaySpeed={1500}
-              />
-            </span>
-          </h1>
+          <div className={mainPageStyles.mainHeadingContainer}>
+            <h1 className={mainPageStyles.mainHeading}>
+              Привет! Это всё в Юмакфорд&nbsp;
+              <span className={mainPageStyles.typewriter}>
+                <Typewriter
+                  words={[
+                    "Автосервис",
+                    "Аренда авто",
+                    "Автомойка",
+                    "Автозапчасти",
+                  ]}
+                  loop={0}
+                  cursor
+                  cursorStyle="|"
+                  typeSpeed={80}
+                  deleteSpeed={50}
+                  delaySpeed={1500}
+                />
+              </span>
+            </h1>
+          </div>
+
           <button className={mainPageStyles.introButton} onClick={scrollToForm}>
             Записаться в сервис
           </button>
@@ -154,8 +194,8 @@ const MainPage = () => {
               token: {
                 colorPrimary: "#9D0208",
                 colorSecondary: "#D32F2F",
-                colorBgBase: "#121212",
-                colorTextBase: "#FFFFFF",
+                colorBgBase: "#f5f5f5", // Обновленный светло-серый фон
+                colorTextBase: "#333333", // Темно-серый текст
               },
             }}
           >

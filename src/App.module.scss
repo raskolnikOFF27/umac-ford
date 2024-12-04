@@ -15,3 +15,14 @@ main {
   padding: 20px;
   background-color: #1e1e1e;
 }
+
+/* Для всех браузеров */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent; /* Делаем скроллбар прозрачным */
+}
+
+body {
+  scrollbar-width: none; /* Для Firefox */
+  -ms-overflow-style: none; /* Для IE и Edge */
+}

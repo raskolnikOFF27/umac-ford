@@ -1,31 +1,60 @@
-/* src/pages/MainPage.module.scss */
 @import "../../styles/variables.scss";
+
+.splashScreen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #7f7f7f; // Серый фон
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.logoContainer {
+  text-align: center;
+}
+
+.logo {
+  max-width: 100%;
+  height: auto;
+}
 
 .introSection {
   position: relative;
   width: 100%;
   background-color: #9d0208;
   display: flex;
-  align-items: center;
+  align-items: center; // Центрирование по вертикали
   justify-content: center;
   height: 100vh;
-  padding: 0 30px;
+  padding: 0;
+  overflow: hidden; // Чтобы скрыть возможные артефакты анимации
 }
 
+/* Остальные ваши стили остаются без изменений */
+
 .introContent {
+  position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; // Центрируем содержимое
-  text-align: center;
+  align-items: flex-start; // Выравнивание по левому краю
+  text-align: left;
+  height: 100%;
+  width: 100%;
+  padding: 60px 30px 20px 30px;
 }
 
 .navigationButtons {
+  position: absolute;
+  top: 20px;
+  left: 20px;
   display: flex;
-  gap: 20px;
-  margin: 20px 0;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .navButton {
@@ -34,13 +63,17 @@
   color: #fff;
   border-radius: 8px;
   padding: 10px 20px;
+  text-align: left;
   font-size: 16px;
   transition: background-color 0.3s, border-color 0.3s;
   cursor: pointer;
+}
 
-  &:hover {
-    background-color: #0b5ed7; // Синий цвет при наведении
-  }
+.mainHeadingContainer {
+  flex: 1;
+  display: flex;
+  align-items: center; // Центрирование заголовка по вертикали
+  width: 100%;
 }
 
 .mainHeading {
@@ -48,19 +81,26 @@
   line-height: 1.2;
   font-weight: 700;
   color: #fff;
-  margin-bottom: 40px;
   max-width: 800px;
 
-  height: 115px;
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 2rem;
+  }
 }
 
 .typewriter {
-  color: #0d7dfd; // Синий цвет текста
+  color: #000;
 }
 
 .introButton {
-  background-color: #0d7dfd; // Синий цвет кнопки
-  color: #fff;
+  align-self: center; // Центрирование кнопки по горизонтали
+  margin-bottom: 20px;
+  background-color: #fff;
+  color: #000;
   border: none;
   padding: 15px 30px;
   font-size: 18px;
@@ -70,7 +110,7 @@
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: #0b5ed7; // Темнее синий при наведении
+    background-color: #5f5e5d;
   }
 }
 
@@ -84,7 +124,7 @@
 
 /* Остальные стили */
 .formWrapper {
-  background-color: #1e1e1e;
+  background-color: #e1e1e1;
   padding: 40px;
   border-radius: 16px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -100,15 +140,19 @@
 
 .serviceForm {
   .ant-input {
-    background-color: var(--background-color);
-    color: var(--text-color);
-    border-color: var(--primary-color);
+    background-color: #ffffff; // Белый фон для инпутов
+    color: #333333; // Темно-серый текст
+    border-color: #cccccc; // Светло-серый бордер
     border-radius: 8px;
 
     &:hover,
     &:focus {
       border-color: var(--primary-color);
       box-shadow: 0 0 0 2px rgba(13, 110, 253, 0.5); // Синяя тень при фокусе
+    }
+
+    &::placeholder {
+      color: #999999; // Цвет плейсхолдера
     }
   }
 
@@ -146,4 +190,41 @@
   opacity: 1 !important;
   transform: translateY(0px) !important;
   transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+:global {
+  .swiper-button-next,
+  .swiper-button-prev {
+    color: #9d0208; /* Основной цвет */
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    width: 47px;
+    height: 47px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &::after {
+      font-size: 20px;
+    }
+  }
+
+  .swiper-pagination {
+    bottom: 10px !important;
+  }
+
+  .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    opacity: 1;
+    border-radius: 50%;
+    margin: 0 4px !important;
+    background-color: #9d0208;
+  }
+
+  .swiper-pagination-bullet-active {
+    background: #d32f2f !important; /* Вторичный цвет */
+  }
 }
