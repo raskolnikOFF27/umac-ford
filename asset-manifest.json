@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/umac-ford/static/css/main.1218ffd1.css",
-    "main.js": "/umac-ford/static/js/main.3084b39d.js",
+    "main.css": "/umac-ford/static/css/main.507cd8a8.css",
+    "main.js": "/umac-ford/static/js/main.1eddbb9f.js",
     "static/media/photo-5.jpg": "/umac-ford/static/media/photo-5.11238c43e31930fa148d.jpg",
     "static/media/photo-1.jpg": "/umac-ford/static/media/photo-1.b8dbbd9ffdcc17d4b7ff.jpg",
     "static/media/photo-3.jpg": "/umac-ford/static/media/photo-3.9d0e8924f4973590f0f0.jpg",
@@ -19,7 +19,7 @@
     "static/media/Fact-Bold.woff": "/umac-ford/static/media/Fact-Bold.5c9738fd71f4853e002c.woff",
     "static/media/Fact-Light.woff": "/umac-ford/static/media/Fact-Light.cc03bb38d15b41627ff0.woff",
     "static/media/Fact-Regular.woff": "/umac-ford/static/media/Fact-Regular.511a10e5711825d9e7c1.woff",
-    "static/media/logo.svg": "/umac-ford/static/media/logo.20d29fa5446ce3420c41dc3c98f4e53f.svg",
+    "static/media/logo.svg": "/umac-ford/static/media/logo.6345b6502cfb6fb4e5fba51967f480e0.svg",
     "static/media/default-avatar.webp": "/umac-ford/static/media/default-avatar.8af64e0b3b17803d3813.webp",
     "static/media/car-wash.svg": "/umac-ford/static/media/car-wash.d9c97ba81a3b61f7b3a0752e887079cc.svg",
     "static/media/instagram-logo.svg": "/umac-ford/static/media/instagram-logo.ec36fc7ccd16ed72756754b22d389a3e.svg",
@@ -39,11 +39,11 @@
     "static/media/avatar-1.webp": "/umac-ford/static/media/avatar-1.053b9284b21449889aa3.webp",
     "static/media/arrow-left.svg": "/umac-ford/static/media/arrow-left.c8636e10be9a6fa7b748ecf36c713ccc.svg",
     "static/media/arrow-right.svg": "/umac-ford/static/media/arrow-right.c8636e10be9a6fa7b748ecf36c713ccc.svg",
-    "main.1218ffd1.css.map": "/umac-ford/static/css/main.1218ffd1.css.map",
-    "main.3084b39d.js.map": "/umac-ford/static/js/main.3084b39d.js.map"
+    "main.507cd8a8.css.map": "/umac-ford/static/css/main.507cd8a8.css.map",
+    "main.1eddbb9f.js.map": "/umac-ford/static/js/main.1eddbb9f.js.map"
   },
   "entrypoints": [
-    "static/css/main.1218ffd1.css",
-    "static/js/main.3084b39d.js"
+    "static/css/main.507cd8a8.css",
+    "static/js/main.1eddbb9f.js"
   ]
 }
