@@ -41,7 +41,7 @@ const MainPage = () => {
     const header = document.querySelector("header");
     const footer = document.querySelector("footer");
 
-    gsap.set([header, footer, mainContentRef.current], {
+    gsap.set([header, mainContentRef.current], {
       opacity: 0,
       y: -20,
     });
@@ -73,7 +73,7 @@ const MainPage = () => {
       trigger: introSectionRef.current,
       start: "bottom top",
       onEnter: () => {
-        gsap.to([header, footer], { opacity: 1, y: 0, duration: 0.5 });
+        gsap.to([header], { opacity: 1, y: 0, duration: 0.5 });
         gsap.to(mainContentRef.current, {
           opacity: 1,
           y: 0,
@@ -82,8 +82,8 @@ const MainPage = () => {
         });
       },
       onLeaveBack: () => {
-        gsap.to([header, footer], { opacity: 0, y: -20, duration: 0.5 });
-        gsap.to(mainContentRef.current, { opacity: 0, y: -20, duration: 0.5 });
+        gsap.to([header], { opacity: 0, y: 0, duration: 0.5 });
+        gsap.to(mainContentRef.current, { opacity: 0, y: -10, duration: 0.5 });
         setIsContentVisible(false);
       },
     });
@@ -156,7 +156,8 @@ const MainPage = () => {
 
           <div className={mainPageStyles.mainHeadingContainer}>
             <h1 className={mainPageStyles.mainHeading}>
-              Привет! Это всё в Юмакфорд&nbsp;
+              Привет! Это всё в Юмакфорд
+              <span className={mainPageStyles.breakOnMobile}></span>
               <span className={mainPageStyles.typewriter}>
                 <Typewriter
                   words={[
@@ -171,6 +172,7 @@ const MainPage = () => {
                   typeSpeed={80}
                   deleteSpeed={50}
                   delaySpeed={1500}
+                  className={mainPageStyles.typewriterText}
                 />
               </span>
             </h1>
@@ -186,7 +188,7 @@ const MainPage = () => {
       <div
         ref={mainContentRef}
         className={`${isContentVisible ? mainPageStyles.contentVisible : ""}`}
-        style={{ opacity: 0, transform: "translateY(-20px)" }}
+        style={{ opacity: 0 }}
       >
         <div className={mainPageStyles.appContainer}>
           <ConfigProvider

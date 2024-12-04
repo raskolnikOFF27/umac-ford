@@ -11,12 +11,15 @@
   min-height: 100vh;
 }
 
-main {
-  padding: 20px;
-  background-color: #1e1e1e;
+/* Для всех браузеров (обрабатываем все прокручиваемые элементы) */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-/* Для всех браузеров */
+/* Для WebKit-браузеров (Chrome, Safari) */
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent; /* Делаем скроллбар прозрачным */

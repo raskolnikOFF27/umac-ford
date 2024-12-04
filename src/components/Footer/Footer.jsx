@@ -10,12 +10,7 @@ const { Footer: AntFooter } = Layout;
 
 const Footer = forwardRef(({ className = "", isVisible }, ref) => {
   return (
-    <AntFooter
-      ref={ref}
-      className={`${styles.footer} ${className} ${
-        isVisible ? styles.visible : styles.hidden
-      }`}
-    >
+    <AntFooter ref={ref} className={`${styles.footer} ${className} `}>
       <div className={styles.footerContent}>
         <div className={styles.footerLinks}>
           <a href="/services">Услуги</a>

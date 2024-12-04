@@ -76,6 +76,11 @@
   width: 100%;
 }
 
+.typewriter {
+  color: #000;
+  margin-left: 20px;
+}
+
 .mainHeading {
   font-size: 3rem;
   line-height: 1.2;
@@ -83,17 +88,29 @@
   color: #fff;
   max-width: 800px;
 
+  .typewriterText {
+    margin-left: 20px;
+  }
+
+  .breakOnMobile {
+    display: none; /* Скрыто по умолчанию */
+  }
+
   @media (max-width: 768px) {
     font-size: 2.5rem;
+
+    .typewriter {
+      margin: 0;
+    }
+
+    .breakOnMobile {
+      display: block; /* Показывается только на мобильных устройствах */
+    }
   }
 
   @media (max-width: 480px) {
     font-size: 2rem;
   }
-}
-
-.typewriter {
-  color: #000;
 }
 
 .introButton {
