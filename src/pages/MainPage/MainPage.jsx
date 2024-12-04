@@ -1,4 +1,3 @@
-// src/pages/MainPage/MainPage.jsx
 import React, { useRef, useEffect, useState } from "react";
 import { Button, ConfigProvider, Input, Form } from "antd";
 import { Typewriter } from "react-simple-typewriter";
@@ -27,45 +26,58 @@ const MainPage = () => {
 
   const [isContentVisible, setIsContentVisible] = useState(false);
   const [showSplash, setShowSplash] = useState(true);
+  const [hasSplashCompleted, setHasSplashCompleted] = useState(false);
 
   const { registerRef, scrollTo } = useScroll();
   const location = useLocation();
 
   useEffect(() => {
-    registerRef("about", aboutRef);
-    registerRef("services", servicesRef);
-    registerRef("reviews", reviewsRef);
-    registerRef("map", mapRef);
-    registerRef("form", formRef);
+    // Читаем флаг из localStorage
+    const splashCompleted = localStorage.getItem("splashCompleted") === "true";
+    if (splashCompleted) {
+      setHasSplashCompleted(true); // Если анимация была выполнена, пропускаем её
+      setShowSplash(false);
+    }
 
-    const header = document.querySelector("header");
-    const footer = document.querySelector("footer");
+    if (!splashCompleted) {
+      // Если анимация еще не завершена, запускаем её
+      registerRef("about", aboutRef);
+      registerRef("services", servicesRef);
+      registerRef("reviews", reviewsRef);
+      registerRef("map", mapRef);
+      registerRef("form", formRef);
 
-    gsap.set([header, footer, mainContentRef.current], {
-      opacity: 0,
-      y: -20,
-    });
+      gsap.set([mainContentRef.current], {
+        opacity: 0,
+        y: -20,
+      });
 
-    // Анимация шторки
-    if (showSplash && splashScreenRef.current) {
-      gsap.fromTo(
-        splashScreenRef.current,
-        { y: "-100%" },
-        {
-          y: "0%",
-          duration: 0.5,
-          ease: "power2.out",
-          onComplete: () => {
-            gsap.to(splashScreenRef.current, {
-              delay: 1.5, // Задержка перед закрытием шторки
-              y: "-100%",
-              duration: 0.5,
-              ease: "power2.in",
-              onComplete: () => setShowSplash(false),
-            });
-          },
-        }
-      );
+      // Анимация шторки
+      if (showSplash && splashScreenRef.current) {
+        gsap.fromTo(
+          splashScreenRef.current,
+          { y: "-100%" },
+          {
+            y: "0%",
+            duration: 0.5,
+            ease: "power2.out",
+            onComplete: () => {
+              gsap.to(splashScreenRef.current, {
+                delay: 1.5, // Задержка перед закрытием шторки
+                y: "-100%",
+                duration: 0.5,
+                ease: "power2.in",
+                onComplete: () => {
+                  setShowSplash(false);
+                  setHasSplashCompleted(true);
+                  // Сохраняем состояние в localStorage
+                  localStorage.setItem("splashCompleted", "true");
+                },
+              });
+            },
+          }
+        );
+      }
     }
 
     // Анимация появления при прокрутке
@@ -73,7 +85,6 @@ const MainPage = () => {
       trigger: introSectionRef.current,
       start: "bottom top",
       onEnter: () => {
-        gsap.to([header, footer], { opacity: 1, y: 0, duration: 0.5 });
         gsap.to(mainContentRef.current, {
           opacity: 1,
           y: 0,
@@ -82,8 +93,7 @@ const MainPage = () => {
         });
       },
       onLeaveBack: () => {
-        gsap.to([header, footer], { opacity: 0, y: -20, duration: 0.5 });
-        gsap.to(mainContentRef.current, { opacity: 0, y: -20, duration: 0.5 });
+        gsap.to(mainContentRef.current, { opacity: 0, y: -10, duration: 0.5 });
         setIsContentVisible(false);
       },
     });
@@ -100,7 +110,7 @@ const MainPage = () => {
       scrollTo(location.state.scrollTo);
       window.history.replaceState({}, document.title);
     }
-  }, [registerRef, scrollTo, location, showSplash]);
+  }, [registerRef, scrollTo, location, showSplash]); // Убираем hasSplashCompleted из зависимостей
 
   const scrollToForm = () => {
     scrollTo("form");
@@ -121,17 +131,18 @@ const MainPage = () => {
   return (
     <div>
       {/* Шторка с логотипом */}
-      {showSplash && (
-        <div className={mainPageStyles.splashScreen} ref={splashScreenRef}>
-          <div className={mainPageStyles.logoContainer}>
-            <img
-              src={siteLogo} // Используйте импортированный логотип
-              alt="Логотип"
-              className={mainPageStyles.logo}
-            />
+      {showSplash &&
+        !hasSplashCompleted && ( // Проверяем флаг, чтобы показать шторку только один раз
+          <div className={mainPageStyles.splashScreen} ref={splashScreenRef}>
+            <div className={mainPageStyles.logoContainer}>
+              <img
+                src={siteLogo} // Используйте импортированный логотип
+                alt="Логотип"
+                className={mainPageStyles.logo}
+              />
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
       {/* Начальная заставка — полноширинный блок */}
       <section className={mainPageStyles.introSection} ref={introSectionRef}>
@@ -156,7 +167,8 @@ const MainPage = () => {
 
           <div className={mainPageStyles.mainHeadingContainer}>
             <h1 className={mainPageStyles.mainHeading}>
-              Привет! Это всё в Юмакфорд&nbsp;
+              Привет! Это всё в Юмакфорд
+              <span className={mainPageStyles.breakOnMobile}></span>
               <span className={mainPageStyles.typewriter}>
                 <Typewriter
                   words={[
@@ -171,12 +183,24 @@ const MainPage = () => {
                   typeSpeed={80}
                   deleteSpeed={50}
                   delaySpeed={1500}
+                  className={mainPageStyles.typewriterText}
                 />
               </span>
             </h1>
           </div>
 
-          <button className={mainPageStyles.introButton} onClick={scrollToForm}>
+          <button
+            className={mainPageStyles.introButton}
+            onClick={() => {
+              const formSection = document.getElementById("form");
+              if (formSection) {
+                formSection.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }
+            }}
+          >
             Записаться в сервис
           </button>
         </div>
@@ -186,7 +210,7 @@ const MainPage = () => {
       <div
         ref={mainContentRef}
         className={`${isContentVisible ? mainPageStyles.contentVisible : ""}`}
-        style={{ opacity: 0, transform: "translateY(-20px)" }}
+        style={{ opacity: 0 }}
       >
         <div className={mainPageStyles.appContainer}>
           <ConfigProvider

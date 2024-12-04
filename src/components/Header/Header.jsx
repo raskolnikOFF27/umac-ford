@@ -1,5 +1,4 @@
-// src/components/Header/Header.jsx
-import React, { useState, forwardRef } from "react";
+import React, { useState, useEffect, forwardRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
@@ -11,6 +10,19 @@ const Header = forwardRef(({ className = "", isVisible }, ref) => {
   const { scrollTo } = useScroll();
   const location = useLocation();
   const navigate = useNavigate();
+
+  // Блокируем/разблокируем прокрутку при открытии/закрытии меню
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden"; // Блокируем прокрутку
+    } else {
+      document.body.style.overflow = ""; // Восстанавливаем прокрутку
+    }
+
+    return () => {
+      document.body.style.overflow = ""; // Убираем блокировку при размонтировании компонента
+    };
+  }, [isMenuOpen]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -107,7 +119,52 @@ const Header = forwardRef(({ className = "", isVisible }, ref) => {
         </div>
       </header>
       {isMenuOpen && (
-        <div className={styles.navOverlay} onClick={closeMenu}></div>
+        <div className={styles.navOverlay} onClick={closeMenu}>
+          <ul className={styles.nav_overlay_list}>
+            <li>
+              <button
+                className={styles.nav_overlay_link}
+                onClick={() => handleScroll("about")}
+              >
+                О компании
+              </button>
+            </li>
+            <li>
+              <button
+                className={styles.nav_overlay_link}
+                onClick={() => handleScroll("services")}
+              >
+                Наши услуги
+              </button>
+            </li>
+            <li>
+              <button
+                className={styles.nav_overlay_link}
+                onClick={() => handleScroll("reviews")}
+              >
+                Отзывы
+              </button>
+            </li>
+            <li>
+              <Link
+                to="/rentals"
+                className={styles.nav_overlay_link}
+                onClick={closeMenu}
+              >
+                Аренда автомобилей
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/special-equipment-rentals"
+                className={styles.nav_overlay_link}
+                onClick={closeMenu}
+              >
+                Аренда спецтехники
+              </Link>
+            </li>
+          </ul>
+        </div>
       )}
     </>
   );

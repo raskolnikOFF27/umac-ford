@@ -252,7 +252,7 @@ const CarRentalPage = () => {
                 key={car.id}
                 hoverable
                 bordered={false}
-                className={`bg-background shadow-md rounded-lg overflow-hidden transition-transform transform  ${styles.card}`}
+                className={` shadow-md rounded-lg overflow-hidden transition-transform transform  ${styles.card}`}
                 cover={
                   <div className="w-full h-48 md:h-56 overflow-hidden">
                     <img
@@ -282,7 +282,7 @@ const CarRentalPage = () => {
               >
                 <Meta
                   title={
-                    <h3 className="text-xl font-semibold text-textPrimary">
+                    <h3 className="text-2xl font-semibold text-gray-900">
                       {car.name}
                     </h3>
                   }
@@ -303,23 +303,23 @@ const CarRentalPage = () => {
                 <Divider className="bg-gray-600" />
                 <div className="flex justify-between">
                   <div className="flex flex-col">
-                    <Text className="text-white" strong>
+                    <Text className="text-gray-900" strong>
                       1 сутки
                     </Text>
-                    <Text className="text-white">
+                    <Text className="text-gray-900">
                       <span>от</span>{" "}
-                      <b className={styles.pricePerThreeDays}>
+                      <b className={`${styles.pricePerThreeDays} text-xl`}>
                         {car.pricePerDay}
                       </b>
                     </Text>
                   </div>
                   <div className="flex flex-col">
-                    <Text className="text-white" strong>
+                    <Text className="text-gray-900" strong>
                       3 суток
                     </Text>
-                    <Text className="text-white">
+                    <Text className="text-gray-900">
                       <span>от</span>{" "}
-                      <b className={styles.pricePerThreeDays}>
+                      <b className={`${styles.pricePerThreeDays} text-xl`}>
                         {car.pricePerThreeDays}
                       </b>
                     </Text>
@@ -456,19 +456,26 @@ const CarRentalPage = () => {
                   <h2 className="text-2xl font-bold mb-4 text-background">
                     {selectedCar.name}
                   </h2>
-                  <p className="mb-4">{selectedCar.description}</p>
+                  <p className="mb-4 text-gray-900">
+                    {selectedCar.description}
+                  </p>
 
-                  {/* Таблица спецификаций */}
-                  <h3 className="text-xl font-semibold mb-2">Характеристики</h3>
+                  <h3 className="text-xl text-gray-900 font-semibold mb-2">
+                    Характеристики
+                  </h3>
                   {getSpecificationsTable(selectedCar.specifications)}
 
-                  <Divider className="bg-gray-600 my-4" />
+                  {/* <Divider  className="bg-primary text-primary mb-4 mt-4" /> */}
 
                   {/* Преимущества */}
-                  <h3 className="text-xl font-semibold mb-2">Преимущества</h3>
+                  <h3 className="text-xl text-gray-900 font-semibold mb-2 mt-8">
+                    Преимущества
+                  </h3>
                   <ul className="list-disc list-inside mb-4">
                     {selectedCar.advantages.map((adv, index) => (
-                      <li key={index}>{adv}</li>
+                      <li className="text-gray-900" key={index}>
+                        {adv}
+                      </li>
                     ))}
                   </ul>
 

@@ -1,4 +1,3 @@
-// src/components/Layout/Layout.jsx
 import React, { useRef, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Header/Header";
@@ -19,17 +18,12 @@ const Layout = ({ children }) => {
     let trigger;
 
     if (isMainPage) {
-      // Изначально скрываем хедер и футер, если находимся вверху страницы
       const scrollY = window.scrollY || window.pageYOffset;
-      if (scrollY === 0) {
-        setIsHeaderVisible(false);
-      } else {
-        setIsHeaderVisible(true);
-      }
+      setIsHeaderVisible(scrollY > 0);
 
-      // Используем GSAP ScrollTrigger для отслеживания скролла
+      // Создаём ScrollTrigger только для главной страницы
       trigger = ScrollTrigger.create({
-        trigger: ".introSection", // Убедитесь, что этот класс применен к вашему элементу
+        trigger: ".introSection",
         start: "bottom top",
         onEnter: () => {
           setIsHeaderVisible(true);
@@ -39,16 +33,27 @@ const Layout = ({ children }) => {
         },
       });
     } else {
-      // На других страницах хедер и футер всегда видимы
       setIsHeaderVisible(true);
     }
 
-    // Очистка при размонтировании
     return () => {
       if (trigger) {
         trigger.kill();
       }
     };
+  }, [location.pathname]);
+
+  useEffect(() => {
+    // Отключение анимаций и мгновенная прокрутка при смене страницы
+    if (location.pathname !== "/") {
+      // Сначала мгновенно прокручиваем страницу вверх
+      window.scrollTo(0, 0);
+
+      // Ожидаем завершения всех активных анимаций, если они есть, и затем сбрасываем позицию еще раз
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 10);
+    }
   }, [location.pathname]);
 
   return (
