@@ -252,7 +252,7 @@ const CarRentalPage = () => {
                 key={car.id}
                 hoverable
                 bordered={false}
-                className={`bg-background shadow-md rounded-lg overflow-hidden transition-transform transform  ${styles.card}`}
+                className={` shadow-md rounded-lg overflow-hidden transition-transform transform  ${styles.card}`}
                 cover={
                   <div className="w-full h-48 md:h-56 overflow-hidden">
                     <img

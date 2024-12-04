@@ -85,6 +85,23 @@
   }
 }
 
+.nav_overlay_list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0 20px;
+  height: 100%;
+  justify-content: center;
+  gap: 10px;
+
+  li {
+    font-size: 20px;
+  }
+
+  .nav_overlay_link {
+  }
+}
+
 /* Мобильные стили */
 @media (max-width: 768px) {
   .header {
@@ -149,11 +166,11 @@
   /* Затемнение фона при открытом меню */
   .navOverlay {
     position: fixed;
-    top: 60px;
+    top: 51px;
     left: 0;
     width: 100%;
-    height: calc(100% - 60px);
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 998;
+    height: calc(100% - 51px);
+    background-color: #e9e9e9;
+    z-index: 10000;
   }
 }
