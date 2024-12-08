@@ -10,7 +10,6 @@ import MapWithRoute from "../../components/MapWithRoute/MapWithRoute";
 import mainPageStyles from "./MainPage.module.scss";
 import { useScroll } from "../../context/ScrollContext";
 import { useLocation } from "react-router-dom";
-import siteLogo from "../../assets/icons/logo.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -22,67 +21,27 @@ const MainPage = () => {
   const mapRef = useRef(null);
   const mainContentRef = useRef(null);
   const introSectionRef = useRef(null);
-  const splashScreenRef = useRef(null);
 
   const [isContentVisible, setIsContentVisible] = useState(false);
-  const [showSplash, setShowSplash] = useState(true);
-  const [hasSplashCompleted, setHasSplashCompleted] = useState(false);
 
   const { registerRef, scrollTo } = useScroll();
   const location = useLocation();
 
   useEffect(() => {
-    // Читаем флаг из localStorage
-    const splashCompleted = localStorage.getItem("splashCompleted") === "true";
-    if (splashCompleted) {
-      setHasSplashCompleted(true); // Если анимация была выполнена, пропускаем её
-      setShowSplash(false);
-    }
+    registerRef("about", aboutRef);
+    registerRef("services", servicesRef);
+    registerRef("reviews", reviewsRef);
+    registerRef("map", mapRef);
+    registerRef("form", formRef);
 
-    if (!splashCompleted) {
-      // Если анимация еще не завершена, запускаем её
-      registerRef("about", aboutRef);
-      registerRef("services", servicesRef);
-      registerRef("reviews", reviewsRef);
-      registerRef("map", mapRef);
-      registerRef("form", formRef);
-
-      gsap.set([mainContentRef.current], {
-        opacity: 0,
-        y: -20,
-      });
-
-      // Анимация шторки
-      if (showSplash && splashScreenRef.current) {
-        gsap.fromTo(
-          splashScreenRef.current,
-          { y: "-100%" },
-          {
-            y: "0%",
-            duration: 0.5,
-            ease: "power2.out",
-            onComplete: () => {
-              gsap.to(splashScreenRef.current, {
-                delay: 1.5, // Задержка перед закрытием шторки
-                y: "-100%",
-                duration: 0.5,
-                ease: "power2.in",
-                onComplete: () => {
-                  setShowSplash(false);
-                  setHasSplashCompleted(true);
-                  // Сохраняем состояние в localStorage
-                  localStorage.setItem("splashCompleted", "true");
-                },
-              });
-            },
-          }
-        );
-      }
-    }
+    gsap.set([mainContentRef.current], {
+      opacity: 0,
+      y: -20,
+    });
 
     // Анимация появления при прокрутке
     ScrollTrigger.create({
-      trigger: introSectionRef.current,
+      trigger: "#introSection", // Используем ID вместо класса
       start: "bottom top",
       onEnter: () => {
         gsap.to(mainContentRef.current, {
@@ -96,6 +55,7 @@ const MainPage = () => {
         gsap.to(mainContentRef.current, { opacity: 0, y: -10, duration: 0.5 });
         setIsContentVisible(false);
       },
+      // markers: true, // Для отладки, раскомментируйте при необходимости
     });
 
     // Скролл к нужной секции при загрузке страницы
@@ -110,7 +70,7 @@ const MainPage = () => {
       scrollTo(location.state.scrollTo);
       window.history.replaceState({}, document.title);
     }
-  }, [registerRef, scrollTo, location, showSplash]); // Убираем hasSplashCompleted из зависимостей
+  }, [registerRef, scrollTo, location]);
 
   const scrollToForm = () => {
     scrollTo("form");
@@ -130,22 +90,12 @@ const MainPage = () => {
 
   return (
     <div>
-      {/* Шторка с логотипом */}
-      {showSplash &&
-        !hasSplashCompleted && ( // Проверяем флаг, чтобы показать шторку только один раз
-          <div className={mainPageStyles.splashScreen} ref={splashScreenRef}>
-            <div className={mainPageStyles.logoContainer}>
-              <img
-                src={siteLogo} // Используйте импортированный логотип
-                alt="Логотип"
-                className={mainPageStyles.logo}
-              />
-            </div>
-          </div>
-        )}
-
       {/* Начальная заставка — полноширинный блок */}
-      <section className={mainPageStyles.introSection} ref={introSectionRef}>
+      <section
+        id="introSection" // Добавляем уникальный ID
+        className={mainPageStyles.introSection}
+        ref={introSectionRef}
+      >
         <div className={mainPageStyles.introContent}>
           <div className={mainPageStyles.navigationButtons}>
             <button
