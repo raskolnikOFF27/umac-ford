@@ -174,7 +174,11 @@ const MainPage = () => {
             }}
           >
             <main>
-              <section ref={aboutRef} id="about">
+              <section
+                className={mainPageStyles.about_section}
+                ref={aboutRef}
+                id="about"
+              >
                 <About />
               </section>
               <section ref={servicesRef} id="services">
