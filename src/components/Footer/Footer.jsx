@@ -32,13 +32,13 @@ const Footer = forwardRef(({ className = "", isVisible }, ref) => {
           <a target="_blank" rel="noreferrer" href="https://t.me/umakford">
             <img src={telegramIcon} alt="Telegram" />
           </a>
-          <a
+          {/* <a
             target="_blank"
             rel="noreferrer"
             href="https://www.instagram.com/umakford_plus/"
           >
             <img src={instagramIcon} alt="Instagram" />
-          </a>
+          </a> */}
         </div>
         <p>© {new Date().getFullYear()} Юмак Форд. Все права защищены.</p>
       </div>

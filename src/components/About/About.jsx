@@ -27,6 +27,21 @@ const About = () => {
               автомобилей..Наша команда специалистов гарантирует высокое
               качество работ и индивидуальный подход к каждому клиенту.
             </Paragraph>
+
+            <button
+              className={styles.introButton}
+              onClick={() => {
+                const formSection = document.getElementById("form");
+                if (formSection) {
+                  formSection.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                  });
+                }
+              }}
+            >
+              Записаться в сервис
+            </button>
           </div>
         </Col>
         {/* <Col xs={24} md={12} className={styles.col}>
