@@ -1,4 +1,6 @@
-import React, { useRef, useEffect, useState } from "react";
+// src/pages/MainPage/MainPage.jsx
+
+import React, { useRef, useLayoutEffect, useState, useContext } from "react";
 import { Button, ConfigProvider, Input, Form } from "antd";
 import { Typewriter } from "react-simple-typewriter";
 import gsap from "gsap";
@@ -8,8 +10,9 @@ import Services from "../../components/Services/Services";
 import Reviews from "../../components/Reviews/Reviews";
 import MapWithRoute from "../../components/MapWithRoute/MapWithRoute";
 import mainPageStyles from "./MainPage.module.scss";
-import { useScroll } from "../../context/ScrollContext";
+import { useScroll } from "../../context/ScrollContext.jsx";
 import { useLocation } from "react-router-dom";
+import { HeaderVisibilityContext } from "../../context/HeaderVisibilityContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,7 +30,9 @@ const MainPage = () => {
   const { registerRef, scrollTo } = useScroll();
   const location = useLocation();
 
-  useEffect(() => {
+  const { setIsHeaderVisible } = useContext(HeaderVisibilityContext);
+
+  useLayoutEffect(() => {
     registerRef("about", aboutRef);
     registerRef("services", servicesRef);
     registerRef("reviews", reviewsRef);
@@ -39,9 +44,9 @@ const MainPage = () => {
       y: -20,
     });
 
-    // Анимация появления при прокрутке
-    ScrollTrigger.create({
-      trigger: "#introSection", // Используем ID вместо класса
+    // Анимация появления основного контента при прокрутке
+    const contentTrigger = ScrollTrigger.create({
+      trigger: "#introSection",
       start: "bottom top",
       onEnter: () => {
         gsap.to(mainContentRef.current, {
@@ -55,8 +60,10 @@ const MainPage = () => {
         gsap.to(mainContentRef.current, { opacity: 0, y: -10, duration: 0.5 });
         setIsContentVisible(false);
       },
-      // markers: true, // Для отладки, раскомментируйте при необходимости
+      // markers: true, // Включите для отладки
     });
+
+    ScrollTrigger.refresh();
 
     // Скролл к нужной секции при загрузке страницы
     const hash = window.location.hash.substring(1);
@@ -70,7 +77,12 @@ const MainPage = () => {
       scrollTo(location.state.scrollTo);
       window.history.replaceState({}, document.title);
     }
-  }, [registerRef, scrollTo, location]);
+
+    return () => {
+      contentTrigger.kill();
+      ScrollTrigger.getAll().forEach((t) => t.kill());
+    };
+  }, [registerRef, scrollTo, location, setIsHeaderVisible]);
 
   const scrollToForm = () => {
     scrollTo("form");
@@ -92,7 +104,7 @@ const MainPage = () => {
     <div>
       {/* Начальная заставка — полноширинный блок */}
       <section
-        id="introSection" // Добавляем уникальный ID
+        id="introSection" // Уникальный ID
         className={mainPageStyles.introSection}
         ref={introSectionRef}
       >
@@ -168,8 +180,8 @@ const MainPage = () => {
               token: {
                 colorPrimary: "#9D0208",
                 colorSecondary: "#D32F2F",
-                colorBgBase: "#f5f5f5", // Обновленный светло-серый фон
-                colorTextBase: "#333333", // Темно-серый текст
+                colorBgBase: "#f5f5f5",
+                colorTextBase: "#333333",
               },
             }}
           >

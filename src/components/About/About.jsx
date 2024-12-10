@@ -28,7 +28,7 @@ const About = () => {
               качество работ и индивидуальный подход к каждому клиенту.
             </Paragraph>
 
-            <button
+            {/* <button
               className={styles.introButton}
               onClick={() => {
                 const formSection = document.getElementById("form");
@@ -41,7 +41,7 @@ const About = () => {
               }}
             >
               Записаться в сервис
-            </button>
+            </button> */}
           </div>
         </Col>
         {/* <Col xs={24} md={12} className={styles.col}>

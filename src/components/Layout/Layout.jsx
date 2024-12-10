@@ -1,25 +1,43 @@
-import React, { useRef, useEffect, useState } from "react";
+// src/components/Layout/Layout.jsx
+
+import React, {
+  useRef,
+  useEffect,
+  useLayoutEffect,
+  useState,
+  useContext,
+} from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import styles from "./Layout.module.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import siteLogo from "../../assets/icons/logo.svg"; // Убедитесь, что путь правильный
+import siteLogo from "../../assets/icons/logo.svg";
+import {
+  HeaderVisibilityContext,
+  HeaderVisibilityProvider,
+} from "../../context/HeaderVisibilityContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const isMainPage = location.pathname === "/";
-  // Инициализируем isHeaderVisible: скрыт на главной странице, видим на остальных
-  const [isHeaderVisible, setIsHeaderVisible] = useState(() => !isMainPage);
+  const { setIsHeaderVisible } = useContext(HeaderVisibilityContext);
 
-  // Состояния для сплэш-скрина
-  const [showSplash, setShowSplash] = useState(false);
+  // Инициализируем showSplash на основе localStorage
+  const [showSplash, setShowSplash] = useState(() => {
+    if (isMainPage) {
+      const splashCompleted =
+        localStorage.getItem("splashCompleted") === "true";
+      return !splashCompleted;
+    }
+    return false;
+  });
   const splashScreenRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let trigger;
 
     if (isMainPage) {
@@ -39,24 +57,29 @@ const Layout = ({ children }) => {
             ease: "power2.out",
             onComplete: () => {
               gsap.to(splashScreenRef.current, {
-                delay: 1.5, // Задержка перед закрытием
+                delay: 1.5,
                 y: "-100%",
                 duration: 0.5,
                 ease: "power2.in",
                 onComplete: () => {
                   setShowSplash(false);
                   localStorage.setItem("splashCompleted", "true");
+                  // Прокрутка к началу страницы после закрытия сплэш-скрина
+                  window.scrollTo(0, 0);
                 },
               });
             },
           }
         );
+      } else {
+        // Если сплэш-скрин уже показан, прокрутить к верху
+        window.scrollTo(0, 0);
       }
 
-      // Создаём ScrollTrigger только для главной страницы
+      // Создаём ScrollTrigger для управления видимостью Header
       trigger = ScrollTrigger.create({
-        trigger: "#introSection", // Используем ID
-        start: "bottom top", // Когда нижняя часть introSection достигает верхней части окна
+        trigger: "#introSection",
+        start: "bottom top",
         onEnter: () => {
           setIsHeaderVisible(true);
         },
@@ -66,7 +89,6 @@ const Layout = ({ children }) => {
         // markers: true, // Включите для отладки
       });
 
-      // Обновляем ScrollTrigger после рендера
       ScrollTrigger.refresh();
     } else {
       setIsHeaderVisible(true);
@@ -77,7 +99,7 @@ const Layout = ({ children }) => {
         trigger.kill();
       }
     };
-  }, [isMainPage]);
+  }, [isMainPage, setIsHeaderVisible]);
 
   useEffect(() => {
     // Очистка флага при перезагрузке страницы
@@ -93,11 +115,8 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div className={styles.layout}>
-      {/* Заголовок */}
-      <Header isVisible={isHeaderVisible} />
-
-      {/* Сплэш-скрин */}
+    <>
+      <Header />
       {showSplash && (
         <div className={styles.splashScreen} ref={splashScreenRef}>
           <div className={styles.logoContainer}>
@@ -105,11 +124,16 @@ const Layout = ({ children }) => {
           </div>
         </div>
       )}
-
       <main>{children}</main>
-      <Footer isVisible={isHeaderVisible} />
-    </div>
+      <Footer />
+    </>
   );
 };
 
-export default Layout;
+const LayoutWithProvider = ({ children }) => (
+  <HeaderVisibilityProvider>
+    <Layout>{children}</Layout>
+  </HeaderVisibilityProvider>
+);
+
+export default LayoutWithProvider;
