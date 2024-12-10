@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/umac-ford/static/css/main.f393dc02.css",
-    "main.js": "/umac-ford/static/js/main.e88eac65.js",
+    "main.css": "/umac-ford/static/css/main.7ac186d5.css",
+    "main.js": "/umac-ford/static/js/main.933c8414.js",
     "static/media/photo-5.jpg": "/umac-ford/static/media/photo-5.11238c43e31930fa148d.jpg",
     "static/media/photo-1.jpg": "/umac-ford/static/media/photo-1.b8dbbd9ffdcc17d4b7ff.jpg",
     "static/media/photo-3.jpg": "/umac-ford/static/media/photo-3.9d0e8924f4973590f0f0.jpg",
@@ -39,11 +39,11 @@
     "static/media/avatar-1.webp": "/umac-ford/static/media/avatar-1.053b9284b21449889aa3.webp",
     "static/media/arrow-left.svg": "/umac-ford/static/media/arrow-left.c8636e10be9a6fa7b748ecf36c713ccc.svg",
     "static/media/arrow-right.svg": "/umac-ford/static/media/arrow-right.c8636e10be9a6fa7b748ecf36c713ccc.svg",
-    "main.f393dc02.css.map": "/umac-ford/static/css/main.f393dc02.css.map",
-    "main.e88eac65.js.map": "/umac-ford/static/js/main.e88eac65.js.map"
+    "main.7ac186d5.css.map": "/umac-ford/static/css/main.7ac186d5.css.map",
+    "main.933c8414.js.map": "/umac-ford/static/js/main.933c8414.js.map"
   },
   "entrypoints": [
-    "static/css/main.f393dc02.css",
-    "static/js/main.e88eac65.js"
+    "static/css/main.7ac186d5.css",
+    "static/js/main.933c8414.js"
   ]
 }
