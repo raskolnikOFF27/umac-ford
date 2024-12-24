@@ -331,7 +331,10 @@ const CarRentalPage = () => {
 
           <div className={styles.rentalInfo}>
             <Title level={3} className={styles.infoTitle}>
-              <InfoCircleOutlined className={styles.icon} /> Условия Аренды
+              <InfoCircleOutlined className={styles.icon} /> Условия Аренды |
+              <a href="tel:+79326025200" className={styles.phoneLink}>
+                по телефону
+              </a>{" "}
             </Title>
             <Divider className={styles.infoDivider} />
 

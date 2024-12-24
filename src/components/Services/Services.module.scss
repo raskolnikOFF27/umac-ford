@@ -5,13 +5,39 @@
   background-color: var(--background-color);
   color: var(--text-color);
 
+  .title_wrapper {
+    margin-bottom: 60px;
+  }
+
   .title {
     font-size: 2rem;
     font-weight: 700;
     color: #9d0208;
     text-align: left;
-    margin-bottom: 60px;
     position: relative;
+  }
+
+  .titles_icon {
+    margin-right: 10px;
+    font-size: 16px;
+    color: var(--primary-color);
+    transition: color 0.3s ease;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: #555;
+    text-align: left;
+
+    a {
+      color: #9d0208; // Цвет ссылки
+      text-decoration: underline;
+      cursor: pointer;
+
+      &:hover {
+        color: #7f0216;
+      }
+    }
   }
 
   .card {

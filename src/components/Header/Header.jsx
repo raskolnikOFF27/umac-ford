@@ -1,15 +1,21 @@
-import React, { useState, useEffect, forwardRef } from "react";
+// src/components/Header/Header.jsx
+
+import React, { useState, useEffect, forwardRef, useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
 import { useScroll } from "../../context/ScrollContext";
+import { HeaderVisibilityContext } from "../../context/HeaderVisibilityContext";
 
-const Header = forwardRef(({ className = "", isVisible }, ref) => {
+const Header = forwardRef(({ className = "" }, ref) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollTo } = useScroll();
   const location = useLocation();
   const navigate = useNavigate();
+  const { isHeaderVisible, setIsHeaderVisible } = useContext(
+    HeaderVisibilityContext
+  );
 
   // Блокируем/разблокируем прокрутку при открытии/закрытии меню
   useEffect(() => {
@@ -46,7 +52,7 @@ const Header = forwardRef(({ className = "", isVisible }, ref) => {
       <header
         ref={ref}
         className={`${styles.header} ${className} ${
-          isVisible ? styles.visible : styles.hidden
+          isHeaderVisible ? styles.visible : styles.hidden
         }`}
       >
         <div className={styles.headerWrapper}>

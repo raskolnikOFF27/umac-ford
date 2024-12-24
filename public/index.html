@@ -1,47 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
   <head>
+    <!-- Базовые настройки -->
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+
+    <!-- Иконка сайта (favicon) -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.svg" />
+
+    <!-- Заголовок страницы: отобразится в поисковой выдаче и на вкладке браузера -->
+    <title>
+      Юмакфорд | Автосервис, аренда авто, автомойка и автозапчасти в
+      Екатеринбурге
+    </title>
+
+    <!-- Краткое описание: покажется в поисковой выдаче -->
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Юмакфорд — современный автосервис и автотехцентр в Екатеринбурге. Мы предоставляем услуги аренды авто, автомойки и продажи автозапчастей по доступным ценам."
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
+
+    <!-- Ключевые слова: перечислите через запятую -->
+    <meta
+      name="keywords"
+      content="автосервис, автотехцентр, аренда авто, автомойка, автозапчасти, Екатеринбург, ремонт автомобилей"
+    />
+
+    <!-- Другие полезные метатеги -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Юмакфорд" />
+    <meta name="theme-color" content="#000000" />
+
+    <!-- Open Graph: для красивых превью в социальных сетях (Facebook, VK, LinkedIn и т.д.) -->
+    <meta property="og:title" content="Юмакфорд | Автосервис в Екатеринбурге" />
+    <meta
+      property="og:description"
+      content="Автосервис и автотехцентр: ремонт авто, аренда автомобилей, автомойка и запчасти в Екатеринбурге."
+    />
+    <!-- Замените example.com на ваш реальный домен -->
+    <meta property="og:url" content="https://example.com" />
+    <!-- Тип контента (чаще всего website) -->
+    <meta property="og:type" content="website" />
+    <!-- Ссылка на превью-изображение для соцсетей (например, логотип или баннер) -->
+    <meta property="og:image" content="https://example.com/og-image.jpg" />
+
+    <!-- Twitter Cards (если актуально) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Юмакфорд | Автосервис в Екатеринбурге"
+    />
+    <meta
+      name="twitter:description"
+      content="Услуги автосервиса, аренды авто, автомойки и запчастей в Екатеринбурге."
+    />
+    <!-- Ссылка на то же изображение, что и в og:image -->
+    <meta name="twitter:image" content="https://example.com/og-image.jpg" />
+
+    <!-- JSON-LD (структурированные данные для локального бизнеса) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "AutoRepair",
+        "name": "Юмакфорд",
+        "image": "https://example.com/og-image.jpg",
+        "url": "https://example.com",
+        "telephone": "+7 (343) 123-45-67",
+        "priceRange": "$$",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "ул. Академика Вонсовского, 1Ж",
+          "addressLocality": "Екатеринбург",
+          "postalCode": "620000",
+          "addressCountry": "RU"
+        },
+        "description": "Современный автосервис, автотехцентр, аренда авто, автомойка и автозапчасти в Екатеринбурге.",
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": "56.776364",
+          "longitude": "60.564156"
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday"
+            ],
+            "opens": "09:00",
+            "closes": "19:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday", "Sunday"],
+            "opens": "10:00",
+            "closes": "17:00"
+          }
+        ]
+      }
+    </script>
+
+    <!-- Файл манифеста (иконки и т.д.) -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    <!-- Подключение карт (пример: Яндекс.Карты) -->
     <script
       src="https://api-maps.yandex.ru/2.1/?lang=ru_RU"
       type="text/javascript"
     ></script>
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>Юмакфорд</title>
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <noscript
+      >Для работы сайта необходимо включить JavaScript в настройках
+      браузера.</noscript
+    >
     <div id="root"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
-
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
-
-      To begin the development, run `npm start` or `yarn start`.
-      To create a production bundle, use `npm run build` or `yarn build`.
-    -->
   </body>
 </html>

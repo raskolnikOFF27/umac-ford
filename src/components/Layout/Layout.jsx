@@ -1,22 +1,34 @@
-import React, { useRef, useEffect, useState } from "react";
+// src/components/Layout/Layout.jsx
+
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import styles from "./Layout.module.scss";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import siteLogo from "../../assets/icons/logo.svg"; // Убедитесь, что путь правильный
+import siteLogo from "../../assets/icons/logo.svg";
+import {
+  HeaderVisibilityContext,
+  HeaderVisibilityProvider,
+} from "../../context/HeaderVisibilityContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Layout = ({ children }) => {
   const location = useLocation();
   const isMainPage = location.pathname === "/";
-  // Инициализируем isHeaderVisible: скрыт на главной странице, видим на остальных
-  const [isHeaderVisible, setIsHeaderVisible] = useState(() => !isMainPage);
+  const { setIsHeaderVisible } = useContext(HeaderVisibilityContext);
 
-  // Состояния для сплэш-скрина
-  const [showSplash, setShowSplash] = useState(false);
+  // Инициализируем showSplash на основе localStorage
+  const [showSplash, setShowSplash] = useState(() => {
+    if (isMainPage) {
+      const splashCompleted =
+        localStorage.getItem("splashCompleted") === "true";
+      return !splashCompleted;
+    }
+    return false;
+  });
   const splashScreenRef = useRef(null);
 
   useEffect(() => {
@@ -39,35 +51,54 @@ const Layout = ({ children }) => {
             ease: "power2.out",
             onComplete: () => {
               gsap.to(splashScreenRef.current, {
-                delay: 1.5, // Задержка перед закрытием
+                delay: 1.5,
                 y: "-100%",
                 duration: 0.5,
                 ease: "power2.in",
                 onComplete: () => {
                   setShowSplash(false);
                   localStorage.setItem("splashCompleted", "true");
+                  // Прокрутка к началу страницы после закрытия сплэш-скрина
+                  window.scrollTo(0, 0);
+                  // После закрытия сплэш-скрина, инициализируем ScrollTrigger
+                  initializeScrollTrigger();
                 },
               });
             },
           }
         );
+      } else {
+        // Если сплэш-скрин уже показан, прокрутить к верху
+        window.scrollTo(0, 0);
+        // Инициализируем ScrollTrigger сразу
+        initializeScrollTrigger();
       }
 
-      // Создаём ScrollTrigger только для главной страницы
-      trigger = ScrollTrigger.create({
-        trigger: "#introSection", // Используем ID
-        start: "bottom top", // Когда нижняя часть introSection достигает верхней части окна
-        onEnter: () => {
-          setIsHeaderVisible(true);
-        },
-        onLeaveBack: () => {
-          setIsHeaderVisible(false);
-        },
-        // markers: true, // Включите для отладки
-      });
+      function initializeScrollTrigger() {
+        // Убедитесь, что introSection существует
+        const introSection = document.getElementById("introSection");
+        if (!introSection) {
+          console.warn("Element with id 'introSection' not found.");
+          return;
+        }
 
-      // Обновляем ScrollTrigger после рендера
-      ScrollTrigger.refresh();
+        // Создаём ScrollTrigger для управления видимостью Header
+        trigger = ScrollTrigger.create({
+          trigger: "#introSection",
+          start: "bottom top",
+          onEnter: () => {
+            console.log("ScrollTrigger: onEnter");
+            setIsHeaderVisible(true);
+          },
+          onLeaveBack: () => {
+            console.log("ScrollTrigger: onLeaveBack");
+            setIsHeaderVisible(false);
+          },
+          markers: true, // Включите для отладки
+        });
+
+        ScrollTrigger.refresh();
+      }
     } else {
       setIsHeaderVisible(true);
     }
@@ -77,7 +108,7 @@ const Layout = ({ children }) => {
         trigger.kill();
       }
     };
-  }, [isMainPage]);
+  }, [isMainPage, setIsHeaderVisible]);
 
   useEffect(() => {
     // Очистка флага при перезагрузке страницы
@@ -93,11 +124,8 @@ const Layout = ({ children }) => {
   }, []);
 
   return (
-    <div className={styles.layout}>
-      {/* Заголовок */}
-      <Header isVisible={isHeaderVisible} />
-
-      {/* Сплэш-скрин */}
+    <>
+      <Header />
       {showSplash && (
         <div className={styles.splashScreen} ref={splashScreenRef}>
           <div className={styles.logoContainer}>
@@ -105,11 +133,16 @@ const Layout = ({ children }) => {
           </div>
         </div>
       )}
-
       <main>{children}</main>
-      <Footer isVisible={isHeaderVisible} />
-    </div>
+      <Footer />
+    </>
   );
 };
 
-export default Layout;
+const LayoutWithProvider = ({ children }) => (
+  <HeaderVisibilityProvider>
+    <Layout>{children}</Layout>
+  </HeaderVisibilityProvider>
+);
+
+export default LayoutWithProvider;

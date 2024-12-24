@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Modal, Table, Row, Col, Typography, Card } from "antd";
+import { InfoCircleOutlined } from "@ant-design/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import { useNavigate } from "react-router-dom";
@@ -20,7 +21,7 @@ import { ReactComponent as CarWashIcon } from "../../assets/icons/car-wash.svg";
 import { ReactComponent as CarRentalIcon } from "../../assets/icons/car-rental.svg";
 import { ReactComponent as TireIcon } from "../../assets/icons/tire.svg";
 
-const { Title } = Typography;
+const { Title, Text } = Typography;
 
 // Массив услуг
 const services = [
@@ -316,9 +317,18 @@ const Services = () => {
 
   return (
     <section id="services" className={styles.services}>
-      <Title level={2} className={styles.title}>
-        Наши услуги
-      </Title>
+      <div className={styles.title_wrapper}>
+        <Title level={2} className={styles.title}>
+          Наши услуги
+        </Title>
+        <InfoCircleOutlined className={styles.titles_icon} />
+        <Text className={styles.subtitle}>
+          Актуальные цены можно уточнить{" "}
+          <a href="tel:+79326025200" className={styles.phoneLink}>
+            по телефону
+          </a>{" "}
+        </Text>
+      </div>
       <Row gutter={[24, 24]} justify="center">
         {services.map((service, index) => (
           <Col xs={24} sm={12} md={8} key={index}>
