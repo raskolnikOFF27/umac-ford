@@ -81,14 +81,14 @@ const MapWithRoute = () => {
           </Card>
           {/* Блок с социальными сетями */}
           <div className={styles.socialBlock}>
-            <a
+            {/* <a
               className={styles.socialCard}
               target="_blank"
               rel="noreferrer"
               href="https://www.instagram.com/umakford_plus/"
             >
               <InstagramIcon className={styles.icon} />
-            </a>
+            </a> */}
             <a
               className={styles.socialCard}
               target="_blank"

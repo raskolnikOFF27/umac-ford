@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import styles from "./Header.module.scss";
 import logo from "../../assets/icons/logo.svg";
 import { MenuOutlined, CloseOutlined } from "@ant-design/icons";
-import { useScroll } from "../../context/ScrollContext.jsx";
+import { useScroll } from "../../context/ScrollContext";
 import { HeaderVisibilityContext } from "../../context/HeaderVisibilityContext";
 
 const Header = forwardRef(({ className = "" }, ref) => {

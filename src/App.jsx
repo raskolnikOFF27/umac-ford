@@ -6,7 +6,7 @@ import styles from "./App.module.scss";
 
 const App = () => {
   return (
-    <BrowserRouter basename="/umac-ford">
+    <BrowserRouter>
       <AppRouter />
     </BrowserRouter>
   );

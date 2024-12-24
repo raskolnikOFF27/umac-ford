@@ -10,7 +10,7 @@ import Services from "../../components/Services/Services";
 import Reviews from "../../components/Reviews/Reviews";
 import MapWithRoute from "../../components/MapWithRoute/MapWithRoute";
 import mainPageStyles from "./MainPage.module.scss";
-import { useScroll } from "../../context/ScrollContext.jsx";
+import { useScroll } from "../../context/ScrollContext";
 import { useLocation } from "react-router-dom";
 import { HeaderVisibilityContext } from "../../context/HeaderVisibilityContext";
 
@@ -60,7 +60,7 @@ const MainPage = () => {
         gsap.to(mainContentRef.current, { opacity: 0, y: -10, duration: 0.5 });
         setIsContentVisible(false);
       },
-      // markers: true, // Включите для отладки
+      markers: false, // Отключите после отладки
     });
 
     ScrollTrigger.refresh();

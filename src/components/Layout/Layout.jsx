@@ -1,12 +1,6 @@
 // src/components/Layout/Layout.jsx
 
-import React, {
-  useRef,
-  useEffect,
-  useLayoutEffect,
-  useState,
-  useContext,
-} from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
@@ -37,7 +31,7 @@ const Layout = ({ children }) => {
   });
   const splashScreenRef = useRef(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     let trigger;
 
     if (isMainPage) {
@@ -66,6 +60,8 @@ const Layout = ({ children }) => {
                   localStorage.setItem("splashCompleted", "true");
                   // Прокрутка к началу страницы после закрытия сплэш-скрина
                   window.scrollTo(0, 0);
+                  // После закрытия сплэш-скрина, инициализируем ScrollTrigger
+                  initializeScrollTrigger();
                 },
               });
             },
@@ -74,22 +70,35 @@ const Layout = ({ children }) => {
       } else {
         // Если сплэш-скрин уже показан, прокрутить к верху
         window.scrollTo(0, 0);
+        // Инициализируем ScrollTrigger сразу
+        initializeScrollTrigger();
       }
 
-      // Создаём ScrollTrigger для управления видимостью Header
-      trigger = ScrollTrigger.create({
-        trigger: "#introSection",
-        start: "bottom top",
-        onEnter: () => {
-          setIsHeaderVisible(true);
-        },
-        onLeaveBack: () => {
-          setIsHeaderVisible(false);
-        },
-        // markers: true, // Включите для отладки
-      });
+      function initializeScrollTrigger() {
+        // Убедитесь, что introSection существует
+        const introSection = document.getElementById("introSection");
+        if (!introSection) {
+          console.warn("Element with id 'introSection' not found.");
+          return;
+        }
 
-      ScrollTrigger.refresh();
+        // Создаём ScrollTrigger для управления видимостью Header
+        trigger = ScrollTrigger.create({
+          trigger: "#introSection",
+          start: "bottom top",
+          onEnter: () => {
+            console.log("ScrollTrigger: onEnter");
+            setIsHeaderVisible(true);
+          },
+          onLeaveBack: () => {
+            console.log("ScrollTrigger: onLeaveBack");
+            setIsHeaderVisible(false);
+          },
+          markers: true, // Включите для отладки
+        });
+
+        ScrollTrigger.refresh();
+      }
     } else {
       setIsHeaderVisible(true);
     }
